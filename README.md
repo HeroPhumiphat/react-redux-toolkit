@@ -2,4 +2,4 @@
 
 กำลังพัฒนา Project...
 
-https://phenomenal-scone-f3403e.netlify.app/dash/user/menage
+https://phenomenal-scone-f3403e.netlify.app/
