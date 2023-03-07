@@ -49,6 +49,7 @@ export default function Login() {
             setSelectEmail(user[select.current.value].email)
             setSelectPassword(user[select.current.value].password)
         }
+        console.log()
     }
 
     return (

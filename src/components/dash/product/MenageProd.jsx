@@ -1,7 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 export default function MenageProd() {
+    const products = useSelector((state) => state.products.value) 
+    console.log(...products)
     return (
         <div>
             <div className='mb-7 ml-5 flex'>
@@ -14,7 +17,7 @@ export default function MenageProd() {
                         <div className='flex flex-wrap'>
                             <div className="relative w-52 h-36 border-l-8 border-amber-500 bg-white rounded-md py-2 px-4 mb-2 mr-5">
                                 <p className='text-neutral-800 font-bold underline underline-offset-2'>Products List</p>
-                                <p className='absolute bottom-4 right-7 text-7xl text-amber-500 font-medium'>27</p>
+                                <p className='absolute bottom-4 right-7 text-7xl text-amber-500 font-medium'>{products.length}</p>
                             </div>
                         </div>
                     </div>
@@ -46,66 +49,23 @@ export default function MenageProd() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr className='bg-white border-b text-xs md:text-sm'>
-                                        <th className='px-6 py-2 font-medium text-gray-900 whitespace-nowrap'>React JS</th>
-                                        <td className='px-3 md:px-6 py-2 text-center'>Book</td>
-                                        <td className='px-3 md:px-6 py-2 text-center'>5$</td>
-                                        <td className='px-3 md:px-6 py-0.5 max-w-px'>
-                                            <div style={{height: 70, minWidth: 100, backgroundImage: "url('https://images.pexels.com/photos/1516983/pexels-photo-1516983.jpeg?auto=compress&cs=tinysrgb&w=600')", backgroundSize: '130%', backgroundPosition: 'center'}}></div>
-                                        </td>
-                                        <td className='pr-2 md:px-4 py-1 space-x-1 text-center'>
-                                            <button className='bg-amber-500 text-white py-1 px-2 mb-1'>Edit</button>
-                                            <button className='bg-red-500 text-white py-1 px-2'>delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr className='bg-white border-b text-xs md:text-sm'>
-                                        <th className='px-6 py-2 font-medium text-gray-900 whitespace-nowrap'>React JS</th>
-                                        <td className='px-3 md:px-6 py-2 text-center'>Book</td>
-                                        <td className='px-3 md:px-6 py-2 text-center'>5$</td>
-                                        <td className='px-3 md:px-6 py-0.5 max-w-px'>
-                                            <div style={{height: 70, minWidth: 100, backgroundImage: "url('https://images.pexels.com/photos/1516983/pexels-photo-1516983.jpeg?auto=compress&cs=tinysrgb&w=600')", backgroundSize: '130%', backgroundPosition: 'center'}}></div>
-                                        </td>
-                                        <td className='pr-2 md:px-4 py-1 space-x-1 text-center'>
-                                            <button className='bg-amber-500 text-white py-1 px-2 mb-1'>Edit</button>
-                                            <button className='bg-red-500 text-white py-1 px-2'>delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr className='bg-white border-b text-xs md:text-sm'>
-                                        <th className='px-6 py-2 font-medium text-gray-900 whitespace-nowrap'>React JS</th>
-                                        <td className='px-3 md:px-6 py-2 text-center'>Book</td>
-                                        <td className='px-3 md:px-6 py-2 text-center'>5$</td>
-                                        <td className='px-3 md:px-6 py-0.5 max-w-px'>
-                                            <div style={{height: 70, minWidth: 100, backgroundImage: "url('https://images.pexels.com/photos/1516983/pexels-photo-1516983.jpeg?auto=compress&cs=tinysrgb&w=600')", backgroundSize: '130%', backgroundPosition: 'center'}}></div>
-                                        </td>
-                                        <td className='pr-2 md:px-4 py-1 space-x-1 text-center'>
-                                            <button className='bg-amber-500 text-white py-1 px-2 mb-1'>Edit</button>
-                                            <button className='bg-red-500 text-white py-1 px-2'>delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr className='bg-white border-b text-xs md:text-sm'>
-                                        <th className='px-6 py-2 font-medium text-gray-900 whitespace-nowrap'>React JS</th>
-                                        <td className='px-3 md:px-6 py-2 text-center'>Book</td>
-                                        <td className='px-3 md:px-6 py-2 text-center'>5$</td>
-                                        <td className='px-3 md:px-6 py-0.5 max-w-px'>
-                                            <div style={{height: 70, minWidth: 100, backgroundImage: "url('https://images.pexels.com/photos/1516983/pexels-photo-1516983.jpeg?auto=compress&cs=tinysrgb&w=600')", backgroundSize: '130%', backgroundPosition: 'center'}}></div>
-                                        </td>
-                                        <td className='pr-2 md:px-4 py-1 space-x-1 text-center'>
-                                            <button className='bg-amber-500 text-white py-1 px-2 mb-1'>Edit</button>
-                                            <button className='bg-red-500 text-white py-1 px-2'>delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr className='bg-white border-b text-xs md:text-sm'>
-                                        <th className='px-6 py-2 font-medium text-gray-900 whitespace-nowrap'>React JS</th>
-                                        <td className='px-3 md:px-6 py-2 text-center'>Book</td>
-                                        <td className='px-3 md:px-6 py-2 text-center'>5$</td>
-                                        <td className='px-3 md:px-6 py-0.5 max-w-px'>
-                                            <div style={{height: 70, minWidth: 100, backgroundImage: "url('https://images.pexels.com/photos/1516983/pexels-photo-1516983.jpeg?auto=compress&cs=tinysrgb&w=600')", backgroundSize: '130%', backgroundPosition: 'center'}}></div>
-                                        </td>
-                                        <td className='pr-2 md:px-4 py-1 space-x-1 text-center'>
-                                            <button className='bg-amber-500 text-white py-1 px-2 mb-1'>Edit</button>
-                                            <button className='bg-red-500 text-white py-1 px-2'>delete</button>
-                                        </td>
-                                    </tr>
+                                    {
+                                        products.map((product, i) => (
+                                            <tr className='bg-white border-b text-xs md:text-sm' key={+i}>
+                                                <th className='px-6 py-2 font-medium text-gray-900 whitespace-nowrap'>{product.name}</th>
+                                                <td className='px-3 md:px-6 py-2 text-center'>{product.category}</td>
+                                                <td className='px-3 md:px-6 py-2 text-center'>${product.price}</td>
+                                                <td className='px-3 md:px-6 py-0.5 max-w-px'>
+                                                    {product.image}
+                                                    {/* <div style={{height: 70, minWidth: 100, backgroundImage: "url('https://images.pexels.com/photos/1516983/pexels-photo-1516983.jpeg?auto=compress&cs=tinysrgb&w=600')", backgroundSize: '130%', backgroundPosition: 'center'}}></div> */}
+                                                </td>
+                                                <td className='pr-2 md:px-4 py-1 space-x-1 text-center'>
+                                                    <button className='bg-amber-500 text-white py-1 px-2 mb-1'>Edit</button>
+                                                    <button className='bg-red-500 text-white py-1 px-2'>delete</button>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    }
                                 </tbody>
                             </table>
                         </div>

@@ -42,7 +42,6 @@ export default function MenageUser() {
                 <Link className='text-neutral-400 hover:text-red-500'>/ Menage Users</Link>
             </div>
             <div className='text-start'>
-                <p className='text-neutral-400 mb-3'>Table show list Users.</p>
                 <div className='rounded-lg overflow-x-auto' style={{maxWidth: 500}}>
                     <table className='w-full text-sm text-left text-neutral-700'>
                         <thead className='text-xs text-white uppercase bg-neutral-600'>
