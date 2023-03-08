@@ -60,7 +60,7 @@ export default function Header() {
                         {
                             userLogin.length > 0
                             ?   <div className='flex items-center'>
-                                    <div className='relative bg-white w-9 h-9 rounded-full flex justify-center items-center mr-1.5'>
+                                    <div className='relative bg-white w-9 h-9 rounded-full flex justify-center items-center mr-1'>
                                         <p className='text-neutral-700 font-medium text-lg'>{ userLogin[0].name.toString().toUpperCase().substr(0, 2) }</p>
                                     </div>
                                     <div>
@@ -74,16 +74,33 @@ export default function Header() {
                         
                     </div>
                     {
-                        stateMenuShow && 
-                        <div className='menuList absolute top-20 right-3 h-50 bg-neutral-800 text-center py-5 px-7 flex flex-col rounded-md z-50' style={{ boxShadow: '0px 0px 6px #d2bd75'}}>
-                            <NavLink id='link' to='/' className={({ isActive }) => isActive ? activeClassName : 'my-1'} end style={{'--i': 1}}>Home</NavLink>
-                            <NavLink id='link' to='/about' className={({ isActive }) => isActive ? activeClassName : 'my-1'} style={{'--i': 2}}>About</NavLink>
-                            {
-                                modeDash === true && <NavLink id='link' to='/' className='text-neutral-800 font-medium text-lg' style={{textShadow: '0px 0px 8px #d2bd75', '--i': 5}}>DashBoard</NavLink>
-                            }
-                            <NavLink id='link' to='/cart' className={({ isActive }) => isActive ? activeClassName : 'my-1'} style={{'--i': 3}}>Cart</NavLink>
-                            <Link id='link' to='/' className='btnLogin relative px-10 py-2 rounded-full bg-neutral-800 mt-5 mb-3' style={{'--i': 4}}>Login</Link>
-                        </div>
+                        stateMenuShow === true
+                            ?   userLogin.length > 0
+                                ?   <div className='menuList absolute flex flex-col items-center top-20 right-3 h-50 bg-neutral-800 text-center py-5 px-8 rounded-md z-50' style={{ boxShadow: '0px 0px 6px #d2bd75'}}>
+                                        <div id='link' className='relative bg-white w-12 h-12 rounded-full flex justify-center items-center mb-1' style={{'--i': 1}}>
+                                            <p className='text-neutral-700 font-medium text-lg'>{ userLogin[0].name.toString().toUpperCase().substr(0, 2) }</p>
+                                        </div>
+                                        <p id='link' className='mb-1 text-sm' style={{'--i': 2}}>{userLogin[0].name}</p>
+                                        <p id='link' className='mb-2 text-sm' style={{'--i': 3}}>{userLogin[0].email}</p>
+                                        <Link to='/' id='link' className='text-white underline underline-offset-2 text-sm mb-5' style={{'--i': 4}}>Edit Profile</Link>
+                                        <NavLink id='link' to='/' className={({ isActive }) => isActive ? activeClassName : 'my-1'} end style={{'--i': 5}}>Home</NavLink>
+                                        <NavLink id='link' to='/about' className={({ isActive }) => isActive ? activeClassName : 'my-1'} style={{'--i': 6}}>About</NavLink>
+                                        {
+                                            modeDash === true && <NavLink id='link' to='/' className='text-neutral-800 font-medium text-lg' style={{textShadow: '0px 0px 8px #d2bd75', '--i': 5}}>DashBoard</NavLink>
+                                        }
+                                        <NavLink id='link' to='/cart' className={({ isActive }) => isActive ? activeClassName : 'my-1'} style={{'--i': 7}}>Cart</NavLink>
+                                        <Link id='link' to='/' className='relative px-10 py-2 rounded-full bg-neutral-800 mt-5 mb-3 text-red-400' style={{'--i': 5, boxShadow: '0 0 6px rgba(255, 63, 63, 1)'}}>Logout</Link>
+                                    </div>
+                                :   <div className='menuList absolute top-20 right-3 h-50 bg-neutral-800 text-center py-5 px-7 flex flex-col rounded-md z-50' style={{ boxShadow: '0px 0px 6px #d2bd75'}}>
+                                        <NavLink id='link' to='/' className={({ isActive }) => isActive ? activeClassName : 'my-1'} end style={{'--i': 1}}>Home</NavLink>
+                                        <NavLink id='link' to='/about' className={({ isActive }) => isActive ? activeClassName : 'my-1'} style={{'--i': 2}}>About</NavLink>
+                                        {
+                                            modeDash === true && <NavLink id='link' to='/' className='text-neutral-800 font-medium text-lg' style={{textShadow: '0px 0px 8px #d2bd75', '--i': 5}}>DashBoard</NavLink>
+                                        }
+                                        <NavLink id='link' to='/cart' className={({ isActive }) => isActive ? activeClassName : 'my-1'} style={{'--i': 3}}>Cart</NavLink>
+                                        <Link id='link' to='/' className='btnLogin relative px-10 py-2 rounded-full bg-neutral-800 mt-5 mb-3' style={{'--i': 4}}>Login</Link>
+                                    </div>
+                            :   ''
                     }
                 </div>
             </div>
