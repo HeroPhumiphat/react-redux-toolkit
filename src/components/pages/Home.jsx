@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { clearStateTypeProduct } from '../../../../vite-project/src/Slices/stateTypeProductSlice'
 import { addIndexType, removeIndexType } from '../../slice/stateIndexType'
 
 export default function Home() {
@@ -13,7 +14,11 @@ export default function Home() {
             prodType.push(product.type)
         }
     })
-    
+
+    React.useEffect(() => {
+        dispatch(clearStateTypeProduct())
+    }, [])
+
     const onChangeInputChangeBox = (event, key) => {
         if (event.target.checked === true) {
             dispatch(addIndexType(key))
@@ -48,8 +53,8 @@ export default function Home() {
                                         ?   <div className='card relative w-52 h-72 bg-neutral-800 rounded-md mr-5 mb-5' key={+key}>
                                                 <img src={
                                                     typeof product.image === 'string'
-                                                    ? product.image
-                                                    : URL.createObjectURL(product.image)
+                                                        ? product.image
+                                                        : URL.createObjectURL(product.image)
                                                 } alt={product.name} className='rounded-t-md' style={{ minWidth: '100%', minHeight: '60%' }} />
                                                 <div className='absolute bottom-0 w-full bg-neutral-600 p-2 rounded-b-md' style={{ minHeight: '40%'}}>
                                                     <p>{product.name}</p>
@@ -65,11 +70,15 @@ export default function Home() {
                             <br />
                         </div>
                     ))
-                : <div className='flex flex-wrap'>
+                : <div className='flex flex-wrap items-center'>
                     {
                         products.map((product, key) => (
                             <div className='card relative w-52 h-72 bg-neutral-800 rounded-md mr-5 mb-8' key={+key} style={{ '--i': key }}>
-                                <img src={product.image} alt={product.name} className='rounded-t-md' style={{ minWidth: '100%', minHeight: '60%' }} />
+                                <img src={
+                                    typeof product.image === 'string'
+                                        ? product.image
+                                        : URL.createObjectURL(product.image)
+                                } alt={product.name} className='rounded-t-md' style={{ minWidth: '100%', minHeight: '60%' }} />
                                 <div className='absolute bottom-0 w-full bg-neutral-600 p-2 rounded-b-md' style={{ minHeight: '40%'}}>
                                     <p>{product.name}</p>
                                     <p className='text-xs'>{product.information}</p>
