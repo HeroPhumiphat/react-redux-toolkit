@@ -1,13 +1,13 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { clearStateTypeProduct } from '../../../../vite-project/src/Slices/stateTypeProductSlice'
-import { addIndexType, removeIndexType } from '../../slice/stateIndexType'
+import { addIndexType, clearIndexType, removeIndexType } from '../../slice/stateIndexType'
 
 export default function Home() {
     const dispatch = useDispatch()
     const products = useSelector(state => state.products.value)
     const indexType = useSelector(state => state.stateIndexType.value)
+
     const prodType = []
     products.map(product => {
         if (!prodType.some(e => e === product.type)) {
@@ -16,7 +16,7 @@ export default function Home() {
     })
 
     React.useEffect(() => {
-        dispatch(clearStateTypeProduct())
+        dispatch(clearIndexType())
     }, [])
 
     const onChangeInputChangeBox = (event, key) => {

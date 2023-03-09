@@ -9,6 +9,7 @@ export default function Header() {
 
     const menuList = React.useRef()
     const [stateMenuShow, setStateMenuShow] = React.useState(false)
+    const [stateProflie, setStateProfile] = React.useState(false)
 
     let activeClassName = 'nav-active'
     
@@ -28,6 +29,10 @@ export default function Header() {
     
     const onClickMenuShow = () => {
         stateMenuShow === false ? setStateMenuShow(true) : setStateMenuShow(false)
+    }
+
+    const onClickIcon = () => {
+        stateProflie === false ? setStateProfile(true) : setStateProfile(false)
     }
 
     return (
@@ -59,19 +64,36 @@ export default function Header() {
                         </div>
                         {
                             userLogin.length > 0
-                            ?   <div className='flex items-center'>
-                                    <div className='relative bg-white w-9 h-9 rounded-full flex justify-center items-center mr-1'>
+                            ?   <div className='flex items-center' onClick={onClickIcon}>
+                                    <div className='relative bg-white w-9 h-9 rounded-full flex justify-center items-center mr-1 cursor-pointer'>
                                         <p className='text-neutral-700 font-medium text-lg'>{ userLogin[0].name.toString().toUpperCase().substr(0, 2) }</p>
                                     </div>
-                                    <div>
-                                        <i className="fa-solid fa-caret-down"></i>
+                                    <div className='cursor-pointer'>
+                                        <i className={
+                                            stateProflie === true
+                                                ?   "fa-solid fa-caret-up"
+                                                :   "fa-solid fa-caret-down"
+                                            }></i>
                                     </div>
                                 </div>
                             :   <div>
                                     <Link to='/' className='btnLogin relative px-5 py-1.5 rounded-full bg-neutral-800'>Login</Link>
                                 </div>
                         }
-                        
+                        {
+                            stateProflie === true 
+                                ? <div className='menuList absolute flex flex-col items-center top-20 right-3 h-50 bg-neutral-800 text-center py-5 px-8 rounded-md z-50' style={{ boxShadow: '0px 0px 6px #d2bd75'}}>
+                                    <div id='link' className='relative bg-white w-12 h-12 rounded-full flex justify-center items-center mb-2' style={{'--i': 1}}>
+                                        <p className='text-neutral-700 font-medium text-lg'>{ userLogin[0].name.toString().toUpperCase().substr(0, 2) }</p>
+                                    </div>
+                                    <p id='link' className='mb-1' style={{'--i': 2}}>{userLogin[0].name}</p>
+                                    <p id='link' className='mb-2' style={{'--i': 3}}>{userLogin[0].email}</p>
+                                    <Link to='/' id='link' className='text-white underline underline-offset-2 text-sm mb-1' style={{'--i': 4}}>Edit Profile</Link>
+                                    
+                                    <Link id='link' to='/' className='relative px-10 py-2 rounded-full bg-neutral-800 mt-4 mb-3 text-red-400' style={{'--i': 5, boxShadow: '0 0 6px rgba(255, 63, 63, 1)'}}>Logout</Link>
+                                </div>
+                                :   ''
+                        }
                     </div>
                     {
                         stateMenuShow === true
