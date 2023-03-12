@@ -1,0 +1,254 @@
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+.App {
+  height: 100%;
+}
+
+.logo {
+  animation: logo .6s linear both;
+}
+
+@keyframes logo {
+  from {
+    transform: translateX(-30px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.login {
+  animation: login .6s linear both;
+}
+
+@keyframes login {
+  from {
+    transform: translateX(15px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.arrow-dash {
+  animation: arrowDash 3s linear infinite alternate;
+  transform: rotateZ(45deg);
+}
+
+@keyframes arrowDash {
+  from {
+    transform: rotateY(0px);
+  }
+  to {
+    transform: rotateY(180deg);
+  }
+}
+
+.menulist {
+  position: relative;
+  width: 30px;
+  height: 27px;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+}
+
+.menulist>div {
+  position: relative;
+  width: 100%;
+  background-color: #4f4f4f;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.menulist>div:nth-child(2) {
+  position: relative;
+  height: 4px;
+}
+
+.menulist>div:nth-child(1) {
+  position: absolute;
+  top: 0;
+  height: 4px;
+}
+
+.menulist>div:nth-child(3) {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+}
+
+.menulist.active-open>div:nth-child(2) {
+  animation: animadiv2 .2s linear both;
+}
+
+@keyframes animadiv2 {
+  from {
+    transform: rotateY(0);
+  }
+  to {
+    transform: rotateY(90deg);
+  }
+}
+
+.menulist.active-open>div:nth-child(1) {
+  animation: animadiv1 .2s linear both;
+  transform-origin: 0 0;
+}
+
+@keyframes animadiv1 {
+  from {
+    transform: rotateZ(0);
+  }
+  to {
+    transform: rotateZ(45deg);
+  }
+}
+
+.menulist.active-open>div:nth-child(3) {
+  animation: animadiv3 .2s linear both;
+  transform-origin: 0 0;
+}
+
+@keyframes animadiv3 {
+  from {
+    transform: rotateZ(0);
+  }
+  to {
+    transform: rotateZ(-45deg);
+    bottom: 0.7px;
+    right: 2.5px;
+  }
+}
+
+
+.menulist.active-close>div:nth-child(2) {
+  animation: animadivClose2 .2s linear both;
+}
+
+@keyframes animadivClose2 {
+  from {
+    transform: rotateY(90deg);
+  }
+  to {
+    transform: rotateY(0);
+  }
+}
+
+.menulist.active-close>div:nth-child(1) {
+  animation: animadivClose1 .2s linear both;
+  transform-origin: 0 0;
+}
+
+@keyframes animadivClose1 {
+  from {
+    transform: rotateZ(45deg);
+    left: 2px;
+  }
+  to {
+    transform: rotateZ(0);
+  }
+}
+
+.menulist.active-close>div:nth-child(3) {
+  animation: animadivClose3 .2s linear both;
+  transform-origin: 0 0;
+}
+
+@keyframes animadivClose3 {
+  from {
+    transform: rotateZ(-45deg);
+    bottom: 0.7px;
+    right: 2.5px;
+  }
+  to {
+    transform: rotateZ(0);
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.navlink {
+  animation: menunav calc(.2s * var(--i)) linear both;
+}
+
+@keyframes menunav {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.menuShow.active-open {
+  animation: menuShow .8s linear both;
+}
+
+@keyframes menuShow {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.menuShow.active-close {
+  animation: menuShowClose .8s linear both;
+}
+
+@keyframes menuShowClose {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+.menuShow.active-open>.menuL {
+  animation: menuL calc(.2s * var(--r)) linear both;
+}
+
+@keyframes menuL {
+  from {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.menuShow.active-close>.menuL {
+  animation: menuLClose calc(.2s * var(--r)) linear both;
+}
+
+@keyframes menuLClose {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+}
+
+.line {
+  position: relative;
+  background-color: rgb(221, 186, 163);
+  width: 0.5px;
+  height: 200px;
+}

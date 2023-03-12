@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  /* place-items: center; */
+  min-width: 320px;
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  font-family: 'Roboto', sans-serif;font-family: 'nito', sans-serif;
+  color: #4f4f4f;
+}
+
+input {
+  background-color: white;
+  width: auto;
+  border: 1px solid rgb(221, 186, 163);
+  padding: 8px 15px;
+}
+
+input.select {
+  background-color: white;
+  padding: 8px 15px;
+  border: none;
+  width: 270px;
+}
+
+input.select:focus
+input:focus,
+select {
+  outline: none;
+}
+
+.btn {
+  position: relative;
+  font-weight: 500;
+  color: #eaff95;
+  background-color: #4f4f4f;
+  padding: 10px 20px;
+  border-radius: 7px;
+  letter-spacing: .1px;
+  text-decoration: inherit;
+  box-shadow: 0 0 10px #d7f65f;
+}
+
+.btn:hover {
+  background-color: #3b3b3b;
+}
+
+h1.logo {
+  font-size: 2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #a3a3a3;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
