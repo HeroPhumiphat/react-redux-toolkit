@@ -1,18 +1,32 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addLogin, addRegister } from '../../slice/checkLoginSlice'
+import { addMessage } from '../../slice/messageAlertSlice'
 import { stateLoginFalse } from '../../slice/stateLoginSlice'
+import { addUserLogin, clearUserLogin } from '../../slice/userLoginSlice'
 
 export default function Login() {
+  const users = useSelector(state => state.users.value)
   const dispatch = useDispatch()
   const form = React.useRef()
+  const checkSelect = React.useRef()
+
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const [selectEmail, setSelectEmail] = React.useState('')
+  const [selectPassword, setSelectPassword] = React.useState('')
 
-  React.useEffect(() => {
-    // console.log(email)
-    // console.log(password)
-  })
+  const onChangeSelect = (event) => {
+    if (event.target.value == 'inputValue') {
+      setSelectEmail('')
+      setSelectPassword('')
+    } else {
+      setEmail(users[event.target.value].email)
+      setPassword(users[event.target.value].password)
+      setSelectEmail(users[event.target.value].email)
+      setSelectPassword(users[event.target.value].password)
+    }
+  }
 
   const onClickSetstateLoginFalse = () => {
     dispatch(stateLoginFalse())
@@ -26,8 +40,17 @@ export default function Login() {
   const onSubmitForm = (event) => {
     event.preventDefault()
 
+    let message
+    users.map(e => {
+      if(e.email === email && e.password === password) {
+        dispatch(clearUserLogin())
+        dispatch(addUserLogin(e))
+        message = { alert: 'Success', message:`${e.name}, You have successfully logged in.`}
+      }
+    })
 
-
+    dispatch(addMessage(message))
+    dispatch(stateLoginFalse())
   }
 
   return (
@@ -47,15 +70,20 @@ export default function Login() {
               <div className='flex flex-col mb-3'>
                 <label htmlFor="email">Email : </label>
                 <div className='flex items-center'>
-                  <input type="email" id='email' name='email' placeholder='email@example.com' className='w-48 md:w-72 rounded-l-md' onChange={(e) => setEmail(e.target.value)} />
-                  <select className='bg-neutral-200 py-3 pl-1 md:pl-2 pr-2.5 md:pr-3 rounded-r-md text-sm'>
+                  <input type="email" id='email' name='email' placeholder='email@example.com' className='w-48 md:w-72 rounded-l-md' onChange={(e) => setEmail(e.target.value)} defaultValue={selectEmail} required />
+                  <select className='bg-neutral-200 py-3 pl-1 md:pl-2 pr-2.5 md:pr-3 rounded-r-md text-sm' ref={checkSelect} onChange={onChangeSelect}>
                     <option value="inputValue">User-Test</option>
+                    {
+                      users.map((user, key) => (
+                        <option value={key} key={+key}>{user.name}</option>
+                      ))
+                    }
                   </select>
                 </div>
               </div>
               <div className='flex flex-col mb-3 w-72 md:w-96'>
                 <label htmlFor="password">Password : </label>
-                <input type="password" id='password' name='password' onChange={e => setPassword(e.target.value)} placeholder='*************' className='rounded-md' />
+                <input type="password" id='password' name='password' onChange={e => setPassword(e.target.value)} defaultValue={selectPassword} placeholder='*************' className='rounded-md' required />
               </div>
               <div className=''>
                 <button className='w-72 md:w-96 rounded-md mt-7 bg-blue-400 hover:bg-blue-500 text-white text-lg'>Login</button>

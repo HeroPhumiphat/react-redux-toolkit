@@ -3,11 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addLogin } from '../../slice/checkLoginSlice'
 import { addMessage } from '../../slice/messageAlertSlice'
 import { stateLoginFalse } from '../../slice/stateLoginSlice'
-import { setStateAlertTrue } from '../../slice/stateMessageAlertSlice'
 import { addUser } from '../../slice/userSlice'
 
 export default function Register() {
-  const users = useSelector(state => state.users.value)
   const dispatch = useDispatch()
 
   const form = React.useRef()
@@ -41,11 +39,9 @@ export default function Register() {
     event.preventDefault()
 
     let user = { name, email, password, quality: 'USER' }
-    // let message = ['success', 'tests']
-    let message = ['success', 'You have successfully registered as a new member.']
+    let m = { alert: 'Success', message: 'You have successfully registered as a new member.' }
 
-    dispatch(setStateAlertTrue())
-    dispatch(addMessage(message))
+    dispatch(addMessage(m))
     dispatch(addUser(user))
     dispatch(addLogin())
   }

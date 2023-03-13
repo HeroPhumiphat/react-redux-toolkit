@@ -1,14 +1,21 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { Link, NavLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+import { addMessage } from '../slice/messageAlertSlice'
+import { addEditTrue } from '../slice/stateEditSlice'
 import { stateLoginTrue } from '../slice/stateLoginSlice'
+import { clearUserLogin } from '../slice/userLoginSlice'
 
 export default function Header() {
+  const userLogin = useSelector(state => state.userLogin.value[0])
   const dispatch = useDispatch()
   const menulist = React.useRef()
   const menuShow = React.useRef()
   const [stateMenuList, setStateMenuList] = React.useState(false)
   const [stateCheck, setStateCheck] = React.useState(false)
+
+  const prList = React.useRef()
+  const [checkProfile, setCheckProfile] = React.useState(false)
 
   React.useEffect(() => {
     if (stateMenuList) {
@@ -30,7 +37,6 @@ export default function Header() {
         menulist.current.classList.remove('active-open')
         menuShow.current.classList.add('active-close')
         menuShow.current.classList.remove('active-open')
-        console.log('test')
       }
   })
 
@@ -54,6 +60,32 @@ export default function Header() {
     dispatch(stateLoginTrue())
   }
 
+  const onClickProfile = () => {
+    if (checkProfile) {
+      setCheckProfile(false)
+      prList.current?.classList.add('active-close')
+      prList.current?.classList.remove('active-open')
+    } else {
+      setCheckProfile(true)
+      prList.current?.classList.add('active-open')
+      prList.current?.classList?.remove('active-close')
+    }
+  }
+
+  const onClickLogout = () => {
+    dispatch(clearUserLogin())
+    setCheckProfile(false)
+
+    let m = { alert: 'Success', message: 'You are finished logging out.' }
+
+    dispatch(addMessage(m))
+  }
+
+  const onClickEditProfile = () => {
+    dispatch(addEditTrue())
+    setCheckProfile(false)
+  }
+
   return (
     <div className='w-full bg-white py-2 px-4 z-50' style={{ boxShadow: '1px 1px 5px #e0e0e0' }}>
       <div className='flex justify-between items-center'>
@@ -62,12 +94,14 @@ export default function Header() {
             <h1 className='logo my-1.5'>LOGO</h1>
           </div>
           <div className='flex justify-center w-20'>
-            <div className='relative left-3 h-full items-center cursor-pointer'>
-              <div className=' bg-lime-200 px-4 hover:px-3.5 h-12 flex justify-center items-center rounded-full hover:border-2 border-green-300'>
-                <p className='text-sm mr-5 font-bold'>Dash</p>
-                <i className="arrow-dash absolute right-4 fa-solid fa-snowflake"></i>
+            {
+              userLogin?.quality === 'ADMIN' && <div className='relative left-3 h-full items-center cursor-pointer'>
+                <div className=' bg-lime-200 px-4 hover:px-3.5 h-12 flex justify-center items-center rounded-full hover:border-2 border-green-300'>
+                  <p className='text-sm mr-5 font-bold'>Dash</p>
+                  <i className="arrow-dash absolute right-4 fa-solid fa-snowflake"></i>
+                </div>
               </div>
-            </div>
+            }
           </div>
         </div>
         <div className='hidden md:flex space-x-4 items-center'>
@@ -85,11 +119,34 @@ export default function Header() {
               <NavLink to='/about' className={({ isActive }) => isActive ?'font-bold' : ''}>About</NavLink>
             </li>
           </ul>
-          <div className='login flex items-center'>
-            <button className='btn text-sm' onClick={onClickBTN}>Login</button>
-          </div>
+          {
+            userLogin?.name.length > 0
+            ? <div className='flex items-center'>
+                <div className='bg-lime-200 py-3 px-3 ml-2 rounded-full cursor-pointer' onClick={onClickProfile}>
+                  <p className='text-sm'>{userLogin?.name.toString().toUpperCase().substr(0,2)}</p>
+                </div>
+                <div className='pl-2 cursor-pointer' onClick={onClickProfile}>
+                  <i className={
+                    checkProfile === true ? "fa-solid fa-chevron-up"  : "fa-solid fa-chevron-down"
+                    }></i>
+                </div>
+                {
+                  checkProfile
+                    ? <div className='prList absolute px-10 py-7 bg-neutral-300 rounded-md right-3 top-20 z-40 flex-col items-center  justify-center flex' ref={prList}>
+                        <p>Hi!, <span className='font-bold'>{userLogin.name}</span></p>
+                        <p  className=''>{userLogin.email}</p>
+                        <button className='bg-transparent border-b-amber-100 border-t-amber-100 rounded-sm py-2 mt-3 hover:rounded-lg hover:border-lime-200 hover:border-1.5 w-10/12' onClick={onClickEditProfile}>edit profile</button>
+                        <button className='bg-red-300 hover:bg-red-400 text-white border-none mt-4' onClick={onClickLogout}>Logout</button>
+                      </div>
+                    : ''
+                }
+              </div>
+            : <div className='login flex items-center'>
+                <button className='btn text-sm' onClick={onClickBTN}>Login</button>
+              </div>
+          }
         </div>
-        <div className='menulist cursor-pointer md:hidden' ref={menulist}onClick={onClickMenuList}>
+        <div className='menulist cursor-pointer md:hidden' ref={menulist} onClick={onClickMenuList}>
           <div></div>
           <div></div>
           <div></div>
@@ -98,7 +155,7 @@ export default function Header() {
           <p className='menuL' style={{'--r': 2}}>Lorem ipsum dolor</p>
           <p className='menuL' style={{'--r': 3}}>Lorem ipsum dolor</p>
           <p className='menuL' style={{'--r': 4}}>Lorem ipsum dolor</p>
-          </div>
+        </div>
       </div>
     </div>
   )

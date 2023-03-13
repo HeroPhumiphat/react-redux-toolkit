@@ -252,3 +252,32 @@
   width: 0.5px;
   height: 200px;
 }
+
+.prList.active {
+  animation: prList .8s linear both;
+}
+
+@keyframes priList {
+  from {
+    transform: translateY(-50px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.alert {
+  animation: alert .3s linear both;
+}
+
+@keyframes alert {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+}
