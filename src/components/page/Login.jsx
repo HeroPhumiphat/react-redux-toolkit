@@ -51,6 +51,12 @@ export default function Login() {
 
     dispatch(addMessage(message))
     dispatch(stateLoginFalse())
+
+    setEmail('')
+    setPassword('')
+    setSelectEmail('')
+    setSelectPassword('')
+    checkSelect.current.value = 'inputValue'
   }
 
   return (
