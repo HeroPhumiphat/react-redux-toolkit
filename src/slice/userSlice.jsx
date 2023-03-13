@@ -19,13 +19,11 @@ const userSlice = createSlice({
     },
     editUser: (state, action) => {
       // [email, password, newData]
-      let email = action.payload[0]
-      let password = action.payload[1]
 
-      let key = 0
+      let key
       state.value.map((e, i) => {
-          if (e.email === email && e.password === password) {
-          key = i
+          if (e.email === action.payload[0] && e.password === action.payload[1]) {
+            key = i
           }
       })
       state.value[key] = action.payload[2]

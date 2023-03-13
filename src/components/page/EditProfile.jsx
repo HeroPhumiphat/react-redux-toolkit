@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addMessage } from '../../slice/messageAlertSlice'
 import { addEditFalse } from '../../slice/stateEditSlice'
-import { addUserLogin } from '../../slice/userLoginSlice'
+import { addUserLogin, clearUserLogin } from '../../slice/userLoginSlice'
 import { editUser } from '../../slice/userSlice'
 
 export default function EditProfile() {
@@ -44,17 +44,16 @@ export default function EditProfile() {
       dispatch(addMessage(m))
     } else {
       let newInformation = { name, email, password, quality }
-      console.log(newInformation)
-      let userEdit = [ userLogin?.name, userLogin?.password, newInformation ]
+      // console.log(newInformation)
+      let userEdit = [ userLogin?.email, userLogin?.password, newInformation ]
 
-      // let message = ['success', 'tests']
-      // let message = ['Success', 'You have successfully corrected the information.']
       let m = { alert: 'Success', message: 'You have successfully corrected the information.' }
-
+      console.log(userEdit)
       dispatch(addMessage(m))
       dispatch(editUser(userEdit))
       dispatch(addEditFalse())
-      dispatch(addUserLogin(userEdit))
+      dispatch(clearUserLogin())
+      dispatch(addUserLogin(newInformation))
     }
   }
 
@@ -76,7 +75,7 @@ export default function EditProfile() {
           </div>
           <div className='flex flex-col mb-3'>
             <label htmlFor="email">Email : </label>
-            <input type="email" id='email' name='email' placeholder='email@example.com' className='w-72 md:w-96 rounded-md' onChange={e => setEmail(e.target.value)} defaultValue={userLogin?.email} />
+            <input type="email" id='email' name='email' placeholder='email@example.com' className='w-72 md:w-96 rounded-md' onChange={e => setEmail(e.target.value)} maxLength='30' defaultValue={userLogin?.email} />
           </div>
           <div className='flex flex-col mb-3'>
             <label htmlFor="password">Password : </label>

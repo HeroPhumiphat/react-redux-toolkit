@@ -61,7 +61,7 @@ export default function Register() {
         <form ref={form} onSubmit={onSubmitForm}>
           <div className='flex flex-col mb-3'>
             <label htmlFor="name">Username : </label>
-            <input type="text" id='name' name='name' placeholder='Please enter your Username' className='w-72 md:w-96 rounded-md' onChange={e => setName(e.target.value)} />
+            <input type="text" id='name' name='name' placeholder='Please enter your Username' maxLength='30' className='w-72 md:w-96 rounded-md' onChange={e => setName(e.target.value)} />
           </div>
           <div className='flex flex-col mb-3'>
             <label htmlFor="email">Email : </label>
@@ -69,7 +69,7 @@ export default function Register() {
           </div>
           <div className='flex flex-col mb-3'>
             <label htmlFor="password">Password : </label>
-            <input type="password" id='password' name='password' placeholder='Please enter your password' className='w-72 md:w-96 rounded-md mb-1' onChange={e => setPassword(e.target.value)} />
+            <input type="password" id='password' name='password' placeholder='Please enter your password' minLength={8} className='w-72 md:w-96 rounded-md mb-1' onChange={e => setPassword(e.target.value)} />
             <input type="password" name='passwordConfirm' placeholder='Please enter your password (Confirm)' className='w-72 md:w-96 rounded-md' onChange={changePwConfirm} />
             {
               validPassword === 'stb'

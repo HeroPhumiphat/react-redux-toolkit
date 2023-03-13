@@ -70,7 +70,7 @@ export default function Login() {
               <div className='flex flex-col mb-3'>
                 <label htmlFor="email">Email : </label>
                 <div className='flex items-center'>
-                  <input type="email" id='email' name='email' placeholder='email@example.com' className='w-48 md:w-72 rounded-l-md' onChange={(e) => setEmail(e.target.value)} defaultValue={selectEmail} required />
+                  <input type="email" id='email' name='email' placeholder='email@example.com' className='w-48 md:w-72 rounded-l-md' onChange={(e) => setEmail(e.target.value)} defaultValue={selectEmail}  maxLength='30' required />
                   <select className='bg-neutral-200 py-3 pl-1 md:pl-2 pr-2.5 md:pr-3 rounded-r-md text-sm' ref={checkSelect} onChange={onChangeSelect}>
                     <option value="inputValue">User-Test</option>
                     {
