@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { addMessage } from '../slice/messageAlertSlice'
 import { addEditTrue } from '../slice/stateEditSlice'
 import { stateLoginTrue } from '../slice/stateLoginSlice'
@@ -41,12 +41,12 @@ export default function Header() {
   })
 
   const onClickMenuList = () => {
-      if (stateMenuList) {
-        setStateMenuList(false)
-        menulist.current.classList.add('active-close')
-        menulist.current.classList.remove('active-open')
-        menuShow.current.classList.add('active-close')
-        menuShow.current.classList.remove('active-open')
+    if (stateMenuList) {
+      setStateMenuList(false)
+      menulist.current.classList.add('active-close')
+      menulist.current.classList.remove('active-open')
+      menuShow.current.classList.add('active-close')
+      menuShow.current.classList.remove('active-open')
     } else {
       setStateMenuList(true)
       menulist.current.classList.add('active-open')
@@ -58,6 +58,11 @@ export default function Header() {
 
   const onClickBTN = () => {
     dispatch(stateLoginTrue())
+    setStateMenuList(false)
+        menulist.current.classList.add('active-close')
+        menulist.current.classList.remove('active-open')
+        menuShow.current.classList.add('active-close')
+        menuShow.current.classList.remove('active-open')
   }
 
   const onClickProfile = () => {
@@ -151,10 +156,20 @@ export default function Header() {
           <div></div>
           <div></div>
         </div>
-        <div className='menuShow absolute px-10 py-7 bg-neutral-300 rounded-md right-3 top-20 z-40 flex-col items-center space-y-2 hidden' ref={menuShow}>
-          <p className='menuL' style={{'--r': 2}}>Lorem ipsum dolor</p>
-          <p className='menuL' style={{'--r': 3}}>Lorem ipsum dolor</p>
-          <p className='menuL' style={{'--r': 4}}>Lorem ipsum dolor</p>
+        <div className='menuShow absolute px-10 py-7 bg-neutral-300 rounded-md right-3 top-20 z-40 flex-col items-center hidden' ref={menuShow}>
+          <Link to='/' className='menuL mb-1' style={{'--r': 2}}>Home</Link>
+          <Link to='/product' className='menuL mb-1' style={{'--r': 3}}>Product</Link>
+          <Link to='/cart' className='menuL mb-1 tracking-wider' style={{'--r': 4}}>Cart</Link>
+          <Link to='/about' className='menuL mb-3' style={{'--r': 5}}>About</Link>
+          {
+            userLogin?.name.length > 0
+              ? <div className='flex items-center menuL' style={{'--r': 6}}>
+                  <button className='text-sm text-red-200 bg-neutral-500 hover:bg-neutral-600 border-none py-2.5' onClick={onClickLogout} style={{boxShadow: '0px 0px 5px rgba(255, 0, 0, .7)'}}>Logout</button>
+                </div>
+              : <div className='flex items-center menuL' style={{'--r': 6}}>
+                  <button className='btn text-sm' onClick={onClickBTN}>Login</button>
+                </div>
+          }
         </div>
       </div>
     </div>
