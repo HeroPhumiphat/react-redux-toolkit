@@ -35,9 +35,9 @@ export default function MessageAlert() {
         messageAlert.map((msg, key) => (
           <div className={
             msg?.alert.toLowerCase() === 'success'
-              ? 'alert relative mb-3 bg-green-200 rounded-md pl-5 py-3 pr-10 text-sm'
+              ? 'alert relative mb-3 bg-green-200 rounded-md pl-5 py-3 pr-10 text-sm z-50'
               : msg?.alert.toLowerCase() === 'warning'
-                ? 'alert relative mb-3 bg-amber-200 rounded-md px-5 py-3 pr-8 text-sm'
+                ? 'alert relative mb-3 bg-amber-200 rounded-md px-5 py-3 pr-8 text-sm z-50'
                 : ''
           } key={+key} ref={boxAlert}>
             <p className=''><span className='font-bold mr-2'>{msg?.alert}!,</span>{msg?.message}</p>

@@ -15,6 +15,7 @@ import { addLogin } from './slice/checkLoginSlice'
 import EditProfile from './components/page/EditProfile'
 import { addEditFalse } from './slice/stateEditSlice'
 import MessageAlert from './components/MessageAlert'
+import Product from './components/page/Product'
 
 export default function App() {
   const stateLogin = useSelector(state => state.stateLogin.value)
@@ -27,7 +28,6 @@ export default function App() {
   const boxContent = React.useRef()
   const btnDash = React.useRef()
   const boxLogin = React.useRef()
-  const timeAlert = React.useRef()
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -53,37 +53,6 @@ export default function App() {
       boxLogin.current.classList.add('hidden')
       boxLogin.current.classList.remove('flex')
     }
-
-    // if (stateMessageAlert) {
-    //   let time = 5000
-    //   let r = 0
-    //   let x
-    //   const test = setInterval(() => {
-    //     r++
-    //     if (r === 1) {
-    //       timeAlert.current.style.width = `${boxAlert.current.clientWidth}px`
-    //       x = (time / boxAlert.current.clientWidth)
-    //       const setTime = setInterval(() => {
-    //         timeAlert.current.style.width = `${timeAlert.current.clientWidth - 0.75}px`
-    //         if (timeAlert.current.clientWidth === 0) {
-    //           clearInterval(setTime)
-    //         }
-    //       }, x)
-    //     }
-    //     if (r > 1) {
-    //       clearInterval(test)
-    //     }
-    //   }, 1)
-
-
-    //   boxAlert.current.classList.remove('hidden')
-    //   boxAlert.current.classList.add('block')
-    //   setTimeout(() => {
-    //     boxAlert.current.classList.add('hidden')
-    //     boxAlert.current.classList.remove('block')
-    //     dispatch(setStateAlertFalse())
-    //   }, time)
-    // }
   })
 
   const onClickSetstateLoginFalse = () => {
@@ -100,9 +69,10 @@ export default function App() {
         <div className='relative hidden' ref={boxDash}>
           <Dash />
         </div>
-        <div className=' relative p-3' ref={boxContent}>
+        <div className='content relative p-3 overflow-auto z-20' ref={boxContent}>
           <Routes>
             <Route path='/' element={ <Home /> } />
+            <Route path='/product' element={ <Product /> } />
             <Route path='/cart' element={ <Cart /> } />
             <Route path='/about' element={ <About /> } />
           </Routes>
@@ -119,11 +89,11 @@ export default function App() {
       <div className='absolute top-0 left-0 w-full h-full z-40 justify-center items-center hidden' ref={boxLogin}>
         <div className='absolute top-0 left-0 w-full h-full z-30 bg-neutral-800 opacity-30 backdrop-blur-3xl' onClick={onClickSetstateLoginFalse}></div>
         <div className='relative z-50 px-2 mx-0'>
-        {
-          checkLogin === 'login'
-            ? <Login />
-            : <Register />
-        }
+          {
+             checkLogin === 'login'
+              ? <Login />
+              : <Register />
+          }
         </div>
       </div>
       <div className='z-50'>

@@ -47,22 +47,28 @@ export default function Header() {
       menulist.current.classList.remove('active-open')
       menuShow.current.classList.add('active-close')
       menuShow.current.classList.remove('active-open')
+      setTimeout(() => {
+        menuShow.current.classList.add('hidden')
+        menuShow.current.classList.remove('flex')
+      }, 800)
     } else {
       setStateMenuList(true)
       menulist.current.classList.add('active-open')
       menulist.current.classList?.remove('active-close')
       menuShow.current.classList.add('active-open')
       menuShow.current.classList?.remove('active-close')
+      menuShow.current.classList?.remove('hidden')
+      menuShow.current.classList?.add('flex')
     }
   }
 
   const onClickBTN = () => {
     dispatch(stateLoginTrue())
     setStateMenuList(false)
-        menulist.current.classList.add('active-close')
-        menulist.current.classList.remove('active-open')
-        menuShow.current.classList.add('active-close')
-        menuShow.current.classList.remove('active-open')
+    menulist.current.classList.add('active-close')
+    menulist.current.classList.remove('active-open')
+    menuShow.current.classList.add('active-close')
+    menuShow.current.classList.remove('active-open')
   }
 
   const onClickProfile = () => {
@@ -84,9 +90,20 @@ export default function Header() {
     let m = { alert: 'Success', message: 'You are finished logging out.' }
 
     dispatch(addMessage(m))
+
+    setStateMenuList(false)
+    menulist.current.classList.add('active-close')
+    menulist.current.classList.remove('active-open')
+    menuShow.current.classList.add('active-close')
+    menuShow.current.classList.remove('active-open')
   }
 
   const onClickEditProfile = () => {
+    setStateMenuList(false)
+    menulist.current.classList.add('active-close')
+    menulist.current.classList.remove('active-open')
+    menuShow.current.classList.add('active-close')
+    menuShow.current.classList.remove('active-open')
     dispatch(addEditTrue())
     setCheckProfile(false)
   }
@@ -156,7 +173,20 @@ export default function Header() {
           <div></div>
           <div></div>
         </div>
-        <div className='menuShow absolute px-10 py-7 bg-neutral-300 rounded-md right-3 top-20 z-40 flex-col items-center hidden' ref={menuShow}>
+        <div className='menuShow absolute px-10 py-7 bg-neutral-300 rounded-md right-3 top-20 flex-col items-center hidden' ref={menuShow}>
+          {
+            userLogin?.name.length > 0
+              ? <>
+                  <div className='bg-lime-200 py-4 px-4 ml-2 rounded-full cursor-pointer' onClick={onClickProfile}>
+                      <p className='text-sm'>{userLogin?.name.toString().toUpperCase().substr(0,2)}</p>
+                    </div>
+                    <p className='mt-2'>Hi!, <span className='font-bold'>{userLogin?.name}</span></p>
+                    <p  className=''>{userLogin?.email}</p>
+                    <button className='bg-transparent border-b-amber-100 border-t-amber-100 rounded-sm py-2 mt-3 hover:rounded-lg hover:border-lime-200 hover:border-1.5 w-10/12 mb-4' onClick={onClickEditProfile}>edit profile</button>
+                </>
+              : ''
+          }
+
           <Link to='/' className='menuL mb-1' style={{'--r': 2}}>Home</Link>
           <Link to='/product' className='menuL mb-1' style={{'--r': 3}}>Product</Link>
           <Link to='/cart' className='menuL mb-1 tracking-wider' style={{'--r': 4}}>Cart</Link>
