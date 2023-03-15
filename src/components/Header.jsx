@@ -48,8 +48,8 @@ export default function Header() {
       menuShow.current.classList.add('active-close')
       menuShow.current.classList.remove('active-open')
       setTimeout(() => {
-        menuShow.current.classList.add('hidden')
-        menuShow.current.classList.remove('flex')
+        menuShow.current.classList.add('-z-40')
+        menuShow.current.classList.remove('z-40')
       }, 800)
     } else {
       setStateMenuList(true)
@@ -57,8 +57,8 @@ export default function Header() {
       menulist.current.classList?.remove('active-close')
       menuShow.current.classList.add('active-open')
       menuShow.current.classList?.remove('active-close')
-      menuShow.current.classList?.remove('hidden')
-      menuShow.current.classList?.add('flex')
+      menuShow.current.classList?.remove('-z-40')
+      menuShow.current.classList?.add('z-40')
     }
   }
 

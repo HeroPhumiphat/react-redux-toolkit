@@ -343,3 +343,10 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+@media (max-width: 640px) {
+  .imageProduct {
+    width: 160px;
+    height: 180px;
+  }
+}

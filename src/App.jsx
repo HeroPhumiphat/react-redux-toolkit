@@ -62,14 +62,14 @@ export default function App() {
 
   return (
     <div className='App'>
-      <div className='relative w-full z-30' ref={boxHeader}>
+      <div className='relative w-full' ref={boxHeader}>
         <Header />
       </div>
       <div className='relative flex'>
         <div className='relative hidden' ref={boxDash}>
           <Dash />
         </div>
-        <div className='content relative p-3 overflow-auto z-20' ref={boxContent}>
+        <div className='content relative p-3 overflow-auto' ref={boxContent}>
           <Routes>
             <Route path='/' element={ <Home /> } />
             <Route path='/product' element={ <Product /> } />
