@@ -199,7 +199,7 @@
 }
 
 .menuShow.active-open {
-  animation: menuShow .8s linear both;
+  animation: menuShow .2s linear both;
 }
 
 @keyframes menuShow {
@@ -214,7 +214,7 @@
 }
 
 .menuShow.active-close {
-  animation: menuShowClose .8s linear both;
+  animation: menuShowClose .2s linear both;
 }
 
 @keyframes menuShowClose {
@@ -229,7 +229,7 @@
 }
 
 .menuShow.active-open>.menuL {
-  animation: menuL calc(.2s * var(--r)) linear both;
+  animation: menuL calc(.1s * var(--r)) linear both;
 }
 
 @keyframes menuL {
@@ -243,7 +243,7 @@
 }
 
 .menuShow.active-close>.menuL {
-  animation: menuLClose calc(.2s * var(--r)) linear both;
+  animation: menuLClose calc(.1s * var(--r)) linear both;
 }
 
 @keyframes menuLClose {
@@ -264,7 +264,7 @@
 }
 
 .prList.active {
-  animation: prList .8s linear both;
+  animation: prList .2s linear both;
 }
 
 @keyframes priList {
@@ -292,7 +292,7 @@
 }
 
 .conta {
-  animation: imageProduct calc(.15s * var(--i)) linear both;
+  animation: imageProduct calc(.1s * var(--i)) linear both;
 }
 
 @keyframes imageProduct {
@@ -342,6 +342,18 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 @media (max-width: 640px) {

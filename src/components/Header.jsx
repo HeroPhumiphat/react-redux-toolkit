@@ -50,7 +50,7 @@ export default function Header() {
       setTimeout(() => {
         menuShow.current.classList.add('-z-40')
         menuShow.current.classList.remove('z-40')
-      }, 800)
+      }, 100)
     } else {
       setStateMenuList(true)
       menulist.current.classList.add('active-open')
@@ -187,16 +187,16 @@ export default function Header() {
               : ''
           }
 
-          <Link to='/' className='menuL mb-1' style={{'--r': 2}}>Home</Link>
-          <Link to='/product' className='menuL mb-1' style={{'--r': 3}}>Product</Link>
-          <Link to='/cart' className='menuL mb-1 tracking-wider' style={{'--r': 4}}>Cart</Link>
-          <Link to='/about' className='menuL mb-3' style={{'--r': 5}}>About</Link>
+          <Link to='/' className='menuL mb-1' style={{'--r': 1}}>Home</Link>
+          <Link to='/product' className='menuL mb-1' style={{'--r': 2}}>Product</Link>
+          <Link to='/cart' className='menuL mb-1 tracking-wider' style={{'--r': 3}}>Cart</Link>
+          <Link to='/about' className='menuL mb-3' style={{'--r': 4}}>About</Link>
           {
             userLogin?.name.length > 0
-              ? <div className='flex items-center menuL' style={{'--r': 6}}>
+              ? <div className='flex items-center menuL' style={{'--r': 4.5}}>
                   <button className='text-sm text-red-200 bg-neutral-500 hover:bg-neutral-600 border-none py-2.5' onClick={onClickLogout} style={{boxShadow: '0px 0px 5px rgba(255, 0, 0, .7)'}}>Logout</button>
                 </div>
-              : <div className='flex items-center menuL' style={{'--r': 6}}>
+              : <div className='flex items-center menuL' style={{'--r': 4.5}}>
                   <button className='btn text-sm' onClick={onClickBTN}>Login</button>
                 </div>
           }
