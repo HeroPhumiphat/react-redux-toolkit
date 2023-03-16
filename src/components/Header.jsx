@@ -125,7 +125,7 @@ export default function Header() {
   }
 
   return (
-    <div className='w-full bg-white py-2 px-4 z-50' style={{ boxShadow: '1px 1px 5px #e0e0e0' }}>
+    <div className='w-full bg-white py-2 px-4 z-40' style={{ boxShadow: '1px 1px 5px #e0e0e0' }}>
       <div className='flex justify-between items-center'>
         <div className='flex items-center'>
           <div className='logo'>
