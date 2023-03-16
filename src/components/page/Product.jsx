@@ -77,7 +77,7 @@ export default function Product() {
   }
 
   return (
-    <div className='flex flex-col justify-center'>
+    <div className='flex flex-col justify-center z-30'>
       <div className='my-5 text-center'>
         <p className='font-bold text-xl underline underline-offset-8 mb-5'>Type Products</p>
         <div className='w-full flex justify-center space-x-1 md:space-x-3 pt-2'>
@@ -130,7 +130,7 @@ export default function Product() {
                     <p className='text-sm md:text-sm lg:text-base'><span className='font-bold'>Type: </span>{showProduct.type}</p>
                     <p className='text-sm md:text-sm lg:text-base'><span className='font-bold'>Information: </span>{showProduct.information}</p>
                     <p className='md:text-xl lg:text-2xl mt-3'><span className='font-bold'>Price: </span>${Math.floor(showProduct.price)}<sup className='text-sm pl-0.5 font-bold'>.{(showProduct.price * 100) % 100}</sup><span className='relative text-base font-bold'> / Piece.</span></p>
-                    <div className='w-24 md:w-40 flex justify-around items-center mt-2 border-2 border-neutral-200 md:p-1 lg:p-2 rounded-md'>
+                    <div className='w-28 md:w-40 flex justify-around items-center mt-2 border-2 border-neutral-200 px-1 lg:p-2 rounded-md'>
                       <i className="fa-solid fa-plus bg-green-500 px-1.5 py-0.5 rounded-sm text-sm font-bold cursor-pointer text-white" onClick={() => onClickCount('plus')}></i>
                       <input type="number" className='w-8 md:w-12 border-none mx-1 px-0 text-center md:text-base' value={count} />
                       <i className="fa-solid fa-minus bg-red-500 px-1.5 py-0.5 rounded-sm text-sm font-bold cursor-pointer text-white" onClick={() => onClickCount('minus')}></i>

@@ -26,6 +26,12 @@ export default function About() {
         <p>&nbsp;fontawesome.com/icons</p>
         <i class="fa-solid fa-font-awesome text-xl ml-2"></i>
       </Link>
+      <Link to='https://fonts.google.com/' className='flex items-center'>
+        <span className='font-bold'>Font family:</span>
+        <p>&nbsp;fonts.google.com/</p>
+        <i class="fa-solid fa-font text-xl ml-2"></i>
+      </Link>
+
 
     </div>
   )

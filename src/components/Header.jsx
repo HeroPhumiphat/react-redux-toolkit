@@ -9,10 +9,8 @@ import { clearUserLogin } from '../slice/userLoginSlice'
 export default function Header() {
   const userLogin = useSelector(state => state.userLogin.value[0])
   const carts = useSelector(state => state.cart.value)
-  const test = useSelector(state => state.test.value)
   const dispatch = useDispatch()
 
-  const [stateCheckCart, setStateCheckCart] = React.useState(false)
   const [stateMenuList, setStateMenuList] = React.useState(false)
   const [checkProfile, setCheckProfile] = React.useState(false)
   const [stateCheck, setStateCheck] = React.useState(false)
@@ -40,16 +38,6 @@ export default function Header() {
       menulist.current.classList.remove('active-open')
       menuShow.current.classList.add('active-close')
       menuShow.current.classList.remove('active-open')
-    }
-
-    if (carts.length > 0) {
-      carts.map(e => {
-        if (e.user.name === userLogin?.name) {
-          setStateCheckCart(true)
-        } else {
-          setStateCheckCart(false)
-        }
-      })
     }
   })
 
@@ -121,6 +109,21 @@ export default function Header() {
     setCheckProfile(false)
   }
 
+  let productCart = []
+  carts.map(e => {
+    if (e.user.name === userLogin?.name) {
+      productCart.push(e)
+    }
+  })
+
+  const onClickLink = () => {
+    setStateMenuList(false)
+    menulist.current.classList.add('active-close')
+    menulist.current.classList.remove('active-open')
+    menuShow.current.classList.add('active-close')
+    menuShow.current.classList.remove('active-open')
+  }
+
   return (
     <div className='w-full bg-white py-2 px-4 z-50' style={{ boxShadow: '1px 1px 5px #e0e0e0' }}>
       <div className='flex justify-between items-center'>
@@ -147,15 +150,11 @@ export default function Header() {
             <li className='navlink' style={{'--i': 2}}>
               <NavLink to='/product' className={({ isActive }) => isActive ?'font-bold' : ''}>Products</NavLink>
             </li>
-            <li className={
-              stateCheckCart === true
-                ? 'navlink pr-1'
-                : 'navlink'
-            } style={{'--i': 3}}>
+            <li className='navlink pr-1' style={{'--i': 3}}>
               <NavLink to='/cart' className={({ isActive }) => isActive ?'font-bold' : ''}>
                 Cart
                 {
-                  stateCheckCart === true
+                  productCart.length > 0
                     ? <span className='absolute w-1.5 h-1.5 rounded-full top-0 bg-red-400'></span>
                     : ''
                 }
@@ -192,16 +191,29 @@ export default function Header() {
               </div>
           }
         </div>
-        <div className='menulist cursor-pointer md:hidden' ref={menulist} onClick={onClickMenuList}>
-          <div></div>
-          <div></div>
-          <div></div>
+        <div className='flex space-x-4 md:hidden'>
+          <div className='pr-4 border-r'>
+            <Link to='/cart' className='font-bold'>
+              <i class="fa-solid fa-cart-shopping mr-1"></i>
+              Cart
+              {
+                productCart.length > 0
+                  ? <span className='absolute w-1.5 h-1.5 rounded-full top-5 bg-red-400'></span>
+                  : ''
+              }
+            </Link>
+          </div>
+          <div className='menulist cursor-pointer' ref={menulist} onClick={onClickMenuList}>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
         <div className='menuShow absolute px-10 py-7 bg-neutral-300 rounded-md right-3 top-20 flex-col items-center hidden' ref={menuShow}>
           {
             userLogin?.name.length > 0
               ? <>
-                  <div className='bg-lime-200 py-4 px-4 ml-2 rounded-full cursor-pointer' onClick={onClickProfile}>
+                  <div className='bg-lime-200 py-4 px-4 ml-2 rounded-full' onClick={onClickProfile}>
                     <p className='text-sm'>{userLogin?.name.toString().toUpperCase().substr(0,2)}</p>
                   </div>
                   <p className='mt-2'>Hi!, <span className='font-bold'>{userLogin?.name}</span></p>
@@ -211,16 +223,15 @@ export default function Header() {
               : ''
           }
 
-          <Link to='/' className='menuL mb-1' style={{'--r': 1}}>Home</Link>
-          <Link to='/product' className='menuL mb-1' style={{'--r': 2}}>Product</Link>
-          <Link to='/cart' className='menuL mb-1 tracking-wider' style={{'--r': 3}}>Cart</Link>
-          <Link to='/about' className='menuL mb-3' style={{'--r': 4}}>About</Link>
+          <Link to='/' className='menuL mb-1' style={{'--r': 1}} onClick={onClickLink}>Home</Link>
+          <Link to='/product' className='menuL mb-1' style={{'--r': 2}} onClick={onClickLink}>Product</Link>
+          <Link to='/about' className='menuL mb-3' style={{'--r': 3}} onClick={onClickLink}>About</Link>
           {
             userLogin?.name.length > 0
-              ? <div className='flex items-center menuL' style={{'--r': 4.5}}>
+              ? <div className='flex items-center menuL' style={{'--r': 3.5}}>
                   <button className='text-sm text-red-200 bg-neutral-500 hover:bg-neutral-600 border-none py-2.5' onClick={onClickLogout} style={{boxShadow: '0px 0px 5px rgba(255, 0, 0, .7)'}}>Logout</button>
                 </div>
-              : <div className='flex items-center menuL' style={{'--r': 4.5}}>
+              : <div className='flex items-center menuL' style={{'--r': 3.5}}>
                   <button className='btn text-sm' onClick={onClickBTN}>Login</button>
                 </div>
           }
