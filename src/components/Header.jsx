@@ -64,6 +64,7 @@ export default function Header() {
   }
 
   const onClickBTN = () => {
+    dispatch(stateLoginTrue())
     hiddenMenuList()
   }
 
