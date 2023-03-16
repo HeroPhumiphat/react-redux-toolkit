@@ -118,7 +118,7 @@ export default function Product() {
       </div>
       {
         showProduct?.name?.length > 0
-          ? <div className='fixed z-50 w-full top-0 left-0 flex justify-center items-center'>
+          ? <div className='fixed z-50 w-full top-16 left-0 flex justify-center items-center' style={{height: window.innerHeight - 64}}>
               <div className='absolute w-full h-full bg-neutral-800 opacity-30 backdrop-blur-3xl z-0' onClick={() => setShowProduct('')}></div>
               <div className='docProduct relative p-3 rounded-none h-full w-full md:w-[800px] md:h-min lg:h-min lg:w-[1000px] md:rounded-md bg-white z-30 lg:pb-7 overflow-y-auto'>
                 <button className='absolute right-1.5 top-1.5 text-sm bg-red-300 hover:bg-red-400 font-bold border-none' onClick={onClickCloseShowCard}>Close</button>
