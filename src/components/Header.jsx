@@ -33,25 +33,13 @@ export default function Header() {
     })
 
     if (stateCheck) {
-      setStateMenuList(false)
-      menulist.current.classList.add('active-close')
-      menulist.current.classList.remove('active-open')
-      menuShow.current.classList.add('active-close')
-      menuShow.current.classList.remove('active-open')
+      hiddenMenuList()
     }
   })
 
   const onClickMenuList = () => {
     if (stateMenuList) {
-      setStateMenuList(false)
-      menulist.current.classList.add('active-close')
-      menulist.current.classList.remove('active-open')
-      menuShow.current.classList.add('active-close')
-      menuShow.current.classList.remove('active-open')
-      setTimeout(() => {
-        menuShow.current.classList.add('-z-40')
-        menuShow.current.classList.remove('z-40')
-      }, 100)
+      hiddenMenuList()
     } else {
       setStateMenuList(true)
       menulist.current.classList.add('active-open')
@@ -63,13 +51,20 @@ export default function Header() {
     }
   }
 
-  const onClickBTN = () => {
-    dispatch(stateLoginTrue())
+  const hiddenMenuList = () => {
     setStateMenuList(false)
     menulist.current.classList.add('active-close')
     menulist.current.classList.remove('active-open')
     menuShow.current.classList.add('active-close')
     menuShow.current.classList.remove('active-open')
+    setTimeout(() => {
+      menuShow.current.classList.add('-z-40')
+      menuShow.current.classList.remove('z-40')
+    }, 100)
+  }
+
+  const onClickBTN = () => {
+    hiddenMenuList()
   }
 
   const onClickProfile = () => {
@@ -91,20 +86,11 @@ export default function Header() {
     let m = { alert: 'Success', message: 'You are finished logging out.' }
 
     dispatch(addMessage(m))
-
-    setStateMenuList(false)
-    menulist.current.classList.add('active-close')
-    menulist.current.classList.remove('active-open')
-    menuShow.current.classList.add('active-close')
-    menuShow.current.classList.remove('active-open')
+    hiddenMenuList()
   }
 
   const onClickEditProfile = () => {
-    setStateMenuList(false)
-    menulist.current.classList.add('active-close')
-    menulist.current.classList.remove('active-open')
-    menuShow.current.classList.add('active-close')
-    menuShow.current.classList.remove('active-open')
+    hiddenMenuList()
     dispatch(addEditTrue())
     setCheckProfile(false)
   }
@@ -117,11 +103,7 @@ export default function Header() {
   })
 
   const onClickLink = () => {
-    setStateMenuList(false)
-    menulist.current.classList.add('active-close')
-    menulist.current.classList.remove('active-open')
-    menuShow.current.classList.add('active-close')
-    menuShow.current.classList.remove('active-open')
+    hiddenMenuList()
   }
 
   return (

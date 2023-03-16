@@ -51,7 +51,7 @@ export default function Cart() {
   }
 
   return (
-    <div className='boxCart relative w-full h-full flex justify-center items-start pt-0 md:pt-12 overflow-y-auto z-30'>
+    <div className='boxCart relative w-full h-full flex justify-center items-start pt-0 md:pt-12 overflow-y-auto overflow-x-hidden z-30'>
       <div className='px-5 py-2'>
         <table className='hidden md:block'>
             <tr className=''>
@@ -99,7 +99,7 @@ export default function Cart() {
                     <p className='text-sm mt-3 font-bold'>{e.product.name}</p>
                     <p className='text-xs'><span className='font-bold'>price: </span>${e.product.price}</p>
                     <p className='text-xs'><span className='font-bold'>Quantity: </span>{e.count}</p>
-                    <p className='text-xs mb-4'><span className='font-bold'>Total: </span>${(e.count * e.product.price).toFixed(2)}</p>
+                    <p className='text-xs mb-2'><span className='font-bold'>Total: </span>${(e.count * e.product.price).toFixed(2)}</p>
                   </td>
                   <td className='pl-2'>
                     <button className='bg-red-400 hover:bg-red-500 text-white border-none px-2 py-1 mx-2 text-xs' onClick={() => onClickBtnCancel(e.user.email, e.product.name, e.count)}>Cancel</button>

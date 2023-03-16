@@ -69,7 +69,7 @@ export default function App() {
         <div className='relative hidden' ref={boxDash}>
           <Dash />
         </div>
-        <div className='content relative p-3 overflow-auto z-30' ref={boxContent}>
+        <div className='content relative p-3  overflow-y-auto overflow-x-hidden  z-30' ref={boxContent}>
           <Routes>
             <Route path='/' element={ <Home /> } />
             <Route path='/product' element={ <Product /> } />

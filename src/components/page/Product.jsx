@@ -54,7 +54,7 @@ export default function Product() {
     setShowProduct('')
   }
 
-  const onCLickAddCart = (key) => {
+  const onCLickAddCart = () => {
     if (userLogin.length === 0) {
       return dispatch(stateLoginTrue())
     }
@@ -106,7 +106,7 @@ export default function Product() {
                   <div className='relative pb-1 md:pb-3 pt-1 cursor-default'>
                     <div className='w-full text-start pl-1 md:pl-3'>
                       <p className='my-1 text-sm md:textbase'>{product.name}</p>
-                      <button className='btnAddCart border-none hover:text-lime-300 mt-2 text-xs md:text-sm' onClick={() => onCLickAddCart(key)}>Add Cart</button>
+                      <button className='btnAddCart border-none hover:text-lime-300 mt-2 text-xs md:text-sm' onClick={() => onClickProduct(key)}>Add Cart</button>
                     </div>
                     <p className='absolute right-3 bottom-1 md:bottom-3 text-xl md:text-4xl'>${product.price.toFixed(2)}</p>
                   </div>
