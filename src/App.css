@@ -7,11 +7,13 @@
   height: 100%;
 }
 
-.content::-webkit-scrollbar {
+.content::-webkit-scrollbar,
+.docProduct::-webkit-scrollbar,
+.boxCart::-webkit-scrollbar {
   display: none
 }
 
-.content {
+.content, .docProduct, .boxCart {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -292,7 +294,7 @@
 }
 
 .conta {
-  animation: imageProduct calc(.1s * var(--i)) linear both;
+  animation: imageProduct calc(.06s * var(--i)) linear both;
 }
 
 @keyframes imageProduct {

@@ -86,7 +86,7 @@ export default function App() {
           </div>
         </div>
       }
-      <div className='absolute top-0 left-0 w-full h-full z-40 justify-center items-center hidden' ref={boxLogin}>
+      <div className='absolute top-0 left-0 w-full h-full z-50 justify-center items-center hidden' ref={boxLogin}>
         <div className='absolute top-0 left-0 w-full h-full z-30 bg-neutral-800 opacity-30 backdrop-blur-3xl' onClick={onClickSetstateLoginFalse}></div>
         <div className='relative z-50 px-2 mx-0'>
           {

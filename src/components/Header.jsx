@@ -8,14 +8,17 @@ import { clearUserLogin } from '../slice/userLoginSlice'
 
 export default function Header() {
   const userLogin = useSelector(state => state.userLogin.value[0])
+  const carts = useSelector(state => state.cart.value)
+  const test = useSelector(state => state.test.value)
   const dispatch = useDispatch()
-  const menulist = React.useRef()
-  const menuShow = React.useRef()
-  const [stateMenuList, setStateMenuList] = React.useState(false)
-  const [stateCheck, setStateCheck] = React.useState(false)
 
-  const prList = React.useRef()
+  const [stateCheckCart, setStateCheckCart] = React.useState(false)
+  const [stateMenuList, setStateMenuList] = React.useState(false)
   const [checkProfile, setCheckProfile] = React.useState(false)
+  const [stateCheck, setStateCheck] = React.useState(false)
+  const menuShow = React.useRef()
+  const menulist = React.useRef()
+  const prList = React.useRef()
 
   React.useEffect(() => {
     if (stateMenuList) {
@@ -29,15 +32,25 @@ export default function Header() {
       } else {
         setStateCheck(false)
       }
-
     })
+
     if (stateCheck) {
-        setStateMenuList(false)
-        menulist.current.classList.add('active-close')
-        menulist.current.classList.remove('active-open')
-        menuShow.current.classList.add('active-close')
-        menuShow.current.classList.remove('active-open')
-      }
+      setStateMenuList(false)
+      menulist.current.classList.add('active-close')
+      menulist.current.classList.remove('active-open')
+      menuShow.current.classList.add('active-close')
+      menuShow.current.classList.remove('active-open')
+    }
+
+    if (carts.length > 0) {
+      carts.map(e => {
+        if (e.user.name === userLogin?.name) {
+          setStateCheckCart(true)
+        } else {
+          setStateCheckCart(false)
+        }
+      })
+    }
   })
 
   const onClickMenuList = () => {
@@ -134,8 +147,19 @@ export default function Header() {
             <li className='navlink' style={{'--i': 2}}>
               <NavLink to='/product' className={({ isActive }) => isActive ?'font-bold' : ''}>Products</NavLink>
             </li>
-            <li className='navlink' style={{'--i': 3}}>
-              <NavLink to='/cart' className={({ isActive }) => isActive ?'font-bold' : ''}>Cart</NavLink>
+            <li className={
+              stateCheckCart === true
+                ? 'navlink pr-1'
+                : 'navlink'
+            } style={{'--i': 3}}>
+              <NavLink to='/cart' className={({ isActive }) => isActive ?'font-bold' : ''}>
+                Cart
+                {
+                  stateCheckCart === true
+                    ? <span className='absolute w-1.5 h-1.5 rounded-full top-0 bg-red-400'></span>
+                    : ''
+                }
+              </NavLink>
             </li>
             <li className='navlink' style={{'--i': 4}}>
               <NavLink to='/about' className={({ isActive }) => isActive ?'font-bold' : ''}>About</NavLink>
@@ -150,7 +174,7 @@ export default function Header() {
                 <div className='pl-2 cursor-pointer' onClick={onClickProfile}>
                   <i className={
                     checkProfile === true ? "fa-solid fa-chevron-up"  : "fa-solid fa-chevron-down"
-                    }></i>
+                  }></i>
                 </div>
                 {
                   checkProfile
@@ -178,11 +202,11 @@ export default function Header() {
             userLogin?.name.length > 0
               ? <>
                   <div className='bg-lime-200 py-4 px-4 ml-2 rounded-full cursor-pointer' onClick={onClickProfile}>
-                      <p className='text-sm'>{userLogin?.name.toString().toUpperCase().substr(0,2)}</p>
-                    </div>
-                    <p className='mt-2'>Hi!, <span className='font-bold'>{userLogin?.name}</span></p>
-                    <p  className=''>{userLogin?.email}</p>
-                    <button className='bg-transparent border-b-amber-100 border-t-amber-100 rounded-sm py-2 mt-3 hover:rounded-lg hover:border-lime-200 hover:border-1.5 w-10/12 mb-4' onClick={onClickEditProfile}>edit profile</button>
+                    <p className='text-sm'>{userLogin?.name.toString().toUpperCase().substr(0,2)}</p>
+                  </div>
+                  <p className='mt-2'>Hi!, <span className='font-bold'>{userLogin?.name}</span></p>
+                  <p  className=''>{userLogin?.email}</p>
+                  <button className='bg-transparent border-b-amber-100 border-t-amber-100 rounded-sm py-2 mt-3 hover:rounded-lg hover:border-lime-200 hover:border-1.5 w-10/12 mb-4' onClick={onClickEditProfile}>edit profile</button>
                 </>
               : ''
           }

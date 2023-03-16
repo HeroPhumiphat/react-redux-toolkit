@@ -60,7 +60,7 @@ export default function Login() {
   }
 
   return (
-    <div className='relative rounded-md p-7 px-10 pb-12 bg-white flex md:auto'>
+    <div className='relative rounded-md p-7 px-10 pb-12 bg-white flex md:auto z-50'>
       <button className='absolute right-3 top-3 text-white bg-red-300 hover:bg-red-400' onClick={onClickSetstateLoginFalse}>
         <p className='hidden md:block'>Close</p>
         <p className='block md:hidden'>X</p>

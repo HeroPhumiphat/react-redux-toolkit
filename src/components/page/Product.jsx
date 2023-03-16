@@ -1,6 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { addCart } from '../../slice/cartSlice'
+import { addMessage } from '../../slice/messageAlertSlice'
 import { stateLoginTrue } from '../../slice/stateLoginSlice'
+import { upValueTest } from '../../slice/testSlice'
 
 export default function Product() {
   const products = useSelector(state => state.product.value)
@@ -13,8 +16,8 @@ export default function Product() {
   const [count, setCount] = React.useState(1)
 
   React.useEffect(() => {
-    if (keyType) {
-      console.log(keyType)
+    if (showProduct === '') {
+      setCount(1)
     }
   })
 
@@ -42,8 +45,9 @@ export default function Product() {
   }
 
   const onClickProduct = (key) => {
-    console.log(cards[key])
     setShowProduct(cards[key])
+
+    dispatch(upValueTest())
   }
 
   const onClickCloseShowCard = () => {
@@ -52,8 +56,14 @@ export default function Product() {
 
   const onCLickAddCart = (key) => {
     if (userLogin.length === 0) {
-      dispatch(stateLoginTrue())
+      return dispatch(stateLoginTrue())
     }
+    let message = { alert: 'Warning', message: `You have added ${count} ${showProduct.name} to your basket.`}
+    dispatch(addMessage(message))
+
+    const doc = [ userLogin[0]?.name, userLogin[0]?.email, showProduct, count]
+    return dispatch(addCart(doc))
+
   }
 
   const onClickCount = (value) => {
@@ -108,9 +118,9 @@ export default function Product() {
       </div>
       {
         showProduct?.name?.length > 0
-          ? <div className='fixed z-30 w-full h-full top-0 left-0 flex justify-center items-center'>
+          ? <div className='fixed z-50 w-full h-full top-0 left-0 flex justify-center items-center'>
               <div className='absolute w-full h-full bg-neutral-800 opacity-30 backdrop-blur-3xl z-0' onClick={() => setShowProduct('')}></div>
-              <div className='relative p-3 rounded-none h-full w-full md:w-[800px] md:h-min lg:h-min lg:w-[1000px] md:rounded-md bg-white z-30 lg:pb-7'>
+              <div className='docProduct relative p-3 rounded-none h-full w-full md:w-[800px] md:h-min lg:h-min lg:w-[1000px] md:rounded-md bg-white z-30 lg:pb-7 overflow-y-auto'>
                 <button className='absolute right-1.5 top-1.5 text-sm bg-red-300 hover:bg-red-400 font-bold border-none' onClick={onClickCloseShowCard}>Close</button>
                 <h1 className='text-base md:text-lg lg:text-xl font-bold mb-5 underline underline-offset-8'>{showProduct?.name}</h1>
                 <div className='flex flex-wrap'>
