@@ -1,15 +1,21 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeCart } from '../../slice/cartSlice'
+import { addConfirmAlert } from '../../slice/confirmSlice'
+import { addMessage } from '../../slice/messageAlertSlice'
+import Product from './Product'
 
 export default function Cart() {
   const carts = useSelector(state => state.cart.value)
   const userLogin = useSelector(state => state.userLogin.value[0])
+  const confirmSlice = useSelector(state => state.confirm.value)
   const dispatch = useDispatch()
-  console.log(carts)
 
   const [num, setNum] = React.useState(0)
   const [total, setTotal] = React.useState(0)
+  const [email, setEmail] = React.useState('')
+  const [name, setName] = React.useState('')
+  const [count, setCount] = React.useState(0)
 
   React.useEffect(() => {
     if (c) {
@@ -20,9 +26,24 @@ export default function Cart() {
     }
 
     if (userLogin?.name === undefined || prod.length === 0) {
-      console.log('test')
       setNum(0)
       setTotal(0)
+    }
+
+    if (confirmSlice.state === 'ok' && confirmSlice.alert === 'removeCart') {
+      dispatch(removeCart([email, name, count]))
+      dispatch(addConfirmAlert(''))
+      let message = { alert: 'Warning', message: `You have successfully canceled the "${name}" order.`}
+      dispatch(addMessage(message))
+    }
+
+    if (confirmSlice.state === 'ok' && confirmSlice.alert === 'confirmCart') {
+      prod.map(e => {
+        dispatch(removeCart([e.user.email, e.product.name, e.count]))
+      })
+      let message = { alert: 'Success', message: 'You have completed your order.'}
+      dispatch(addMessage(message))
+      dispatch(addConfirmAlert(''))
     }
   })
 
@@ -38,48 +59,53 @@ export default function Cart() {
     }
   })
 
-
   const onClickBtnCancel = (email, name, count) => {
-    console.log(email, name, count)
+    setEmail(email)
+    setName(name)
+    setCount(count)
+    let doc = { state: '', alert: 'removeCart', message: `Do you want to cancel your "${name}" order?`}
+    dispatch(addConfirmAlert(doc))
+  }
 
-    carts.map((e, i) => {
-      if (e.user.email === email && e.product.name === name && e.count === count) {
-        console.log(i)
-      }
-    })
-    dispatch(removeCart([email, name, count]))
+  const onClickConfirmOrder = () => {
+    let doc = { state: '', alert: 'confirmCart', message: 'Check the contents of the items in the basket. and then press confirm to place an order.'}
+    dispatch(addConfirmAlert(doc))
   }
 
   return (
     <div className='boxCart relative w-full h-full flex justify-center items-start pt-0 md:pt-12 overflow-y-auto overflow-x-hidden z-30'>
       <div className='px-5 py-2'>
         <table className='hidden md:block'>
-            <tr className=''>
-              <th className='px-2 text-sm pb-3'>count</th>
-              <th className='px-2 text-sm pb-3'>image</th>
+          <thead>
+            <tr className='uppercase'>
+              <th className='px-2 text-sm pb-3'>Count</th>
+              <th className='px-2 text-sm pb-3'>Image</th>
               <th className='px-2 text-sm pb-3'>ProductName</th>
               <th className='px-2 text-sm pb-3'>Price</th>
               <th className='px-2 text-sm pb-3'>Quantity</th>
               <th className='px-2 text-sm pb-3'>Total</th>
               <th className='pl-2 text-sm pb-3'>Action</th>
             </tr>
-          {
-            prod.map((e, key) => (
-              <tr className='border-b' key={+key}>
-                <th className='px-2 text-center'>{key + 1}</th>
-                <td className='pt-3'>
-                  <div className='w-[100px] h-[60px] rounded-sm mx-4 md:mr-4 lg:mr-8 mb-5 md:mb-0' style={{backgroundImage: `url(${e?.product?.image})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}></div>
-                </td>
-                <td className='px-2'>{e.product.name}</td>
-                <td className='px-2 text-center'>${e?.product?.price}</td>
-                <td className='px-2 text-center'>{e?.count}</td>
-                <td className='px-2 text-center'>${(e?.count * e?.product?.price).toFixed(2)}</td>
-                <td className='pl-3'>
-                  <button className='bg-red-400 hover:bg-red-500 text-white border-none px-2 py-1 mx-2' onClick={() => onClickBtnCancel(e.user.email, e.product.name, e.count)}>Cancel</button>
-                </td>
-              </tr>
-            ))
-          }
+          </thead>
+          <tbody>
+            {
+              prod.map((e, key) => (
+                <tr className='border-b' key={+key}>
+                  <th className='px-2 text-center'>{key + 1}</th>
+                  <td className='pt-3'>
+                    <div className='w-[100px] h-[60px] rounded-sm mx-4 md:mr-4 lg:mr-8 mb-5 md:mb-0' style={{backgroundImage: `url(${e?.product?.image})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}></div>
+                  </td>
+                  <td className='px-2'>{e.product.name}</td>
+                  <td className='px-2 text-center'>${e?.product?.price}</td>
+                  <td className='px-2 text-center'>{e?.count}</td>
+                  <td className='px-2 text-center'>${(e?.count * e?.product?.price).toFixed(2)}</td>
+                  <td className='pl-3'>
+                    <button className='bg-red-400 hover:bg-red-500 text-white border-none px-2 py-1 mx-2' onClick={() => onClickBtnCancel(e.user.email, e.product.name, e.count)}>Cancel</button>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
         </table>
         <table className='block md:hidden'>
           <thead>
@@ -121,7 +147,11 @@ export default function Cart() {
           <p className='mb-1'><span className='font-bold mr-3'>Amount: </span>${total.toFixed(2)}</p>
           <p className='mb-1'><span className='font-bold mr-3'>Vat 7%: </span>${(total * 0.07).toFixed(2)}</p>
           <p className='text-lg md:text-3xl mt-2'><span className='font-bold mr-3 underline underline-offset-8'>Total: </span>${((total * 0.07) + total).toFixed(2)}</p>
-           <button className='mt-5 md:mt-12 w-52 text-sm md:text-lg bg-blue-500 hover:bg-blue-600 text-white border-none'>Confirm</button>
+          {
+            prod.length === 0
+              ? <button className='mt-5 md:mt-12 w-52 text-sm md:text-lg bg-blue-500 hover:bg-blue-600 text-white border-none' onClick={onClickConfirmOrder} disabled>Confirm</button>
+              : <button className='mt-5 md:mt-12 w-52 text-sm md:text-lg bg-blue-500 hover:bg-blue-600 text-white border-none' onClick={onClickConfirmOrder}>Confirm</button>
+          }
         </div>
       </div>
     </div>

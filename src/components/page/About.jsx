@@ -19,17 +19,17 @@ export default function About() {
       <Link to='www.pexels.com' className='flex items-center'>
         <span className='font-bold'>Image:</span>
         <p>&nbsp;pexels.com</p>
-        <i class="fa-solid fa-image ml-2 text-xl"></i>
+        <i className="fa-solid fa-image ml-2 text-xl"></i>
       </Link>
       <Link to='www.pexels.com' className='flex items-center'>
         <span className='font-bold'>Icons:</span>
         <p>&nbsp;fontawesome.com/icons</p>
-        <i class="fa-solid fa-font-awesome text-xl ml-2"></i>
+        <i className="fa-solid fa-font-awesome text-xl ml-2"></i>
       </Link>
       <Link to='https://fonts.google.com/' className='flex items-center'>
         <span className='font-bold'>Font family:</span>
         <p>&nbsp;fonts.google.com/</p>
-        <i class="fa-solid fa-font text-xl ml-2"></i>
+        <i className="fa-solid fa-font text-xl ml-2"></i>
       </Link>
 
 

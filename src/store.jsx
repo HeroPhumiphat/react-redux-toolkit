@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import cartSlice from './slice/cartSlice';
 import checkLoginSlice from './slice/checkLoginSlice';
+import confirmSlice from './slice/confirmSlice';
 import messageAlertSlice from './slice/messageAlertSlice';
 import productSlice from './slice/productSlice';
 import stateEditSlice from './slice/stateEditSlice';
@@ -20,5 +21,6 @@ export default configureStore({
     stateEdit: stateEditSlice,
     product: productSlice,
     cart: cartSlice,
+    confirm: confirmSlice,
   }
 })

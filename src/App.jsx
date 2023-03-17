@@ -16,6 +16,7 @@ import EditProfile from './components/page/EditProfile'
 import { addEditFalse } from './slice/stateEditSlice'
 import MessageAlert from './components/MessageAlert'
 import Product from './components/page/Product'
+import ConfirmAlert from './components/ConfirmAlert'
 
 export default function App() {
   const stateLogin = useSelector(state => state.stateLogin.value)
@@ -98,6 +99,7 @@ export default function App() {
       </div>
       <div className='z-50'>
         <MessageAlert />
+        <ConfirmAlert />
       </div>
     </div>
   )

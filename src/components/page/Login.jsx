@@ -41,16 +41,23 @@ export default function Login() {
     event.preventDefault()
 
     let message
-    users.map(e => {
+    let user = []
+    users.map((e, i) => {
       if(e.email === email && e.password === password) {
-        dispatch(clearUserLogin())
-        dispatch(addUserLogin(e))
-        message = { alert: 'Success', message:`${e.name}, You have successfully logged in.`}
+        user.push(e)
       }
     })
+    if (user.length === 0) {
+      message = { alert: 'Error', message:'Error, email or password is incorrect.'}
+      return dispatch(addMessage(message))
+    }
 
-    dispatch(addMessage(message))
+    dispatch(clearUserLogin())
+    dispatch(addUserLogin(...user))
+    message = { alert: 'Success', message:`${user[0].name}, You have successfully logged in.`}
     dispatch(stateLoginFalse())
+    dispatch(addMessage(message))
+    user = []
 
     setEmail('')
     setPassword('')

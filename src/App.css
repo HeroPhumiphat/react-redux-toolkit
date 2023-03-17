@@ -201,7 +201,7 @@
 }
 
 .menuShow.active-open {
-  animation: menuShow .2s linear both;
+  animation: menuShow .05s linear both;
 }
 
 @keyframes menuShow {
@@ -216,7 +216,7 @@
 }
 
 .menuShow.active-close {
-  animation: menuShowClose .2s linear both;
+  animation: menuShowClose .05s linear both;
 }
 
 @keyframes menuShowClose {
@@ -363,4 +363,18 @@ input[type=number] {
     width: 160px;
     height: 180px;
   }
+}
+
+.boxConfirm {
+  animation: confirm .1s linear both alternate;
+}
+
+@keyframes confirm {
+  from {
+    transform: scale(0.5);
+  }
+  to{
+    transform: scale(1);
+  }
+
 }

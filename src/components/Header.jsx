@@ -177,7 +177,7 @@ export default function Header() {
         <div className='flex space-x-4 md:hidden'>
           <div className='pr-4 border-r'>
             <Link to='/cart' className='font-bold'>
-              <i class="fa-solid fa-cart-shopping mr-1"></i>
+              <i className="fa-solid fa-cart-shopping mr-1"></i>
               Cart
               {
                 productCart.length > 0
