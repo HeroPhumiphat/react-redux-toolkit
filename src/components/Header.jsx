@@ -60,8 +60,7 @@ export default function Header() {
     menuShow.current.classList.add('active-close')
     menuShow.current.classList.remove('active-open')
     setTimeout(() => {
-      menuShow.current.classList.add('-z-40')
-      menuShow.current.classList.remove('z-40')
+      menuShow.current.classList.add('hidden')
     }, 100)
   }
 
@@ -163,7 +162,7 @@ export default function Header() {
                 </div>
                 {
                   checkProfile
-                    ? <div className='prList absolute px-10 py-7 bg-neutral-300 rounded-md right-3 top-20 z-50 flex-col items-center  justify-center flex' ref={prList}>
+                    ? <div className='prList absolute px-10 py-7 bg-neutral-300 rounded-md right-3 top-20 z-30 flex-col items-center justify-center flex' ref={prList}>
                         <p>Hi!, <span className='font-bold'>{userLogin.name}</span></p>
                         <p  className=''>{userLogin.email}</p>
                         <button className='bg-transparent border-b-amber-100 border-t-amber-100 rounded-sm py-2 mt-3 hover:rounded-lg hover:border-lime-200 hover:border-1.5 w-10/12' onClick={onClickEditProfile}>edit profile</button>

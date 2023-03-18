@@ -19,6 +19,8 @@ import Product from './components/page/Product'
 import ConfirmAlert from './components/ConfirmAlert'
 import ManageUser from './components/dash/ManageUser'
 import CreateUser from './components/dash/CreateUser'
+import ManageProduct from './components/dash/ManageProduct'
+import CreateProduct from './components/dash/CreateProduct'
 
 export default function App() {
   const stateLogin = useSelector(state => state.stateLogin.value)
@@ -77,7 +79,7 @@ export default function App() {
         } ref={boxDash}>
           <Dash />
         </div>
-        <div className='content relative p-3  overflow-y-auto overflow-x-hidden z-20' ref={boxContent}>
+        <div className='content relative p-3  overflow-y-auto overflow-x-hidden z-30' ref={boxContent}>
           <Routes>
             <Route path='/' element={ <Home /> } />
             <Route path='/product' element={ <Product /> } />
@@ -85,6 +87,8 @@ export default function App() {
             <Route path='/about' element={ <About /> } />
             <Route path='/dash/manage-user' element={ <ManageUser /> } />
             <Route path='/dash/create-user' element={ <CreateUser /> } />
+            <Route path='/dash/manage-product' element={ <ManageProduct /> } />
+            <Route path='/dash/create-product' element={ <CreateProduct /> } />
           </Routes>
         </div>
       </div>

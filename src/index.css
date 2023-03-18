@@ -27,6 +27,13 @@ input {
   padding: 8px 15px;
 }
 
+textarea {
+  background-color: white;
+  width: auto;
+  border: 1px solid rgb(221, 186, 163);
+  padding: 8px 15px;
+}
+
 input.select {
   background-color: white;
   padding: 8px 15px;
