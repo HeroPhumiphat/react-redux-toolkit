@@ -1,102 +1,95 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { addDashEditUser } from '../../slice/dashEditUserSlice'
+import { addDashEditUser as addDashEditProduct } from '../../slice/dashEditUserSlice'
 import { addMessage } from '../../slice/messageAlertSlice'
-import { addUser, editUser } from '../../slice/userSlice'
+import { addProduct } from '../../slice/productSlice'
 
 export default function CreateProduct() {
   const navigate = useNavigate()
 
-  const dashEditUser = useSelector(state => state.dashEditUser.value)
+  const products = useSelector(state => state.product.value)
+  const dashEditProduct = useSelector(state => state.dashEditUser.value)
   const dispatch = useDispatch()
 
   const form = React.useRef()
   const [name, setName] = React.useState('')
-  const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
+  const [price, setPrice] = React.useState('')
+  const [type, setType] = React.useState('')
+  const [information, setInformation] = React.useState('')
+  const [image, setImage] = React.useState('')
 
-  const [n, setN] = React.useState('')
-  const [e, setE] = React.useState('')
-  const [p, setP] = React.useState('')
+  const onClickClose = () => {
+    navigate('/dash/manage-product')
+    dispatch(addDashEditProduct(''))
+  }
 
   React.useEffect(() => {
-    if (dashEditUser !== '') {
-      setN(dashEditUser.name)
-      setE(dashEditUser.email)
-      setP(dashEditUser.password)
-    }
+    console.log(products.length, products[products.length - 1])
   })
 
   const onSubmitForm = (event) => {
     event.preventDefault()
 
-
-    let message
-
-
-    if (dashEditUser.name === '') {
-      let user = { name, email, password, quality: 'USER'}
-      dispatch(addUser(user))
-
-      message = { alert: 'Success', message: `You have successfully as a new member email: "${user.email}".`}
-    }
-    else {
-      if (name === '') {
-        setName(dashEditUser.name)
-      }
-      if (email === '') {
-        setName(dashEditUser.email)
-      }
-      if (password === '') {
-        setPassword(dashEditUser.password)
-      }
-
-      let user = { name, email, password, quality: 'USER'}
-      dispatch(editUser([dashEditUser.email, dashEditUser.password, user]))
-
-      message = { alert: 'Success', message: `You have successfully edited the information of the user, email address "${dashEditUser.email}".`}
-    }
-    dispatch(addMessage(message))
-    navigate('/dash/manage-product')
+    let doc = { name, price, type, information, image }
+    console.log(doc)
+    dispatch(addProduct(doc))
+    // navigate('/dash/manage-product')
   }
 
-  const onClickClose = () => {
-    navigate('/dash/manage-product')
-    dispatch(addDashEditUser(''))
+  const onChangeInputFile = (event) => {
+    const file = event.target.files[0]
+    if(file === undefined) {
+      return setImage('')
+    }
+    return setImage(file)
   }
 
   return (
     <div className='px-5 py-3 flex justify-center items-center w-full pt-12'>
-      {/* <div className='w-[350px] pl-3'>
+      <div className='w-[350px] pl-3'>
         <div className='relative'>
-          <p className='text-lg font-bold underline underline-offset-8 mb-7'>Add new Product.</p>
+          <p className='text-lg font-bold underline underline-offset-8 mb-7'>Add new Item.</p>
           <button className='absolute right-0 -top-0.5 bg-red-300 hover:bg-red-400 border-none text-white py-2.5 text-xs px-3.5 rounded-md' onClick={onClickClose}>X</button>
         </div>
-        <form ref={form} onSubmit={onSubmitForm}>
+        <form ref={form} onSubmit={onSubmitForm} >
           <div className='flex flex-col text-sm'>
-            <div className='w-full h-[400px] rounded-sm mx-auto mb-7 border border-amber-400 flex justify-center items-center' style={{backgroundImage: ``, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
-              <p className='text-neutral-400'>none - Image</p>
-            </div>
             <label htmlFor="name" className='text-xs font-bold'>ProductName : </label>
-            <input type="text" id='name' className='rounded-md mt-1 mb-3' onChange={(e) => setName(e.target.value)} defaultValue={n} placeholder='Please enter ProductName?' />
-            <label htmlFor="email" className='text-xs font-bold'>Price : </label>
-            <input type="email" id='email' className='rounded-md mt-1 mb-3' onChange={(e) => setEmail(e.target.value)} defaultValue
-            ={e} placeholder='Please enter the Price?' />
-            <label htmlFor="password" className='text-xs font-bold'>Type : </label>
-            <input type="text" id='password' className='rounded-md mt-1 mb-3' onChange={(e) => setPassword(e.target.value)} placeholder='Please enter the Type?' defaultValue={p} />
-            <label htmlFor="password" className='text-xs font-bold'>Information : </label>
-            <textarea type="text" id='password' className='rounded-md mt-1 mb-3' onChange={(e) => setPassword(e.target.value)} placeholder='Please enter Information?' defaultValue={p} />
-            <label htmlFor="password" className='text-xs font-bold'>File Image : </label>
-            <input type="file" id='password' className='rounded-md mt-1 mb-3 py-3' onChange={(e) => setPassword(e.target.value)} defaultValue={p} />
+            <input type="text" id='name' className='rounded-md mt-1 mb-3' onChange={(e) => setName(e.target.value)} placeholder='Please enter the Product Name?' required />
+            <label htmlFor="price" className='text-xs font-bold'>Price : </label>
+            <input type="number" id='price' className='rounded-md mt-1 mb-3' onChange={(e) => setPrice(e.target.value)} placeholder='Please enter the Product Price?' step={0.01} required />
+            <label htmlFor="type" className='text-xs font-bold'>Type : </label>
+            <input type="text" id='type' className='rounded-md mt-1 mb-3' onChange={(e) => setType(e.target.value)} placeholder='Please enter the Product Type?' required />
+            <label htmlFor="information" className='text-xs font-bold'>Information : </label>
+            <textarea type="text" id='information' className='rounded-md mt-1 mb-3' onChange={(e) => setInformation(e.target.value)} placeholder='Please enter Information?' required />
+            <label htmlFor="information" className='text-xs font-bold'>Image : </label>
+            <div className='conta mx-auto mt-4'>
+                <div className='boxCard mb-8 cursor-pointerrounded-md p-0.5' style={{boxShadow: '2px 2px 5px #c1c1c1'}}>
+                  {
+                    image === ''
+                      ? <div className='w-[160px] h-[180px] flex justify-center items-center border'>
+                          <p>image preview</p>
+                        </div>
+                      : <div className='imageProduct rounded-md cursor-pointer' style={{backgroundImage: `url(${URL?.createObjectURL(image)})`}}></div>
+                  }
+                  <div className='relative pb-1 md:pb-3 pt-1 cursor-default'>
+                    <div className='w-full text-start pl-1 md:pl-3'>
+                      <p className='my-1 text-sm md:textbase'>{name}</p>
+                      <button className='btnAddCart cursor-pointer border-none hover:text-lime-300 mt-2 text-xs md:text-sm' disabled>Add Cart</button>
+                    </div>
+                    <p className='absolute right-3 bottom-1 md:bottom-3 text-xl md:text-4xl'>${price}</p>
+                  </div>
+                </div>
+              </div>
+            <input type="file" accept='image/*' id='information' className='rounded-md mt-1 mb-3' onChange={onChangeInputFile} required />
             {
-              dashEditUser?.name.length > 0
+              dashEditProduct?.name?.length > 0
                 ? <button className='tracking-wide font-bold bg-amber-400 hover:bg-amber-500 text-white mt-3 py-3 rounded-md'>Confirm</button>
                 : <button className='tracking-wide font-bold bg-blue-500 hover:bg-blue-600 text-white mt-3 py-3 rounded-md'>Create</button>
             }
           </div>
         </form>
-      </div> */}
+      </div>
     </div>
   )
 }

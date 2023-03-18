@@ -97,15 +97,14 @@ export default function Product() {
           {
             cards.map((product, key) => (
               <div className='conta mx-auto z-30' key={+key} style={{ '--i': (key + 1) }}>
-                <div className='boxCard mb-8 cursor-pointerrounded-md p-0.5' style={{boxShadow: '2px 2px 5px #c1c1c1'}}>
-                  <div className='imageProduct rounded-md cursor-pointer' style={{backgroundImage: `url(${product.image})`}} onClick={() => onClickProduct(key)}>
-                  </div>
+                <div className='boxCard mb-8 cursor-pointer rounded-md p-0.5' style={{boxShadow: '2px 2px 5px #c1c1c1'}}>
+                  <div className='imageProduct rounded-md cursor-pointer' style={{backgroundImage: typeof product.image === 'string' ? `url(${product?.image})` : `url(${URL?.createObjectURL(product?.image)})`}} onClick={() => onClickProduct(key)}></div>
                   <div className='relative pb-1 md:pb-3 pt-1 cursor-default'>
                     <div className='w-full text-start pl-1 md:pl-3'>
                       <p className='my-1 text-sm md:textbase'>{product.name}</p>
                       <button className='btnAddCart border-none hover:text-lime-300 mt-2 text-xs md:text-sm' onClick={() => onClickProduct(key)}>Add Cart</button>
                     </div>
-                    <p className='absolute right-3 bottom-1 md:bottom-3 text-xl md:text-4xl'>${product.price.toFixed(2)}</p>
+                    <p className='absolute right-3 bottom-1 md:bottom-3 text-xl md:text-4xl'>${(+product.price).toFixed(2)}</p>
                   </div>
                 </div>
               </div>
@@ -121,7 +120,7 @@ export default function Product() {
                 <button className='absolute right-1.5 top-1.5 text-sm bg-red-300 hover:bg-red-400 font-bold border-none' onClick={onClickCloseShowCard}>Close</button>
                 <h1 className='text-base md:text-lg lg:text-xl font-bold mb-5 underline underline-offset-8'>{showProduct?.name}</h1>
                 <div className='flex flex-wrap'>
-                  <div className='w-[400px] h-[270px] md:w-[400px] md:h-[270px] lg:w-[600px] lg:h-[450px] rounded-md mx-4 md:mr-4 lg:mr-8 mb-5 md:mb-0' style={{backgroundImage: `url(${showProduct?.image})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}></div>
+                  <div className='w-[400px] h-[270px] md:w-[400px] md:h-[270px] lg:w-[600px] lg:h-[450px] rounded-md mx-4 md:mr-4 lg:mr-8 mb-5 md:mb-0' style={{backgroundImage: typeof showProduct.image === 'string' ? `url(${showProduct?.image})` : `url(${URL?.createObjectURL(showProduct?.image)})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}></div>
                   <div className='relative w-[300px] mr-0 ml-4'>
                     <p className=' text-sm md:text-sm lg:text-base'><span className='font-bold'>Name: </span>{showProduct.name}</p>
                     <p className='text-sm md:text-sm lg:text-base'><span className='font-bold'>Type: </span>{showProduct.type}</p>

@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addConfirmAlert } from '../../slice/confirmSlice'
 import { addDashEditUser } from '../../slice/dashEditUserSlice'
-import { removeUser } from '../../slice/userSlice'
+import { addMessage } from '../../slice/messageAlertSlice'
+import { deleteProduct } from '../../slice/productSlice'
 
 export default function ManageProduct() {
   const products = useSelector(state => state.product.value)
@@ -11,6 +12,7 @@ export default function ManageProduct() {
   const dispatch = useDispatch()
 
   const [index, setIndex] = React.useState('')
+  const [keyword, setKeyword] = React.useState('')
 
   let doc = []
   products.map(e => {
@@ -21,7 +23,9 @@ export default function ManageProduct() {
 
   React.useEffect(() => {
     if (confirmSlice?.state === 'ok' && confirmSlice?.alert === 'deleteUser') {
-      dispatch(removeUser(index))
+      let message = { alert: 'Warning', message: `You have deleted Item "${keyword}"`}
+      dispatch(addMessage(message))
+      dispatch(deleteProduct(index))
       dispatch(addConfirmAlert(''))
       setIndex('')
     }
@@ -31,9 +35,10 @@ export default function ManageProduct() {
     dispatch(addDashEditUser(user))
   }
 
-  const onClickDelUser = (key, email) => {
+  const onClickDelUser = (key, name) => {
     setIndex(key)
-    let doc = { state: '', alert: 'deleteUser', message: `Are you sure you want to delete the data? of ${email}?`}
+    setKeyword(name)
+    let doc = { state: '', alert: 'deleteUser', message: `Are you sure you want to delete the Item name : "${name}"?`}
     dispatch(addConfirmAlert(doc))
   }
 
@@ -49,10 +54,10 @@ export default function ManageProduct() {
         <div className='flex flex-wrap'>
           <div className='mt-3 mr-0 lg:mr-12'>
             <div className='mt-3'>
-              <p><span className='font-bold w-12 pr-2'>All Users: </span>&nbsp;{doc.length}</p>
+              <p><span className='font-bold w-12 pr-2'>All Products: </span>&nbsp;{doc.length}</p>
             </div>
             <div className='mt-2'>
-              <p className='text-sm text-neutral-400 mb-2'>Information table list Users.</p>
+              <p className='text-sm text-neutral-400 mb-2'>Information table list Items.</p>
               <table className='hidden sm:block'>
                 <thead>
                   <tr className='uppercase text-xs'>
@@ -65,15 +70,15 @@ export default function ManageProduct() {
                 </thead>
                 <tbody>
                   {
-                    doc.map((user, key) => (
+                    doc.map((product, key) => (
                       <tr key={+key}>
                         <th className='py-2 border-b px-2 text-center'>{key + 1}</th>
-                        <td className='py-2 border-b px-2 text-start'>{user.name}</td>
-                        <td className='py-2 border-b px-2 text-start'>{user.email}</td>
-                        <td className='py-2 border-b px-2 text-start'>{user.password}</td>
+                        <td className='py-2 border-b px-2 text-start'>{product.name}</td>
+                        <td className='py-2 border-b px-2 text-start'>{product.email}</td>
+                        <td className='py-2 border-b px-2 text-start'>{product.password}</td>
                         <td className='py-2 border-b px-2 text-center'>
-                          <Link to='/dash/create-user' className='text-xs py-2 px-3 rounded-sm mx-0.5 bg-amber-400 font-bold' onClick={() => onClickEditUser(user)}>Edit</Link>
-                          <button className='text-xs py-1.5 mx-0.5 bg-red-400 font-bold rounded-sm' onClick={() =>  onClickDelUser(key, user.email)}>Del</button>
+                          <Link to='/dash/create-user' className='text-xs py-2 px-3 rounded-sm mx-0.5 bg-amber-400 font-bold' onClick={() => onClickEditUser(product)}>Edit</Link>
+                          <button className='text-xs py-1.5 mx-0.5 bg-red-400 font-bold rounded-sm' onClick={() =>  onClickDelUser(key, product.name)}>Del</button>
                         </td>
                       </tr>
                     ))
@@ -84,8 +89,8 @@ export default function ManageProduct() {
                   <thead>
                     <tr className='uppercase text-xs'>
                       <th className='px-0'>count</th>
-                      <th className='px-2'>Information</th>
-                      <th className='px-2 text-center'>action</th>
+                      <th className='px-1'>Information</th>
+                      <th className='pl-1 text-center'>action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -93,15 +98,19 @@ export default function ManageProduct() {
                       doc.map((product, key) => (
                         <tr className='relative' key={+key}>
                           <th className='px-0 border-b text-sm'>{key + 1}</th>
-                          <td className='text-center border-b pb-1 pt-3 px-2 text-sm'>
-                            <div className='w-[100px] h-[60px] rounded-sm mx-auto mb-3' style={{backgroundImage: `url(${product?.image})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}></div>
-                            <p>Name: {product.name}</p>
+                          <td className='text-center border-b pb-1 pt-3 px-1 text-sm'>
+                            <div className='w-[100px] h-[60px] rounded-sm mx-auto mb-3' style={{backgroundImage: typeof product.image === 'string' ? `url(${product?.image})` : `url(${URL?.createObjectURL(product?.image)})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}></div>
+                            {
+                              product.name?.length > 15
+                                ? <p>Name: {product.name.substr(0, 15)}...</p>
+                                : <p>Name: {product.name}</p>
+                            }
                             <p>Price: {product.price}</p>
                             <p>Type: {product.type}</p>
                           </td>
-                          <td className='mb-0 border-b px-2 text-center mt-2 pb-1 pt-2'>
+                          <td className='mb-0 border-b pl-1 text-center mt-2 pb-1 pt-2'>
                             <Link to='/dash/create-user' className='text-xs py-2 px-3 rounded-sm m-0.5 bg-amber-400 font-bold' onClick={() => onClickEditUser(product)}>Edit</Link>
-                            <button className='text-xs py-1.5 px-3 mx-0.5 bg-red-400 font-bold mt-2 rounded-sm' onClick={() =>  onClickDelUser(key, product)}>Del</button>
+                            <button className='text-xs py-1.5 px-3 mx-0.5 bg-red-400 font-bold mt-2 rounded-sm' onClick={() =>  onClickDelUser(key, product.name)}>Del</button>
                           </td>
                         </tr>
                       ))

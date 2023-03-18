@@ -92,7 +92,7 @@ export default function Cart() {
                 <tr className='border-b' key={+key}>
                   <th className='px-2 text-center'>{key + 1}</th>
                   <td className='pt-3'>
-                    <div className='w-[100px] h-[60px] rounded-sm mx-4 md:mr-4 lg:mr-8 mb-5 md:mb-0' style={{backgroundImage: `url(${e?.product?.image})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}></div>
+                    <div className='w-[100px] h-[60px] rounded-sm mx-4 md:mr-4 lg:mr-8 mb-5 md:mb-0' style={{backgroundImage: typeof e.product.image === 'string' ? `url(${e.product?.image})` : `url(${URL?.createObjectURL(e.product?.image)})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}></div>
                   </td>
                   <td className='px-2'>{e.product.name}</td>
                   <td className='px-2 text-center'>${e?.product?.price}</td>
@@ -120,7 +120,7 @@ export default function Cart() {
                 <tr className='border-b' key={+key}>
                   <td className='text-center'><p>{key + 1}</p></td>
                   <td className='text-center'>
-                    <div className='w-[150px] h-[100px] rounded-sm mx-4 md:mr-4 lg:mr-8 my-2 md:mb-0' style={{backgroundImage: `url(${e?.product?.image})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}></div>
+                    <div className='w-[150px] h-[100px] rounded-sm mx-4 md:mr-4 lg:mr-8 my-2 md:mb-0' style={{backgroundImage: typeof e.product.image === 'string' ? `url(${e.product?.image})` : `url(${URL?.createObjectURL(e.product?.image)})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}></div>
                     <p className='text-sm mt-3 font-bold'>{e.product.name}</p>
                     <p className='text-xs'><span className='font-bold'>price: </span>${e.product.price}</p>
                     <p className='text-xs'><span className='font-bold'>Quantity: </span>{e.count}</p>
