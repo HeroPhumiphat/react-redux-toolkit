@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addCart } from '../../slice/cartSlice'
 import { addMessage } from '../../slice/messageAlertSlice'
 import { stateLoginTrue } from '../../slice/stateLoginSlice'
-import { upValueTest } from '../../slice/testSlice'
 
 export default function Product() {
   const products = useSelector(state => state.product.value)
@@ -46,8 +45,6 @@ export default function Product() {
 
   const onClickProduct = (key) => {
     setShowProduct(cards[key])
-
-    dispatch(upValueTest())
   }
 
   const onClickCloseShowCard = () => {

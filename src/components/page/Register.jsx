@@ -14,10 +14,6 @@ export default function Register() {
   const [password, setPassword] = React.useState('')
   const [validPassword, setValidPassword] = React.useState('stb')
 
-  React.useEffect(() => {
-
-  })
-
   const onClickSetstateLoginFalse = () => {
     dispatch(stateLoginFalse())
     dispatch(addLogin())

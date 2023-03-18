@@ -15,7 +15,7 @@ const userSlice = createSlice({
       state.value.push(action.payload)
     },
     removeUser: (state, action) => {
-      state.value.splice(action.payload, 1)
+      state.value.splice(action.payload + 1, 1)
     },
     editUser: (state, action) => {
       // [email, password, newData]
@@ -26,6 +26,7 @@ const userSlice = createSlice({
             key = i
           }
       })
+      console.log(key)
       state.value[key] = action.payload[2]
     },
   }

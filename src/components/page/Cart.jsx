@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { removeCart } from '../../slice/cartSlice'
 import { addConfirmAlert } from '../../slice/confirmSlice'
 import { addMessage } from '../../slice/messageAlertSlice'
-import Product from './Product'
 
 export default function Cart() {
   const carts = useSelector(state => state.cart.value)

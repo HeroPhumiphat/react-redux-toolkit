@@ -48,7 +48,6 @@ export default function EditProfile() {
       let userEdit = [ userLogin?.email, userLogin?.password, newInformation ]
 
       let m = { alert: 'Success', message: 'You have successfully corrected the information.' }
-      console.log(userEdit)
       dispatch(addMessage(m))
       dispatch(editUser(userEdit))
       dispatch(addEditFalse())

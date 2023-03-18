@@ -371,10 +371,12 @@ input[type=number] {
 
 @keyframes confirm {
   from {
-    transform: scale(0.5);
+    transform: scale(0);
+    opacity: 0;
   }
   to{
     transform: scale(1);
+    opacity: 1;
   }
 
 }

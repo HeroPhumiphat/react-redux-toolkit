@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { addMessage } from '../slice/messageAlertSlice'
 import { addEditTrue } from '../slice/stateEditSlice'
 import { stateLoginTrue } from '../slice/stateLoginSlice'
@@ -10,6 +10,8 @@ export default function Header() {
   const userLogin = useSelector(state => state.userLogin.value[0])
   const carts = useSelector(state => state.cart.value)
   const dispatch = useDispatch()
+
+  const navigate = useNavigate()
 
   const [stateMenuList, setStateMenuList] = React.useState(false)
   const [checkProfile, setCheckProfile] = React.useState(false)
@@ -88,6 +90,7 @@ export default function Header() {
 
     dispatch(addMessage(m))
     hiddenMenuList()
+    navigate('/')
   }
 
   const onClickEditProfile = () => {
@@ -108,7 +111,7 @@ export default function Header() {
   }
 
   return (
-    <div className='w-full bg-white py-2 px-4 z-40' style={{ boxShadow: '1px 1px 5px #e0e0e0' }}>
+    <div className='w-full bg-white py-2 px-4 z-40'>
       <div className='flex justify-between items-center'>
         <div className='flex items-center'>
           <div className='logo'>
@@ -160,7 +163,7 @@ export default function Header() {
                 </div>
                 {
                   checkProfile
-                    ? <div className='prList absolute px-10 py-7 bg-neutral-300 rounded-md right-3 top-20 z-40 flex-col items-center  justify-center flex' ref={prList}>
+                    ? <div className='prList absolute px-10 py-7 bg-neutral-300 rounded-md right-3 top-20 z-50 flex-col items-center  justify-center flex' ref={prList}>
                         <p>Hi!, <span className='font-bold'>{userLogin.name}</span></p>
                         <p  className=''>{userLogin.email}</p>
                         <button className='bg-transparent border-b-amber-100 border-t-amber-100 rounded-sm py-2 mt-3 hover:rounded-lg hover:border-lime-200 hover:border-1.5 w-10/12' onClick={onClickEditProfile}>edit profile</button>

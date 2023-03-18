@@ -17,6 +17,8 @@ import { addEditFalse } from './slice/stateEditSlice'
 import MessageAlert from './components/MessageAlert'
 import Product from './components/page/Product'
 import ConfirmAlert from './components/ConfirmAlert'
+import ManageUser from './components/dash/ManageUser'
+import CreateUser from './components/dash/CreateUser'
 
 export default function App() {
   const stateLogin = useSelector(state => state.stateLogin.value)
@@ -40,6 +42,7 @@ export default function App() {
   React.useEffect(() => {
     boxContent.current.style.height = `${window.innerHeight - boxHeader.current.clientHeight}px`
     boxContent.current.style.width = `${window.innerWidth - boxDash.current.clientWidth}px`
+    boxDash.current.style.height = `${window.innerHeight - boxHeader.current.clientHeight}px`
 
     window.addEventListener('resize', (event) => {
       boxContent.current.style.height = `${event.target.innerHeight - boxHeader.current.clientHeight}px`
@@ -63,19 +66,25 @@ export default function App() {
 
   return (
     <div className='App'>
-      <div className='relative w-full' ref={boxHeader}>
+      <div className='relative w-full z-40' ref={boxHeader} style={{ boxShadow: '1px 1px 5px #e0e0e0'}}>
         <Header />
       </div>
       <div className='relative flex'>
-        <div className='relative hidden' ref={boxDash}>
+        <div className={
+          window.innerWidth < 768
+            ? 'relative z-40 hidden'
+            : 'relative z-40 hidden'
+        } ref={boxDash}>
           <Dash />
         </div>
-        <div className='content relative p-3  overflow-y-auto overflow-x-hidden  z-30' ref={boxContent}>
+        <div className='content relative p-3  overflow-y-auto overflow-x-hidden z-20' ref={boxContent}>
           <Routes>
             <Route path='/' element={ <Home /> } />
             <Route path='/product' element={ <Product /> } />
             <Route path='/cart' element={ <Cart /> } />
             <Route path='/about' element={ <About /> } />
+            <Route path='/dash/manage-user' element={ <ManageUser /> } />
+            <Route path='/dash/create-user' element={ <CreateUser /> } />
           </Routes>
         </div>
       </div>
