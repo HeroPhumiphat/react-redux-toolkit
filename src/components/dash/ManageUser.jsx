@@ -30,7 +30,7 @@ export default function ManageUser() {
           <p className='text-2xl underline underline-offset-8'>Manage User</p>
           <Link to='/dash/create-user' onClick={() => {
             dispatch(addDashEditUser({ name: '', email: '', password: ''}))
-          }} className='bg-blue-500 text-white text-xs md:text-sm py-2 px-3 md:px-7 rounded-sm font-bold'>Add new User</Link>
+          }} className='bg-blue-500 text-white text-xs sm:text-sm py-2 px-3 sm:px-7 rounded-sm font-bold'>Add new User</Link>
         </div>
         <div className='flex flex-wrap'>
           <div className='mt-3 mr-0 lg:mr-12'>
@@ -39,7 +39,7 @@ export default function ManageUser() {
             </div>
             <div className='mt-2'>
               <p className='text-sm text-neutral-400 mb-2'>Information table list Users.</p>
-              <table className='hidden md:block'>
+              <table className='hidden sm:block'>
                 <thead>
                   <tr className='uppercase text-xs'>
                     <th className='px-2'>count</th>
@@ -66,7 +66,7 @@ export default function ManageUser() {
                   }
                 </tbody>
               </table>
-              <table className='md:hidden'>
+              <table className='sm:hidden'>
                   <thead>
                     <tr className='uppercase text-xs'>
                       <th className='px-1'>count</th>
@@ -84,7 +84,7 @@ export default function ManageUser() {
                             <p>Email: {user.email}</p>
                             <p>Password: {user.password}</p>
                           </td>
-                          <td className=' border-b px-1 py-1 text-center flex flex-col'>
+                          <td className=' border-b px-1 text-center flex flex-col'>
                             <Link to='/dash/create-user' className='text-xs py-2 px-3 rounded-sm m-0.5 bg-amber-400 font-bold' onClick={() => onClickEditUser(user)}>Edit</Link>
                             <button className='text-xs py-1.5 px-3 mx-0.5 bg-red-400 font-bold rounded-sm' onClick={() => onClickDelUser(key)}>Del</button>
                           </td>
