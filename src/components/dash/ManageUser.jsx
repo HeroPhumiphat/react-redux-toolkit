@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addConfirmAlert } from '../../slice/confirmSlice'
 import { addDashEditUser } from '../../slice/dashEditUserSlice'
+import { addMessage } from '../../slice/messageAlertSlice'
 import { removeUser } from '../../slice/userSlice'
 
 export default function ManageUser() {
@@ -11,6 +12,7 @@ export default function ManageUser() {
   const dispatch = useDispatch()
 
   const [index, setIndex] = React.useState('')
+  const [keyword, setKeyword] = React.useState('')
 
   let doc = []
   users.map(e => {
@@ -21,9 +23,12 @@ export default function ManageUser() {
 
   React.useEffect(() => {
     if (confirmSlice?.state === 'ok' && confirmSlice?.alert === 'deleteUser') {
+      let message = { alert: 'Warning', message: `You have deleted "${keyword}" email address.`}
+      dispatch(addMessage(message))
       dispatch(removeUser(index))
       dispatch(addConfirmAlert(''))
       setIndex('')
+      setKeyword('')
     }
   })
 
@@ -33,6 +38,7 @@ export default function ManageUser() {
 
   const onClickDelUser = (key, email) => {
     setIndex(key)
+    setKeyword(email)
     let doc = { state: '', alert: 'deleteUser', message: `Are you sure you want to delete the data? of ${email}?`}
     dispatch(addConfirmAlert(doc))
   }
@@ -40,7 +46,7 @@ export default function ManageUser() {
   return (
     <div className='mt-5 px-2 sm:p-5 flex justify-center items-center z-50'>
       <div>
-        <div className='flex justify-between space-x-4 w-full'>
+        <div className='flex justify-between space-x-4 w-full min-w-[350px]'>
           <p className='text-2xl underline underline-offset-8'>Manage User</p>
           <Link to='/dash/create-user' onClick={() => {
             dispatch(addDashEditUser({ name: '', email: '', password: ''}))
@@ -94,9 +100,21 @@ export default function ManageUser() {
                         <tr className='relative' key={+key}>
                           <th className='px-2 border-b text-sm'>{key + 1}</th>
                           <td className='text-center border-b pb-1 pt-3 px-2 text-sm'>
-                            <p>Username: {user.name}</p>
-                            <p>Email: {user.email}</p>
-                            <p>Password: {user.password}</p>
+                            {
+                              user?.name?.length > 12
+                                ? <p>Name: {user.name.substr(0,12)}...</p>
+                                : <p>Name: {user.name}</p>
+                            }
+                            {
+                              user.email?.length > 12
+                                ? <p>Email: {user.email.substr(0,12)}...</p>
+                                : <p>Email: {user.email}</p>
+                            }
+                            {
+                              user.password?.length > 12
+                                ? <p>Password: {user.password.substr(0,12)}...</p>
+                                : <p>Password: {user.password}</p>
+                            }
                           </td>
                           <td className='mb-0 border-b px-2 text-center mt-2 pb-1 pt-2'>
                             <Link to='/dash/create-user' className='text-xs py-2 px-3 rounded-sm m-0.5 bg-amber-400 font-bold' onClick={() => onClickEditUser(user)}>Edit</Link>
@@ -107,6 +125,11 @@ export default function ManageUser() {
                     }
                   </tbody>
               </table>
+              {
+                doc.length === 0
+                  ? <p className='w-full text-center text-neutral-400 my-5'>no information found</p>
+                  : ''
+              }
             </div>
           </div>
         </div>

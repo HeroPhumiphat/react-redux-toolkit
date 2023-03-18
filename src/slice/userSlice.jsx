@@ -26,7 +26,6 @@ const userSlice = createSlice({
             key = i
           }
       })
-      console.log(key)
       state.value[key] = action.payload[2]
     },
   }

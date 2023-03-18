@@ -22,18 +22,16 @@ export default function CreateUser() {
 
   React.useEffect(() => {
     if (dashEditUser !== '') {
-      setN(dashEditUser.name)
-      setE(dashEditUser.email)
-      setP(dashEditUser.password)
+      setN(dashEditUser?.name)
+      setE(dashEditUser?.email)
+      setP(dashEditUser?.password)
     }
   })
 
   const onSubmitForm = (event) => {
     event.preventDefault()
 
-
     let message
-
 
     if (dashEditUser.name === '') {
       let user = { name, email, password, quality: 'USER'}
@@ -42,17 +40,27 @@ export default function CreateUser() {
       message = { alert: 'Success', message: `You have successfully as a new member email: "${user.email}".`}
     }
     else {
+      let a
+      let b
+      let c
       if (name === '') {
-        setName(dashEditUser.name)
+        a = dashEditUser.name
+      } else {
+        a = name
       }
       if (email === '') {
-        setName(dashEditUser.email)
+        b = dashEditUser.email
+      } else {
+        b = email
       }
       if (password === '') {
-        setPassword(dashEditUser.password)
+        c = dashEditUser.password
+      } else {
+        c = password
       }
 
-      let user = { name, email, password, quality: 'USER'}
+      let user = { name: a, email: b, password: c, quality: 'USER'}
+      console.log(user)
       dispatch(editUser([dashEditUser.email, dashEditUser.password, user]))
 
       message = { alert: 'Success', message: `You have successfully edited the information of the user, email address "${dashEditUser.email}".`}
@@ -76,14 +84,14 @@ export default function CreateUser() {
         <form ref={form} onSubmit={onSubmitForm}>
           <div className='flex flex-col text-sm'>
             <label htmlFor="name" className='text-xs font-bold'>Username : </label>
-            <input type="text" id='name' className='rounded-md mt-1 mb-3' onChange={(e) => setName(e.target.value)} defaultValue={n} placeholder='Please enter Username?' />
+            <input type="text" id='name' className='rounded-md mt-1 mb-3' onChange={(e) => setName(e.target.value)} defaultValue={n} placeholder='Please enter Username?' required />
             <label htmlFor="email" className='text-xs font-bold'>Email : </label>
             <input type="email" id='email' className='rounded-md mt-1 mb-3' onChange={(e) => setEmail(e.target.value)} defaultValue
-            ={e} placeholder='Please enter Email?' />
+            ={e} placeholder='Please enter Email?' required />
             <label htmlFor="password" className='text-xs font-bold'>Password : </label>
-            <input type="text" id='password' className='rounded-md mt-1 mb-3' onChange={(e) => setPassword(e.target.value)} placeholder='Please enter Password?' defaultValue={p} />
+            <input type="text" id='password' className='rounded-md mt-1 mb-3' onChange={(e) => setPassword(e.target.value)} placeholder='Please enter Password?' defaultValue={p} required />
             {
-              dashEditUser?.name.length > 0
+              dashEditUser?.name?.length > 0
                 ? <button className='tracking-wide font-bold bg-amber-400 hover:bg-amber-500 text-white mt-3 py-3 rounded-md'>Confirm</button>
                 : <button className='tracking-wide font-bold bg-blue-500 hover:bg-blue-600 text-white mt-3 py-3 rounded-md'>Create</button>
             }
