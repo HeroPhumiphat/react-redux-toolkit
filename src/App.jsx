@@ -67,7 +67,7 @@ export default function App() {
   }
 
   return (
-    <div className='App'>
+    <div className='App overflow-hidden'>
       <div className='relative w-full z-40' ref={boxHeader} style={{ boxShadow: '1px 1px 5px #e0e0e0'}}>
         <Header />
       </div>

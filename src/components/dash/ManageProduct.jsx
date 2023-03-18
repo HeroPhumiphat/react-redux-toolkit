@@ -62,9 +62,10 @@ export default function ManageProduct() {
                 <thead>
                   <tr className='uppercase text-xs'>
                     <th className='px-2'>count</th>
-                    <th className='px-2 text-start'>name</th>
-                    <th className='px-2 text-start'>email</th>
-                    <th className='px-2 text-start'>password</th>
+                    <th className='px-2'>image</th>
+                    <th className='px-2 text-center'>name</th>
+                    <th className='px-2 text-center'>type</th>
+                    <th className='px-2 text-center'>price</th>
                     <th className='px-2'>action</th>
                   </tr>
                 </thead>
@@ -73,9 +74,18 @@ export default function ManageProduct() {
                     doc.map((product, key) => (
                       <tr key={+key}>
                         <th className='py-2 border-b px-2 text-center'>{key + 1}</th>
-                        <td className='py-2 border-b px-2 text-start'>{product.name}</td>
-                        <td className='py-2 border-b px-2 text-start'>{product.email}</td>
-                        <td className='py-2 border-b px-2 text-start'>{product.password}</td>
+                        <td className='py-2 border-b px-2'>
+                          <div className='w-[150px] h-[160px] rounded-sm mx-auto' style={{backgroundImage: typeof product.image === 'string' ? `url(${product?.image})` : `url(${URL?.createObjectURL(product?.image)})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}></div>
+                        </td>
+                        <td className='py-2 border-b px-2 text-center'>
+                          {
+                              product.name?.length > 15
+                                ? <p>{product.name.substr(0, 15)}...</p>
+                                : <p>{product.name}</p>
+                          }
+                        </td>
+                        <td className='py-2 border-b px-2 text-center'>{product.type}</td>
+                        <td className='py-2 border-b px-2 text-center'>{product.price}</td>
                         <td className='py-2 border-b px-2 text-center'>
                           <Link to='/dash/create-user' className='text-xs py-2 px-3 rounded-sm mx-0.5 bg-amber-400 font-bold' onClick={() => onClickEditUser(product)}>Edit</Link>
                           <button className='text-xs py-1.5 mx-0.5 bg-red-400 font-bold rounded-sm' onClick={() =>  onClickDelUser(key, product.name)}>Del</button>

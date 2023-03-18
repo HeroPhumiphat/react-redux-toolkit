@@ -37,8 +37,8 @@ export default function MessageAlert() {
             msg?.alert.toLowerCase() === 'success'
               ? 'alert relative mb-3 bg-green-200 rounded-md pl-5 py-3 pr-10 text-sm z-50'
               : msg?.alert.toLowerCase() === 'warning'
-                ? 'alert relative mb-3 bg-amber-200 rounded-md px-5 py-3 pr-8 text-sm z-50'
-                : 'alert relative mb-3 bg-red-200 rounded-md px-5 py-3 pr-8 text-sm z-50'
+                ? 'alert relative mb-3 bg-amber-200 rounded-md px-5 py-3 pr-10 text-sm z-50'
+                : 'alert relative mb-3 bg-red-200 rounded-md px-5 py-3 pr-10 text-sm z-50'
           } key={+key} ref={boxAlert}>
             <p className=''><span className='font-bold mr-2'>{msg?.alert}!,</span>{msg?.message}</p>
             <button className='absolute right-2 bg-red-300 border-none top-2.5 text-xs py-1 px-2 hover:bg-red-400' onClick={() => onClickBtnCloseMessageAlert(key)}>X</button>
