@@ -18,6 +18,8 @@ body {
   background-color: #fff;
   font-family: 'Roboto', sans-serif;font-family: 'nito', sans-serif;
   color: #4f4f4f;
+
+  overflow: hidden;
 }
 
 input {
