@@ -55,8 +55,10 @@ export default function CreateProduct() {
       let newProduct = { name, price, type, information, image }
       // [key, newDoc]
       doc = [ dashEditProduct.key, newProduct ]
-      console.log(doc)
       dispatch(editProduct(doc))
+
+      message = { alert: 'Success', message: `You have successfully added a Ediit product named "${dashEditProduct.product.name}".`}
+
     }
 
     dispatch(addMessage(message))
@@ -65,7 +67,7 @@ export default function CreateProduct() {
 
   return (
     <div className='px-5 py-3 flex justify-center items-center w-full pt-12'>
-      <div className='w-[350px] md:w-[550px] pl-3'>
+      <div className='w-[350px] md:w-[550px] lg:w-[650px] pl-3'>
         <div className='relative'>
           {
             dashEditProduct.product.name === ''
