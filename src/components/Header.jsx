@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { setDashStateFalse, setDashStateTrue } from '../slice/dashStateSlice'
 import { addMessage } from '../slice/messageAlertSlice'
 import { addEditTrue } from '../slice/stateEditSlice'
 import { stateLoginTrue } from '../slice/stateLoginSlice'
@@ -9,6 +10,7 @@ import { clearUserLogin } from '../slice/userLoginSlice'
 export default function Header() {
   const userLogin = useSelector(state => state.userLogin.value[0])
   const carts = useSelector(state => state.cart.value)
+  const dashState = useSelector(state => state.dashState.value)
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
@@ -109,6 +111,14 @@ export default function Header() {
     hiddenMenuList()
   }
 
+  const onClickBtnDash = () => {
+    if (dashState === false) {
+      dispatch(setDashStateTrue())
+    } else {
+      dispatch(setDashStateFalse())
+    }
+  }
+
   return (
     <div className='w-full bg-white py-2 px-4 z-40'>
       <div className='flex justify-between items-center'>
@@ -119,7 +129,7 @@ export default function Header() {
           <div className='flex justify-center w-20'>
             {
               userLogin?.quality === 'ADMIN' && <div className='relative left-3 h-full items-center cursor-pointer'>
-                <div className=' bg-lime-200 px-4 hover:px-3.5 h-12 flex justify-center items-center rounded-full hover:border-2 border-green-300'>
+                <div className=' bg-lime-200 px-4 hover:px-3.5 h-12 flex justify-center items-center rounded-full hover:border-2 border-green-300' onClick={onClickBtnDash}>
                   <p className='text-sm mr-5 font-bold'>Dash</p>
                   <i className="arrow-dash absolute right-4 fa-solid fa-snowflake"></i>
                 </div>

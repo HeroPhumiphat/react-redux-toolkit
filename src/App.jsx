@@ -26,6 +26,7 @@ export default function App() {
   const stateLogin = useSelector(state => state.stateLogin.value)
   const checkLogin = useSelector(state => state.checkLogin.value)
   const stateEdit = useSelector(state => state.stateEdit.value)
+  const dashState = useSelector(state => state.dashState.value)
   const dispatch = useDispatch()
 
   const boxHeader = React.useRef()
@@ -42,11 +43,19 @@ export default function App() {
   }, [])
 
   React.useEffect(() => {
+
+    boxContent.current.style.width = '100vw'
     boxContent.current.style.height = `${window.innerHeight - boxHeader.current.clientHeight}px`
-    boxContent.current.style.width = `${window.innerWidth - boxDash.current.clientWidth}px`
     boxDash.current.style.height = `${window.innerHeight - boxHeader.current.clientHeight}px`
 
     window.addEventListener('resize', (event) => {
+
+      if (event.target.innerWidth > 768) {
+        boxContent.current.style.width = `${window.innerWidth - boxDash.current.clientWidth}px`
+      } else {
+        boxContent.current.style.width = '100vw'
+      }
+
       boxContent.current.style.height = `${event.target.innerHeight - boxHeader.current.clientHeight}px`
       boxContent.current.style.width = `${event.target.innerWidth - boxDash.current.clientWidth}px`
     })
@@ -58,6 +67,13 @@ export default function App() {
     if (stateLogin === 'false') {
       boxLogin.current.classList.add('hidden')
       boxLogin.current.classList.remove('flex')
+    }
+
+    if (dashState === false) {
+      boxDash.current.classList.add('hidden')
+    }
+    if (dashState === true) {
+      boxDash.current.classList.remove('hidden')
     }
   })
 
@@ -72,11 +88,7 @@ export default function App() {
         <Header />
       </div>
       <div className='relative flex'>
-        <div className={
-          window.innerWidth < 768
-            ? 'relative z-40 hidden'
-            : 'relative z-40 hidden'
-        } ref={boxDash}>
+        <div className='dash absolute z-50 hidden' ref={boxDash}>
           <Dash />
         </div>
         <div className='content relative p-3  overflow-y-auto overflow-x-hidden z-30' ref={boxContent}>

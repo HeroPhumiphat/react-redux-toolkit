@@ -13,6 +13,21 @@
   display: none
 }
 
+.dash {
+  animation: dash .4s linear both alternate;
+}
+
+@keyframes dash {
+  from {
+    transform: translateX(-150px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .content, .docProduct, .boxCart {
   -ms-overflow-style: none;
   scrollbar-width: none;
