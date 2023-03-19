@@ -13,6 +13,11 @@
   display: none
 }
 
+.content, .docProduct, .boxCart {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .dash {
   animation: dash .4s linear both alternate;
 }
@@ -27,12 +32,6 @@
     opacity: 1;
   }
 }
-
-.content, .docProduct, .boxCart {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
 
 .logo {
   animation: logo .6s linear both;
@@ -73,6 +72,21 @@
     transform: rotateY(180deg);
   }
 }
+
+.text-home {
+  font-size: 50px;
+  font-weight: 800;
+}
+
+.text-home::after {
+  content: 'D';
+  position: absolute;
+  margin: -15px -45px;
+  font-size: 70px;
+  color: rgb(224, 224, 255);
+  z-index: -10;
+}
+
 
 .menulist {
   position: relative;
@@ -373,13 +387,6 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-@media (max-width: 640px) {
-  .imageProduct {
-    width: 160px;
-    height: 180px;
-  }
-}
-
 .boxConfirm {
   animation: confirm .1s linear both alternate;
 }
@@ -393,5 +400,22 @@ input[type=number] {
     transform: scale(1);
     opacity: 1;
   }
+}
 
+.image-home {
+  box-shadow: 5px 2px 5px #c1c1c1;
+  transform: rotateY(15deg);
+  transition: transform .1s;
+}
+
+.image-home:hover {
+  width: 500px;
+  transition: width 1s;
+}
+
+@media (max-width: 640px) {
+  .imageProduct {
+    width: 160px;
+    height: 180px;
+  }
 }
