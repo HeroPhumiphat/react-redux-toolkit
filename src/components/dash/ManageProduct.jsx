@@ -48,7 +48,7 @@ export default function ManageProduct() {
         <div className='flex justify-between space-x-4 w-full'>
           <p className='text-2xl underline underline-offset-8'>Manage Product</p>
           <Link to='/dash/create-product' onClick={() => {
-            dispatch(addDashEditUser({ name: '', email: '', password: ''}))
+            dispatch(addDashEditUser({ product: { name: ''} }))
           }} className='bg-blue-500 text-white text-xs sm:text-sm py-2 px-3 sm:px-7 rounded-sm font-bold'>Add new Item</Link>
         </div>
         <div className='flex flex-wrap'>
@@ -87,7 +87,7 @@ export default function ManageProduct() {
                         <td className='py-2 border-b px-2 text-center'>{product.type}</td>
                         <td className='py-2 border-b px-2 text-center'>{product.price}</td>
                         <td className='py-2 border-b px-2 text-center'>
-                          <Link to='/dash/create-user' className='text-xs py-2 px-3 rounded-sm mx-0.5 bg-amber-400 font-bold' onClick={() => onClickEditUser(product)}>Edit</Link>
+                          <Link to='/dash/create-product' className='text-xs py-2 px-3 rounded-sm mx-0.5 bg-amber-400 font-bold' onClick={() => onClickEditUser({ product, key })}>Edit</Link>
                           <button className='text-xs py-1.5 mx-0.5 bg-red-400 font-bold rounded-sm' onClick={() =>  onClickDelUser(key, product.name)}>Del</button>
                         </td>
                       </tr>
@@ -119,8 +119,8 @@ export default function ManageProduct() {
                             <p>Type: {product.type}</p>
                           </td>
                           <td className='mb-0 border-b pl-1 text-center mt-2 pb-1 pt-2'>
-                            <Link to='/dash/create-user' className='text-xs py-2 px-3 rounded-sm m-0.5 bg-amber-400 font-bold' onClick={() => onClickEditUser(product)}>Edit</Link>
-                            <button className='text-xs py-1.5 px-3 mx-0.5 bg-red-400 font-bold mt-2 rounded-sm' onClick={() =>  onClickDelUser(key, product.name)}>Del</button>
+                            <Link to='/dash/create-product' className='text-xs py-2 px-3 rounded-sm m-0.5 bg-amber-400 font-bold' onClick={() => onClickEditUser({ product, key})}>Edit</Link>
+                            <button className='text-xs py-1.5 px-3 mx-0.5 bg-red-400 font-bold mt-2 rounded-sm' onClick={() => onClickDelUser(key, product.name)}>Del</button>
                           </td>
                         </tr>
                       ))

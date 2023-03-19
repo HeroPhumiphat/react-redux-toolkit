@@ -9,11 +9,7 @@ import Cart from './components/page/Cart'
 import About from './components/page/About'
 import Login from './components/page/Login'
 import Register from './components/page/Register'
-import { useDispatch, useSelector } from 'react-redux'
-import { stateLoginFalse, stateLoginTrue } from './slice/stateLoginSlice'
-import { addLogin } from './slice/checkLoginSlice'
 import EditProfile from './components/page/EditProfile'
-import { addEditFalse } from './slice/stateEditSlice'
 import MessageAlert from './components/MessageAlert'
 import Product from './components/page/Product'
 import ConfirmAlert from './components/ConfirmAlert'
@@ -22,11 +18,18 @@ import CreateUser from './components/dash/CreateUser'
 import ManageProduct from './components/dash/ManageProduct'
 import CreateProduct from './components/dash/CreateProduct'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { addEditFalse } from './slice/stateEditSlice'
+import { addLogin } from './slice/checkLoginSlice'
+import { setDashStateFalse } from './slice/dashStateSlice'
+import { stateLoginFalse } from './slice/stateLoginSlice'
+
 export default function App() {
   const stateLogin = useSelector(state => state.stateLogin.value)
   const checkLogin = useSelector(state => state.checkLogin.value)
   const stateEdit = useSelector(state => state.stateEdit.value)
   const dashState = useSelector(state => state.dashState.value)
+  const userLogin = useSelector(state => state.userLogin.value[0])
   const dispatch = useDispatch()
 
   const boxHeader = React.useRef()
@@ -91,16 +94,22 @@ export default function App() {
         <div className='dash absolute z-50 hidden' ref={boxDash}>
           <Dash />
         </div>
-        <div className='content relative p-3  overflow-y-auto overflow-x-hidden z-30' ref={boxContent}>
+        <div className='content relative p-3  overflow-y-auto overflow-x-hidden z-30' ref={boxContent} onClick={() => dispatch(setDashStateFalse())}>
           <Routes>
             <Route path='/' element={ <Home /> } />
             <Route path='/product' element={ <Product /> } />
             <Route path='/cart' element={ <Cart /> } />
             <Route path='/about' element={ <About /> } />
-            <Route path='/dash/manage-user' element={ <ManageUser /> } />
-            <Route path='/dash/create-user' element={ <CreateUser /> } />
-            <Route path='/dash/manage-product' element={ <ManageProduct /> } />
-            <Route path='/dash/create-product' element={ <CreateProduct /> } />
+            {
+              userLogin?.quality === 'ADMIN'
+                ? <>
+                    <Route path='/dash/manage-user' element={ <ManageUser /> } />
+                    <Route path='/dash/create-user' element={ <CreateUser /> } />
+                    <Route path='/dash/manage-product' element={ <ManageProduct /> } />
+                    <Route path='/dash/create-product' element={ <CreateProduct /> } />
+                  </>
+                : ''
+            }
           </Routes>
         </div>
       </div>

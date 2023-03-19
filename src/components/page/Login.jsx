@@ -1,11 +1,14 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { addLogin, addRegister } from '../../slice/checkLoginSlice'
 import { addMessage } from '../../slice/messageAlertSlice'
 import { stateLoginFalse } from '../../slice/stateLoginSlice'
 import { addUserLogin, clearUserLogin } from '../../slice/userLoginSlice'
 
 export default function Login() {
+  const navigate = useNavigate()
+
   const users = useSelector(state => state.users.value)
   const dispatch = useDispatch()
   const form = React.useRef()
@@ -50,6 +53,10 @@ export default function Login() {
     if (user.length === 0) {
       message = { alert: 'Error', message:'Error, email or password is incorrect.'}
       return dispatch(addMessage(message))
+    }
+
+    if (user[0].quality === 'ADMIN') {
+      navigate('/dash/manage-user')
     }
 
     dispatch(clearUserLogin())
