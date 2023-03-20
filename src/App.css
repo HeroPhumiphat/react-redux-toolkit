@@ -402,20 +402,16 @@ input[type=number] {
   }
 }
 
-.image-home {
-  box-shadow: 5px 2px 5px #c1c1c1;
-  transform: rotateY(15deg);
-  transition: transform .1s;
+.box-image-home {
+  /* transform: rotateZ(12deg); */
+  animation: boxImage calc(.6s * var(--x));
 }
 
-.image-home:hover {
-  width: 500px;
-  transition: width 1s;
-}
-
-@media (max-width: 640px) {
-  .imageProduct {
-    width: 160px;
-    height: 180px;
+@keyframes boxImage {
+  from {
+    transform: translateY(-50px);
+  }
+  to {
+    transform: translateY(0);
   }
 }
