@@ -8,7 +8,7 @@ export default function Doc() {
         <hr />
         <p className='mt-4'>User or product information on this website is only fake information.</p>
         <p className='mt-4'>You can manage various information on the website through the user account named 'admin'.</p>
-        <ul className='ml-8'>
+        <ul className='ml-8 mt-1'>
           <li className='list-decimal'>Click on the login button.</li>
           <li className='list-decimal'>Click on the "User-Test" button &gt; select: Admin.</li>
         </ul>
