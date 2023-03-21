@@ -141,7 +141,7 @@ export default function App() {
         stateDoc === true &&
         <div className='absolute top-0 left-0 w-full h-full z-50 flex justify-center items-center'>
           <div className='absolute top-0 left-0 w-full h-full z-30 bg-neutral-800 opacity-40 backdrop-blur-3xl' onClick={() => setStateDoc(false)}></div>
-          <div className='boxDoc relative z-40 bg-white w-11/12 p-7 rounded-md'>
+          <div className='boxDoc relative z-40 bg-white w-11/12 max-w-[600px] p-7 rounded-md'>
             <button className='absolute bg-transparent top-1 right-1 hover:text-red-400 border-none' onClick={() => setStateDoc(false)}>x</button>
             <Doc />
           </ div>
