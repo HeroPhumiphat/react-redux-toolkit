@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addCart } from '../../slice/cartSlice'
 import { addMessage } from '../../slice/messageAlertSlice'
 import { stateLoginTrue } from '../../slice/stateLoginSlice'
+import { clearDocHome } from '../../slice/textHomeSlice'
 
 export default function Product() {
   const products = useSelector(state => state.product.value)
   const userLogin = useSelector(state => state.userLogin.value)
+  const productFromHome = useSelector(state => state.textHome.value)
   const dispatch = useDispatch()
 
   const [keyType, setKeyType] = React.useState('All')
@@ -17,6 +19,10 @@ export default function Product() {
   React.useEffect(() => {
     if (showProduct === '') {
       setCount(1)
+    }
+    if (productFromHome)  {
+      setShowProduct(productFromHome)
+      dispatch(clearDocHome())
     }
   })
 

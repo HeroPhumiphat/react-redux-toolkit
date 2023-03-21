@@ -6,17 +6,14 @@ const textHomeSlice = createSlice({
     value: []
   },
   reducers: {
-    addTextHome: (state, action) => {
-      state.value.push(action.payload)
+    addDocHome: (state, action) => {
+      state.value = action.payload
     },
-    removeTextHome: (state) => {
-      state.value.pop()
-    },
-    clearTextHome: (state) => {
-      state.value = []
+    clearDocHome: (state) => {
+      state.value = ''
     }
   }
 })
 
-export const { addTextHome, removeTextHome, clearTextHome } = textHomeSlice.actions
+export const { addDocHome, clearDocHome } = textHomeSlice.actions
 export default textHomeSlice.reducer
