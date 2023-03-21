@@ -33,14 +33,14 @@ export default function Product() {
       boxfilterType.current.classList.add('top-12')
       boxfilterType.current.classList.add('bg-white')
       boxfilterType.current.classList.add('z-30')
-      boxfilterType.current.classList.add('pt-6')
+      boxfilterType.current.classList.add('pt-5')
       boxfilterType.current.classList.add('pb-2')
     } else {
       boxfilterType.current.classList.remove('fixed')
       boxfilterType.current.classList.remove('top-12')
       boxfilterType.current.classList.remove('bg-white')
       boxfilterType.current.classList.remove('z-30')
-      boxfilterType.current.classList.remove('pt-6')
+      boxfilterType.current.classList.remove('pt-5')
       boxfilterType.current.classList.remove('pb-2')
     }
   })
