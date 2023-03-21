@@ -91,7 +91,7 @@ export default function Login() {
                 <label htmlFor="email">Email : </label>
                 <div className='flex items-center'>
                   <input type="email" id='email' name='email' placeholder='email@example.com' className='w-48 md:w-72 rounded-l-md' onChange={(e) => setEmail(e.target.value)} defaultValue={selectEmail}  maxLength='30' required />
-                  <select className='bg-neutral-200 py-3 pl-1 md:pl-2 pr-2.5 md:pr-3 rounded-r-md text-sm cursor-pointer' ref={checkSelect} onChange={onChangeSelect} style={{boxShadow: '0px 0px 5px'}}>
+                  <select className='bg-neutral-200 py-3 pl-1 md:pl-2 pr-2.5 md:pr-3 rounded-r-md text-sm cursor-pointer' ref={checkSelect} onChange={onChangeSelect} style={{boxShadow: '0px 0px 3px lime'}}>
                     <option value="inputValue">User-Test</option>
                     {
                       users.map((user, key) => (
