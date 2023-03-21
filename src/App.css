@@ -415,3 +415,16 @@ input[type=number] {
     transform: translateY(0);
   }
 }
+
+.boxDoc {
+  animation: doc 0.2s linear both;
+}
+
+@keyframes doc {
+  from {
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}

@@ -13,7 +13,9 @@ export default function Home() {
   const [bg, setBg] = React.useState('')
 
   const onHover = (product) => {
-    setShow(`${product.name} ($${product.price})`)
+    product.name?.length > 15
+      ? setShow(`${product.name.substr(0, 15)}... ($${product.price})`)
+      : setShow(`${product.name} ($${product.price})`)
     setBg(product.image)
   }
 
@@ -28,7 +30,7 @@ export default function Home() {
   }
 
   return (
-    <div className='w-full h-full flex justify-center'>
+    <div className='w-full h-full flex justify-center items-center'>
       <div className='absolute w-full h-full -z-10 opacity-40 blur-sm' style={{ backgroundImage: typeof bg === 'string' ? `url(${bg})` : `url(${URL?.createObjectURL(bg)})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}></div>
       <div className='relative py-2 md:py-5 flex flex-col justify-center text-center'>
         <p className='text-3xl md:text-5xl font-bold'>Welcom to Web Demo</p>
@@ -46,7 +48,7 @@ export default function Home() {
                 : ''
             ))
           }
-          <div className='absolute text-center bottom-16 w-8/12 md:w-10/12'>
+          <div className='absolute text-center -bottom-7 w-8/12 md:w-10/12'>
             <p className='text-lg md:text-3xl font-bold'>{show}</p>
           </div>
         </div>

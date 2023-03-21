@@ -32,7 +32,8 @@ export default function About() {
         <i className="fa-solid fa-font text-xl ml-2"></i>
       </Link>
 
-
+      <hr />
+      <p className='text-sm'>If there is an error or something is not correct, I apologize for this. If you have any further suggestions. You can contact me at E-mail: Herophumiphat639@exmaple.com</p>
     </div>
   )
 }
