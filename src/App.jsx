@@ -32,6 +32,7 @@ export default function App() {
   const stateEdit = useSelector(state => state.stateEdit.value)
   const dashState = useSelector(state => state.dashState.value)
   const userLogin = useSelector(state => state.userLogin.value[0])
+  const clickType = useSelector(state => state.clickType.value)
   const dispatch = useDispatch()
 
   const boxHeader = React.useRef()
@@ -49,7 +50,6 @@ export default function App() {
   }, [])
 
   React.useEffect(() => {
-
     boxContent.current.style.width = '100vw'
     boxContent.current.style.height = `${window.innerHeight - boxHeader.current.clientHeight}px`
     boxDash.current.style.height = `${window.innerHeight - boxHeader.current.clientHeight}px`
@@ -63,7 +63,6 @@ export default function App() {
     })
 
     window.addEventListener('resize', (event) => {
-
       if (event.target.innerWidth > 768) {
         boxContent.current.style.width = `${window.innerWidth - boxDash.current.clientWidth}px`
       } else {
@@ -88,6 +87,10 @@ export default function App() {
     }
     if (dashState === true) {
       boxDash.current.classList.remove('hidden')
+    }
+
+    if (clickType) {
+      boxContent.current.scrollTo(0, 50)
     }
   })
 

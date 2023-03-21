@@ -33,7 +33,12 @@ export default function About() {
       </Link>
 
       <hr />
-      <p className='text-sm'>If there is an error or something is not correct, I apologize for this. If you have any further suggestions. You can contact me at E-mail: Herophumiphat639@exmaple.com</p>
+      <div>
+        <p className='text-sm w-[350px] md:w-[600px] text-center mt-12'>If there is an error or something is not correct, I apologize for this. If you have any further suggestions. You can contact me at E-mail: Herophumiphat639@exmaple.com</p>
+      </div>
+      <div className='flex items-center'>
+        <p className='text-center mt-4 flex items-center'><span className='text-3xl'>😊&nbsp;</span> Thank You<span className='text-3xl'>&nbsp;😊</span></p>
+      </div>
     </div>
   )
 }

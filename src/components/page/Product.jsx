@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addCart } from '../../slice/cartSlice'
+import { clickType } from '../../slice/clickTypeSlice'
 import { addMessage } from '../../slice/messageAlertSlice'
 import { stateLoginTrue } from '../../slice/stateLoginSlice'
 import { clearDocHome } from '../../slice/textHomeSlice'
@@ -31,14 +32,14 @@ export default function Product() {
       boxfilterType.current.classList.add('fixed')
       boxfilterType.current.classList.add('top-12')
       boxfilterType.current.classList.add('bg-white')
-      boxfilterType.current.classList.add('z-50')
+      boxfilterType.current.classList.add('z-30')
       boxfilterType.current.classList.add('pt-6')
       boxfilterType.current.classList.add('pb-2')
     } else {
       boxfilterType.current.classList.remove('fixed')
       boxfilterType.current.classList.remove('top-12')
       boxfilterType.current.classList.remove('bg-white')
-      boxfilterType.current.classList.remove('z-50')
+      boxfilterType.current.classList.remove('z-30')
       boxfilterType.current.classList.remove('pt-6')
       boxfilterType.current.classList.remove('pb-2')
     }
@@ -95,7 +96,6 @@ export default function Product() {
 
     const doc = [ userLogin[0]?.name, userLogin[0]?.email, showProduct, count]
     return dispatch(addCart(doc))
-
   }
 
   const onClickCount = (value) => {
@@ -108,6 +108,12 @@ export default function Product() {
     }
   }
 
+  const onClickType = () => {
+    if (checkScroll === true) {
+      dispatch(clickType())
+    }
+  }
+
   return (
     <div className='flex flex-col justify-center z-30'>
       <div className='my-5 text-center'>
@@ -115,7 +121,7 @@ export default function Product() {
         <div className='w-full flex justify-center space-x-1 md:space-x-3 pt-2' ref={boxfilterType}>
           {
             typeProduct.map((type, key) => (
-              <div className='font-bold flex items-center' key={+key}>
+              <div className='font-bold flex items-center' key={+key} onClick={onClickType}>
                 <button className={
                   keyType === type
                   ? 'bg-neutral-600 text-sm text-white border-none'
@@ -131,7 +137,7 @@ export default function Product() {
         <div className='flex flex-wrap px-auto container mx-auto mt-5'>
           {
             cards.map((product, key) => (
-              <div className='conta mx-auto z-30' key={+key} style={{ '--i': (key + 1) }}>
+              <div className='conta mx-auto z-20' key={+key} style={{ '--i': (key + 1) }}>
                 <div className='boxCard mb-8 cursor-pointer rounded-md p-0.5' style={{boxShadow: '2px 2px 5px #c1c1c1'}}>
                   <div className='imageProduct rounded-md cursor-pointer' style={{backgroundImage: typeof product.image === 'string' ? `url(${product?.image})` : `url(${URL?.createObjectURL(product?.image)})`}} onClick={() => onClickProduct(key)}></div>
                   <div className='relative pb-1 md:pb-3 pt-1 cursor-default'>
