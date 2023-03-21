@@ -41,7 +41,7 @@ export default function Home() {
               key < 7
                 ? <div className='rotate-6 md:rotate-12' key={+key} onClick={() => onClickElem(product)}>
                     <div className='box-image-home relative w-8 md:w-24 h-80 md:h-96 rounded-full  cursor-pointer overflow-hidden max-w-[300px] transition duration-200 ease-in-out  hover:z-30 text-center mx-1 border hover:translate-y-[-30px] border-none' style={{'--x': key + 1}} onMouseEnter={() => onHover(product)} onMouseLeave={onHoverLeave}>
-                      <div className='absolute w-full h-full bg-blue-500 opacity-30 blur-md hover:opacity-0 hover:blur-none transition duration-500 ease-out z-20'></div>
+                      <div className='absolute w-full h-full bg-blue-900 opacity-30 blur-md hover:opacity-0 hover:blur-none transition duration-500 ease-out z-20'></div>
                       <div className='absolute -top-0 -left-32 md:-left-40 w-60 md:w-96 h-[400px] -rotate-12 z-10' style={{ backgroundImage: typeof product?.image === 'string' ? `url(${product?.image})` : `url(${URL?.createObjectURL(product?.image)})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}></div>
                     </div>
                   </div>

@@ -60,7 +60,7 @@ export default function ManageProduct() {
               <p className='text-sm text-neutral-400 mb-2'>Information table list Items.</p>
               <table className='hidden sm:block'>
                 <thead>
-                  <tr className='uppercase text-xs'>
+                  <tr className='uppercase text-sm'>
                     <th className='px-2'>count</th>
                     <th className='px-2'>image</th>
                     <th className='px-2 text-center'>name</th>

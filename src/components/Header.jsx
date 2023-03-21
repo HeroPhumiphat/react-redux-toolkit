@@ -124,7 +124,7 @@ export default function Header() {
       <div className='flex justify-between items-center'>
         <div className='flex items-center'>
           <div className='logo'>
-            <h1 className='logo my-1.5'>LOGO</h1>
+            <Link to='/' className='logo my-1.5 text-3xl tracking-wide'>LOGO</Link>
           </div>
           <div className='flex justify-center w-20'>
             {

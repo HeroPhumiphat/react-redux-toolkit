@@ -75,20 +75,24 @@ export default function CreateUser() {
   }
 
   return (
-    <div className='px-5 py-3 flex justify-center items-center w-full pt-12'>
-      <div className='w-[350px] pl-3'>
+    <div className='px-5 py-3 flex justify-center items-center w-full pt-12 md:pt-20'>
+      <div className='w-[350px] md:w-[450px] pl-3'>
         <div className='relative'>
-          <p className='text-lg font-bold underline underline-offset-8 mb-7'>Add new User.</p>
+          {
+            n !== ''
+              ? <p className='text-lg md:text-2xl font-bold underline underline-offset-8 mb-7'>Edit User.</p>
+              : <p className='text-lg md:text-2xl font-bold underline underline-offset-8 mb-7'>Add new User.</p>
+          }
           <button className='absolute right-0 -top-0.5 bg-red-300 hover:bg-red-400 border-none text-white py-2.5 text-xs px-3.5 rounded-md' onClick={onClickClose}>X</button>
         </div>
         <form ref={form} onSubmit={onSubmitForm}>
           <div className='flex flex-col text-sm'>
-            <label htmlFor="name" className='text-xs font-bold'>Username : </label>
+            <label htmlFor="name" className='text-sm font-bold'>Username : </label>
             <input type="text" id='name' className='rounded-md mt-1 mb-3' onChange={(e) => setName(e.target.value)} defaultValue={n} placeholder='Please enter Username?' required />
-            <label htmlFor="email" className='text-xs font-bold'>Email : </label>
+            <label htmlFor="email" className='text-sm font-bold'>Email : </label>
             <input type="email" id='email' className='rounded-md mt-1 mb-3' onChange={(e) => setEmail(e.target.value)} defaultValue
             ={e} placeholder='Please enter Email?' required />
-            <label htmlFor="password" className='text-xs font-bold'>Password : </label>
+            <label htmlFor="password" className='text-sm font-bold'>Password : </label>
             <input type="text" id='password' className='rounded-md mt-1 mb-3' onChange={(e) => setPassword(e.target.value)} placeholder='Please enter Password?' defaultValue={p} required />
             {
               dashEditUser?.name?.length > 0

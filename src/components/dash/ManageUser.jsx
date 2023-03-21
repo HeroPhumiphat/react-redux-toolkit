@@ -61,7 +61,7 @@ export default function ManageUser() {
               <p className='text-sm text-neutral-400 mb-2'>Information table list Users.</p>
               <table className='hidden sm:block'>
                 <thead>
-                  <tr className='uppercase text-xs'>
+                  <tr className='uppercase text-sm'>
                     <th className='px-2'>count</th>
                     <th className='px-2 text-start'>username</th>
                     <th className='px-2 text-start'>email</th>
@@ -69,17 +69,17 @@ export default function ManageUser() {
                     <th className='px-2'>action</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className='text-base'>
                   {
                     doc.map((user, key) => (
                       <tr key={+key}>
-                        <th className='py-2 border-b px-2 text-center'>{key + 1}</th>
-                        <td className='py-2 border-b px-2 text-start'>{user.name}</td>
-                        <td className='py-2 border-b px-2 text-start'>{user.email}</td>
-                        <td className='py-2 border-b px-2 text-start'>{user.password}</td>
-                        <td className='py-2 border-b px-2 text-center'>
-                          <Link to='/dash/create-user' className='text-xs py-2 px-3 rounded-sm mx-0.5 bg-amber-400 font-bold' onClick={() => onClickEditUser(user)}>Edit</Link>
-                          <button className='text-xs py-1.5 mx-0.5 bg-red-400 font-bold rounded-sm' onClick={() =>  onClickDelUser(key, user.email)}>Del</button>
+                        <th className='py-4 border-b px-3 text-center'>{key + 1}</th>
+                        <td className='py-4 border-b px-3 text-start'>{user.name}</td>
+                        <td className='py-4 border-b px-3 text-start'>{user.email}</td>
+                        <td className='py-4 border-b px-3 text-start'>{user.password}</td>
+                        <td className='py-2 border-b px-3 text-center'>
+                          <Link to='/dash/create-user' className='text-sm py-2 px-3 rounded-sm mx-0.5 bg-amber-400 font-bold' onClick={() => onClickEditUser(user)}>Edit</Link>
+                          <button className='text-sm py-1.5 mx-0.5 bg-red-400 font-bold rounded-sm' onClick={() =>  onClickDelUser(key, user.email)}>Del</button>
                         </td>
                       </tr>
                     ))
