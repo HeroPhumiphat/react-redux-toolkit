@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import cartSlice from './slice/cartSlice';
 import checkLoginSlice from './slice/checkLoginSlice';
+import checkScrollTypeSlice from './slice/checkScrollTypeSlice';
 import confirmSlice from './slice/confirmSlice';
 import dashEditUserSlice from './slice/dashEditUserSlice';
 import dashStateSlice from './slice/dashStateSlice';
@@ -26,5 +27,6 @@ export default configureStore({
     messageAlert: messageAlertSlice,
     dashState: dashStateSlice,
     textHome: textHomeSlice,
+    checkScrollType: checkScrollTypeSlice,
   }
 })

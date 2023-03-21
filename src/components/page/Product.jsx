@@ -9,12 +9,14 @@ export default function Product() {
   const products = useSelector(state => state.product.value)
   const userLogin = useSelector(state => state.userLogin.value)
   const productFromHome = useSelector(state => state.textHome.value)
+  const checkScroll = useSelector(state => state.checkScrollType.value)
   const dispatch = useDispatch()
 
   const [keyType, setKeyType] = React.useState('All')
   const [cards, setCards] = React.useState(products)
   const [showProduct, setShowProduct] = React.useState('')
   const [count, setCount] = React.useState(1)
+  const boxfilterType = React.useRef()
 
   React.useEffect(() => {
     if (showProduct === '') {
@@ -23,6 +25,22 @@ export default function Product() {
     if (productFromHome)  {
       setShowProduct(productFromHome)
       dispatch(clearDocHome())
+    }
+
+    if (checkScroll === true) {
+      boxfilterType.current.classList.add('fixed')
+      boxfilterType.current.classList.add('top-12')
+      boxfilterType.current.classList.add('bg-white')
+      boxfilterType.current.classList.add('z-50')
+      boxfilterType.current.classList.add('pt-6')
+      boxfilterType.current.classList.add('pb-2')
+    } else {
+      boxfilterType.current.classList.remove('fixed')
+      boxfilterType.current.classList.remove('top-12')
+      boxfilterType.current.classList.remove('bg-white')
+      boxfilterType.current.classList.remove('z-50')
+      boxfilterType.current.classList.remove('pt-6')
+      boxfilterType.current.classList.remove('pb-2')
     }
   })
 
@@ -57,7 +75,6 @@ export default function Product() {
     dispatch(addMessage(message))
 
     const doc = [ userLogin[0]?.name, userLogin[0]?.email, product, 1]
-    console.log(doc)
     return dispatch(addCart(doc))
   }
 
@@ -95,7 +112,7 @@ export default function Product() {
     <div className='flex flex-col justify-center z-30'>
       <div className='my-5 text-center'>
         <p className='font-bold text-xl underline underline-offset-8 mb-5'>Type Products</p>
-        <div className='w-full flex justify-center space-x-1 md:space-x-3 pt-2'>
+        <div className='w-full flex justify-center space-x-1 md:space-x-3 pt-2' ref={boxfilterType}>
           {
             typeProduct.map((type, key) => (
               <div className='font-bold flex items-center' key={+key}>

@@ -24,6 +24,7 @@ import { addLogin } from './slice/checkLoginSlice'
 import { setDashStateFalse } from './slice/dashStateSlice'
 import { stateLoginFalse } from './slice/stateLoginSlice'
 import Doc from './components/Doc'
+import { setScrollTypeFalse, setScrollTypeTrue } from './slice/checkScrollTypeSlice'
 
 export default function App() {
   const stateLogin = useSelector(state => state.stateLogin.value)
@@ -52,6 +53,14 @@ export default function App() {
     boxContent.current.style.width = '100vw'
     boxContent.current.style.height = `${window.innerHeight - boxHeader.current.clientHeight}px`
     boxDash.current.style.height = `${window.innerHeight - boxHeader.current.clientHeight}px`
+
+    boxContent.current.addEventListener('scroll', () => {
+      if (boxContent.current?.scrollTop> 40) {
+        dispatch(setScrollTypeTrue())
+      } else {
+        dispatch(setScrollTypeFalse())
+      }
+    })
 
     window.addEventListener('resize', (event) => {
 
