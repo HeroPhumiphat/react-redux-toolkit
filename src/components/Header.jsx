@@ -187,21 +187,21 @@ export default function Header() {
           }
         </div>
         <div className='flex space-x-4 md:hidden'>
-      { 
-        userLogin?.name.length
-          ? <div className='pr-4 border-r'>
-            <Link to='/cart' className='font-bold'>
-              <i className="fa-solid fa-cart-shopping mr-1"></i>
-              Cart
-              {
-                productCart.length > 0
-                  ? <span className='absolute w-1.5 h-1.5 rounded-full top-5 bg-red-400'></span>
-                  : ''
-              }
-            </Link>
-          </div>
-         : " "
-        }
+        {
+          userLogin?.name.length
+            ? <div className='pr-4 border-r'>
+              <Link to='/cart' className='font-bold'>
+                <i className="fa-solid fa-cart-shopping mr-1"></i>
+                Cart
+                {
+                  productCart.length > 0
+                    ? <span className='absolute w-1.5 h-1.5 rounded-full top-5 bg-red-400'></span>
+                    : ''
+                }
+              </Link>
+            </div>
+          : " "
+          }
           <div className='menulist cursor-pointer' ref={menulist} onClick={onClickMenuList}>
             <div></div>
             <div></div>
