@@ -79,17 +79,17 @@ export default function CreateProduct() {
         <form ref={form} onSubmit={onSubmitForm} >
           <div className='flex justify-between px-3'>
             <div className='flex flex-col text-sm'>
-              <label htmlFor="name" className='text-base font-bold'>ProductName : </label>
+              <label htmlFor="name" className='text-sm md:text-base font-bold'>ProductName : </label>
               <input type="text" id='name' className='rounded-md mt-1 mb-3' onChange={(e) => setName(e.target.value)} placeholder='Please enter the Product Name?' defaultValue={dashEditProduct.product.name} required />
-              <label htmlFor="price" className='text-base font-bold'>Price : </label>
+              <label htmlFor="price" className='text-sm md:text-base font-bold'>Price : </label>
               <input type="number" id='price' className='rounded-md mt-1 mb-3' onChange={(e) => setPrice(e.target.value)} placeholder='Please enter the Product Price?' defaultValue={dashEditProduct.product.price} step={0.01} required />
-              <label htmlFor="type" className='text-base font-bold'>Type : </label>
+              <label htmlFor="type" className='text-sm md:text-base font-bold'>Type : </label>
               <input type="text" id='type' className='rounded-md mt-1 mb-3' onChange={(e) => setType(e.target.value)} placeholder='Please enter the Product Type?' defaultValue={dashEditProduct.product.type} required />
-              <label htmlFor="information" className='text-base font-bold'>Information : </label>
+              <label htmlFor="information" className='text-sm md:text-base font-bold'>Information : </label>
               <textarea type="text" id='information' className='rounded-md mt-1 mb-3' onChange={(e) => setInformation(e.target.value)} placeholder='Please enter Information?' defaultValue={dashEditProduct.product.information} required />
-              <label htmlFor="information" className='text-base font-bold'>Image : </label>
+              <label htmlFor="information" className='text-sm md:text-base font-bold'>Image : </label>
               <div className='conta mx-auto mt-4 md:hidden'>
-                <div className='boxCard mb-8 cursor-pointerrounded-md p-0.5' style={{boxShadow: '2px 2px 5px #c1c1c1'}}>
+                <div className='boxCard mb-8 cursor-pointer rounded-md p-0.5' style={{boxShadow: '2px 2px 5px #c1c1c1'}}>
                   {
                     image === ''
                       ? <div className='w-[160px] h-[180px] flex justify-center items-center border'>
@@ -101,8 +101,8 @@ export default function CreateProduct() {
                   }
                   <div className='relative pb-1 md:pb-3 pt-1 cursor-default'>
                     <div className='w-full text-start pl-1 md:pl-3'>
-                      <p className='my-1 text-sm md:textbase'>{name}</p>
-                      <button className='btnAddCart cursor-pointer border-none hover:text-lime-300 mt-2 text-base md:text-sm' disabled>Add Cart</button>
+                      <p className='my-1 text-sm md:text-base'>{name}</p>
+                      <button className='btnAddCart cursor-pointer border-none hover:text-lime-300 mt-2 text-xs md:text-sm' disabled>Add Cart</button>
                     </div>
                     <p className='absolute right-3 bottom-1 md:bottom-3 text-xl md:text-4xl'>${price}</p>
                   </div>

@@ -30,18 +30,18 @@ export default function Product() {
 
     if (checkScroll === true) {
       boxfilterType.current.classList.add('fixed')
-      boxfilterType.current.classList.add('top-12')
+      boxfilterType.current.classList.add('top-1')
       boxfilterType.current.classList.add('bg-white')
+      boxfilterType.current.classList.add('pt-16')
       boxfilterType.current.classList.add('z-30')
-      boxfilterType.current.classList.add('pt-5')
-      boxfilterType.current.classList.add('pb-2')
+      boxfilterType.current.classList.add('pb-3')
     } else {
       boxfilterType.current.classList.remove('fixed')
-      boxfilterType.current.classList.remove('top-12')
+      boxfilterType.current.classList.remove('top1')
       boxfilterType.current.classList.remove('bg-white')
+      boxfilterType.current.classList.remove('pt-16')
       boxfilterType.current.classList.remove('z-30')
-      boxfilterType.current.classList.remove('pt-5')
-      boxfilterType.current.classList.remove('pb-2')
+      boxfilterType.current.classList.remove('pb-3')
     }
   })
 
@@ -116,12 +116,12 @@ export default function Product() {
 
   return (
     <div className='flex flex-col justify-center z-30'>
-      <div className='my-5 text-center'>
+      <div className='my-5 text-center w-full flex flex-col justify-center'>
         <p className='font-bold text-xl underline underline-offset-8 mb-5'>Type Products</p>
-        <div className='w-full flex justify-center space-x-1 md:space-x-3 pt-2' ref={boxfilterType}>
+        <div className='type w-full flex justify-center items-start flex-wrap space-x-1 md:space-x-3 pt-2 px-2' ref={boxfilterType}>
           {
             typeProduct.map((type, key) => (
-              <div className='font-bold flex items-center' key={+key} onClick={onClickType}>
+              <div className='font-bold flex items-center mb-1' key={+key} onClick={onClickType}>
                 <button className={
                   keyType === type
                   ? 'bg-neutral-600 text-sm text-white border-none'

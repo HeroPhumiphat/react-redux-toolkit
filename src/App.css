@@ -9,11 +9,12 @@
 
 .content::-webkit-scrollbar,
 .docProduct::-webkit-scrollbar,
-.boxCart::-webkit-scrollbar {
+.boxCart::-webkit-scrollbar,
+.type::-webkit-scrollbar {
   display: none
 }
 
-.content, .docProduct, .boxCart {
+.content, .docProduct, .boxCart, .type {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }

@@ -50,7 +50,7 @@ export default function ManageUser() {
           <p className='text-2xl underline underline-offset-8'>Manage User</p>
           <Link to='/dash/create-user' onClick={() => {
             dispatch(addDashEditUser({ name: '', email: '', password: ''}))
-          }} className='bg-blue-500 text-white text-xs sm:text-sm py-2 px-3 sm:px-7 rounded-sm font-bold'>Add new User</Link>
+          }} className='bg-blue-500 text-white text-xs sm:text-base py-2 px-3 sm:px-7 rounded-sm font-bold'>Add new User</Link>
         </div>
         <div className='flex flex-wrap'>
           <div className='mt-3 mr-0 lg:mr-12'>

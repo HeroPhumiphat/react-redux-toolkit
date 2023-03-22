@@ -49,7 +49,7 @@ export default function ManageProduct() {
           <p className='text-2xl underline underline-offset-8'>Manage Product</p>
           <Link to='/dash/create-product' onClick={() => {
             dispatch(addDashEditUser({ product: { name: ''} }))
-          }} className='bg-blue-500 text-white text-xs sm:text-sm py-2 px-3 sm:px-7 rounded-sm font-bold'>Add new Item</Link>
+          }} className='bg-blue-500 text-white text-xs sm:text-base py-2 px-3 sm:px-7 rounded-sm font-bold'>Add new Item</Link>
         </div>
         <div className='flex flex-wrap'>
           <div className='mt-3 mr-0 lg:mr-12'>
