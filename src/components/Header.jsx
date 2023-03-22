@@ -186,7 +186,9 @@ export default function Header() {
               </div>
           }
         </div>
-        <div className='flex space-x-4 md:hidden'>
+      {
+       userLogin?.name.length > 0
+       : <div className='flex space-x-4 md:hidden'>
           <div className='pr-4 border-r'>
             <Link to='/cart' className='font-bold'>
               <i className="fa-solid fa-cart-shopping mr-1"></i>
@@ -204,6 +206,8 @@ export default function Header() {
             <div></div>
           </div>
         </div>
+        : ''
+      }
         <div className='menuShow absolute px-10 py-7 bg-neutral-300 rounded-md right-3 top-20 flex-col items-center hidden' ref={menuShow}>
           {
             userLogin?.name.length > 0
