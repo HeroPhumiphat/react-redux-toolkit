@@ -30,18 +30,20 @@ export default function Product() {
 
     if (checkScroll === true) {
       boxfilterType.current.classList.add('fixed')
-      boxfilterType.current.classList.add('top-1')
+      boxfilterType.current.classList.add('top-12')
       boxfilterType.current.classList.add('bg-white')
-      boxfilterType.current.classList.add('pt-16')
+      boxfilterType.current.classList.add('pt-4')
+      boxfilterType.current.classList.add('md:pt-5')
       boxfilterType.current.classList.add('z-30')
-      boxfilterType.current.classList.add('pb-3')
+      boxfilterType.current.classList.add('pb-2')
     } else {
       boxfilterType.current.classList.remove('fixed')
-      boxfilterType.current.classList.remove('top1')
+      boxfilterType.current.classList.remove('top-12')
       boxfilterType.current.classList.remove('bg-white')
-      boxfilterType.current.classList.remove('pt-16')
+      boxfilterType.current.classList.remove('pt-4')
+      boxfilterType.current.classList.remove('md:pt-5')
       boxfilterType.current.classList.remove('z-30')
-      boxfilterType.current.classList.remove('pb-3')
+      boxfilterType.current.classList.remove('pb-2')
     }
   })
 
