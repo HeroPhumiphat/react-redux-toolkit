@@ -67,7 +67,7 @@ export default function CreateProduct() {
 
   return (
     <div className='px-5 py-3 flex justify-center items-center w-full pt-12'>
-      <div className='w-[350px] md:w-[650px] pl-3'>
+      <div className='w-[350px] md:w-[650px] px-3'>
         <div className='relative'>
           {
             dashEditProduct.product.name === ''
