@@ -77,7 +77,7 @@ export default function CreateProduct() {
           <button className='absolute right-0 -top-0.5 bg-red-300 hover:bg-red-400 border-none text-white py-2.5 text-xs px-3.5 rounded-md' onClick={onClickClose}>X</button>
         </div>
         <form ref={form} onSubmit={onSubmitForm} >
-          <div className='flex justify-between px-3'>
+          <div className='flex justify-between'>
             <div className='flex flex-col text-sm'>
               <label htmlFor="name" className='text-sm md:text-base font-bold'>ProductName : </label>
               <input type="text" id='name' className='rounded-md mt-1 mb-3' onChange={(e) => setName(e.target.value)} placeholder='Please enter the Product Name?' defaultValue={dashEditProduct.product.name} required />
