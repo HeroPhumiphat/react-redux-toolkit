@@ -10,6 +10,7 @@
 
 body {
   margin: 0;
+  padding: 0;
   display: flex;
   /* place-items: center; */
   min-width: 320px;
@@ -19,7 +20,7 @@ body {
   font-family: 'Roboto', sans-serif;font-family: 'nito', sans-serif;
   color: #4f4f4f;
 
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 input {
