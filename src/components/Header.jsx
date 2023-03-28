@@ -28,6 +28,14 @@ export default function Header() {
       menuShow.current.classList?.remove('hidden')
     }
 
+    console.log(menuShow.current.clientHeight + 80, window.innerHeight)
+    if (window.innerHeight <= (menuShow.current.clientHeight + 80)) {
+      console.log('window < element')
+      menuShow.current.style.height = `${window.innerHeight - 100}px`
+    } else {
+      menuShow.current.style.height = 'auto'
+    }
+
     window.addEventListener('resize', (event) => {
       if (event.target.innerWidth > 768) {
         setStateCheck(true)
@@ -208,7 +216,7 @@ export default function Header() {
             <div></div>
           </div>
         </div>
-        <div className='menuShow absolute px-10 py-7 bg-neutral-300 rounded-md right-3 top-20 flex-col items-center hidden' ref={menuShow}>
+        <div className='menuShow absolute px-10 py-7 bg-neutral-300 rounded-md right-3 top-20 flex-col items-center hidden overflow-y-auto' ref={menuShow}>
           {
             userLogin?.name.length > 0
               ? <>
