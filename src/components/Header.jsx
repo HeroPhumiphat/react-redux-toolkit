@@ -178,17 +178,17 @@ export default function Header() {
                 </div>
                 {
                   checkProfile
-                    ? <div className='prList absolute px-10 py-7 bg-neutral-300 rounded-md right-3 top-20 z-30 flex-col items-center justify-center flex' ref={prList}>
+                    ? <div className='prList absolute px-10 py-7 bg-white rounded-md right-3 top-16 z-30 flex-col items-center justify-center flex' ref={prList} style={{boxShadow: '0 0 3px #ccc, 0 0 7px #333'}}>
                         <p>Hi!, <span className='font-bold'>{userLogin.name}</span></p>
                         <p  className=''>{userLogin.email}</p>
                         <button className='bg-transparent border-b-amber-100 border-t-amber-100 rounded-sm py-2 mt-3 hover:rounded-lg hover:border-lime-200 hover:border-1.5 w-10/12' onClick={onClickEditProfile}>edit profile</button>
-                        <button className='bg-red-300 hover:bg-red-400 text-white border-none mt-4' onClick={onClickLogout}>Logout</button>
+                        <button className='bg-red-300 hover:bg-red-400 text-white border-none mt-4 focus:outline-none' onClick={onClickLogout}>Logout</button>
                       </div>
                     : ''
                 }
               </div>
             : <div className='login flex items-center'>
-                <button className='btn text-sm' onClick={onClickBTN}>Login</button>
+                <button className='bg-transparent text-blue-500 hover:text-blue-600 border-2 border-blue-400 hover:border-blue-500 text-sm ring:border-none focus:outline-none' onClick={onClickBTN}>Login</button>
               </div>
           }
         </div>
