@@ -72,7 +72,7 @@ export default function Cart() {
   }
 
   return (
-    <div className='boxCart relative w-full h-full flex justify-center items-start pt-0 md:pt-12 overflow-y-auto overflow-x-hidden z-30'>
+    <div className='boxCart relative w-full h-full flex justify-center items-start pt-0 md:pt-12 overflow-y-auto overflow-x-hidden z-30 pb-5'>
       <div className='px-5 py-2'>
         <table className='hidden md:block'>
           <thead>
@@ -148,7 +148,7 @@ export default function Cart() {
           <p className='text-lg md:text-3xl mt-2'><span className='font-bold mr-3 underline underline-offset-8'>Total: </span>${((total * 0.07) + total).toFixed(2)}</p>
           {
             prod.length === 0
-              ? <button className='mt-5 md:mt-12 w-52 text-sm md:text-lg bg-blue-500 hover:bg-blue-600 text-white border-none' onClick={onClickConfirmOrder} disabled>Confirm</button>
+              ? <button className='mt-5 md:mt-12 w-52 text-sm md:text-lg bg-blue-500 hover:bg-blue-600 text-white border-none cursor-no-drop' onClick={onClickConfirmOrder} disabled>Confirm</button>
               : <button className='mt-5 md:mt-12 w-52 text-sm md:text-lg bg-blue-500 hover:bg-blue-600 text-white border-none' onClick={onClickConfirmOrder}>Confirm</button>
           }
         </div>
