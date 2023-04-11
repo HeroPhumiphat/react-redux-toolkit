@@ -100,7 +100,7 @@ export default function App() {
   }
 
   return (
-    <div className='App overflow-hidden'>
+    <div className='App'>
       <div className='relative w-full z-40' ref={boxHeader} style={{ boxShadow: '1px 1px 5px #e0e0e0'}}>
         <Header />
       </div>
@@ -154,7 +154,7 @@ export default function App() {
         <div className='absolute top-0 left-0 w-full h-full z-50 flex justify-center items-center'>
           <div className='absolute top-0 left-0 w-full h-full z-30 bg-neutral-800 opacity-40 backdrop-blur-3xl' onClick={() => setStateDoc(false)}></div>
           <div className='boxDoc relative z-40 bg-white w-11/12 max-w-[600px] p-7 rounded-md'>
-            <button className='absolute bg-transparent top-1 right-1 hover:text-red-400 border-none' onClick={() => setStateDoc(false)}>x</button>
+            <button className='absolute bg-transparent top-1 right-1 hover:text-red-400 border-none' onClick={() => setStateDoc(false)}>X</button>
             <Doc />
           </ div>
         </ div>

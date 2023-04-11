@@ -28,9 +28,7 @@ export default function Header() {
       menuShow.current.classList?.remove('hidden')
     }
 
-    console.log(menuShow.current.clientHeight + 80, window.innerHeight)
     if (window.innerHeight <= (menuShow.current.clientHeight + 80)) {
-      console.log('window < element')
       menuShow.current.style.height = `${window.innerHeight - 100}px`
     } else {
       menuShow.current.style.height = 'auto'
@@ -128,16 +126,16 @@ export default function Header() {
   }
 
   return (
-    <div className='w-full bg-white py-2 px-4 z-40'>
+    <div className='w-full bg-white py-0 px-4 z-40'>
       <div className='flex justify-between items-center'>
         <div className='flex items-center'>
-          <div className='logo'>
+          <div className='logo my-2'>
             <Link to='/' className='logo my-1.5 text-3xl tracking-wide'>LOGO</Link>
           </div>
           <div className='flex justify-center w-20'>
             {
               userLogin?.quality === 'ADMIN' && <div className='relative left-3 h-full items-center cursor-pointer'>
-                <div className=' bg-lime-200 px-4 hover:px-3.5 h-12 flex justify-center items-center rounded-full hover:border-2 border-green-300' onClick={onClickBtnDash}>
+                <div className=' bg-lime-200 px-4 hover:px-3.5 h-10 flex justify-center items-center rounded-full hover:border-2 border-green-300' onClick={onClickBtnDash}>
                   <p className='text-sm mr-5 font-bold'>Dash</p>
                   <i className="arrow-dash absolute right-4 fa-solid fa-snowflake"></i>
                 </div>
@@ -216,7 +214,7 @@ export default function Header() {
             <div></div>
           </div>
         </div>
-        <div className='menuShow absolute px-10 py-7 bg-neutral-300 rounded-md right-3 top-20 flex-col items-center hidden overflow-y-auto' ref={menuShow}>
+        <div className='menuShow absolute px-10 py-7 bg-white rounded-md right-3 top-16 flex-col items-center hidden overflow-y-auto' ref={menuShow} style={{boxShadow: '0 0 3px #ccc, 0 0 7px #333'}}>
           {
             userLogin?.name.length > 0
               ? <>
@@ -236,10 +234,10 @@ export default function Header() {
           {
             userLogin?.name.length > 0
               ? <div className='flex items-center menuL' style={{'--r': 3.5}}>
-                  <button className='text-sm text-red-200 bg-neutral-500 hover:bg-neutral-600 border-none py-2.5' onClick={onClickLogout} style={{boxShadow: '0px 0px 5px rgba(255, 0, 0, .7)'}}>Logout</button>
+                  <button className='py-2 bg-transparent text-red-500 hover:text-600 border-2 border-red-400 hover:border-red-500 ring:border-none focus:outline-none' onClick={onClickLogout}>Logout</button>
                 </div>
               : <div className='flex items-center menuL' style={{'--r': 3.5}}>
-                  <button className='btn text-sm' onClick={onClickBTN}>Login</button>
+                  <button className='bg-transparent text-blue-500 hover:text-blue-600 border-2 border-blue-400 hover:border-blue-500 py-2 ring:border-none focus:outline-none' onClick={onClickBTN}>Login</button>
                 </div>
           }
         </div>

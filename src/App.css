@@ -10,11 +10,12 @@
 .content::-webkit-scrollbar,
 .docProduct::-webkit-scrollbar,
 .boxCart::-webkit-scrollbar,
-.type::-webkit-scrollbar {
+.type::-webkit-scrollbar,
+.menuShow::-webkit-scrollbar {
   display: none
 }
 
-.content, .docProduct, .boxCart, .type {
+.content, .docProduct, .boxCart, .type, .menuShow {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
