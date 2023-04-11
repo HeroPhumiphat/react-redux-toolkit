@@ -91,7 +91,7 @@ export default function Cart() {
               prod.map((e, key) => (
                 <tr className='border-b' key={+key}>
                   <th className='px-2 text-center'>{key + 1}</th>
-                  <td className='pt-3'>
+                  <td className='py-2'>
                     <div className='w-[100px] h-[60px] rounded-sm mx-4 md:mr-4 lg:mr-8 mb-5 md:mb-0' style={{backgroundImage: typeof e.product.image === 'string' ? `url(${e.product?.image})` : `url(${URL?.createObjectURL(e.product?.image)})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}></div>
                   </td>
                   <td className='px-2'>{e.product.name}</td>
