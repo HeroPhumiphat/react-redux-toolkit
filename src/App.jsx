@@ -39,7 +39,6 @@ export default function App() {
   const boxDash = React.useRef()
   const boxContent = React.useRef()
   const btnDash = React.useRef()
-  const boxLogin = React.useRef()
   const [stateDoc, setStateDoc] = React.useState(true)
 
   React.useEffect(() => {
@@ -73,15 +72,6 @@ export default function App() {
       boxContent.current.style.width = `${event.target.innerWidth - boxDash.current.clientWidth}px`
     })
 
-    // if (stateLogin === 'true') {
-    //   boxLogin.current.classList.remove('hidden')
-    //   boxLogin.current.classList.add('flex')
-    // }
-    // if (stateLogin === 'false') {
-    //   boxLogin.current.classList.add('hidden')
-    //   boxLogin.current.classList.remove('flex')
-    // }
-
     if (dashState === false) {
       boxDash.current.classList.add('hidden')
     }
@@ -92,8 +82,6 @@ export default function App() {
     if (clickType) {
       boxContent.current.scrollTo(0, 50)
     }
-
-    console.log(stateLogin, stateLogin === 'true');
   })
 
   const onClickSetstateLoginFalse = () => {
@@ -139,7 +127,7 @@ export default function App() {
       }
       {
         stateLogin === 'true'
-          ? <div className='absolute top-0 left-0 w-full h-full z-50 flex justify-center items-center' ref={boxLogin}>
+          ? <div className='absolute top-0 left-0 w-full h-full z-50 flex justify-center items-center'>
             <div className='absolute top-0 left-0 w-full h-full z-30 bg-neutral-800 opacity-30 backdrop-blur-3xl' onClick={onClickSetstateLoginFalse}></div>
             <div className='relative z-50 px-2 mx-0'>
               {
