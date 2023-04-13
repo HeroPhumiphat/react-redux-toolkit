@@ -99,7 +99,7 @@ export default function App() {
         <div className='dash absolute z-50 hidden' ref={boxDash}>
           <Dash />
         </div>
-        <div className='content relative overflow-y-auto overflow-x-hidden z-30' ref={boxContent} onClick={() => dispatch(setDashStateFalse())}>
+        <div className='content absolute button-0 overflow-y-auto overflow-x-hidden z-30' ref={boxContent} onClick={() => dispatch(setDashStateFalse())}>
           <Routes>
             <Route path='/' element={ <Home /> } />
             <Route path='/product' element={ <Product /> } />
