@@ -58,7 +58,7 @@ export default function Login() {
     if (user[0].quality === 'ADMIN') {
       navigate('/dash/manage-user')
     } else {
-      navigate('/')
+      navigate('/test')
     }
 
     dispatch(clearUserLogin())

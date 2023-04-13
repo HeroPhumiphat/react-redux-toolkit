@@ -25,6 +25,7 @@ import { setDashStateFalse } from './slice/dashStateSlice'
 import { stateLoginFalse } from './slice/stateLoginSlice'
 import Doc from './components/Doc'
 import { setScrollTypeFalse, setScrollTypeTrue } from './slice/checkScrollTypeSlice'
+import Test from './components/Test'
 
 export default function App() {
   const stateLogin = useSelector(state => state.stateLogin.value)
@@ -104,6 +105,7 @@ export default function App() {
             <Route path='/product' element={ <Product /> } />
             <Route path='/cart' element={ <Cart /> } />
             <Route path='/about' element={ <About /> } />
+            <Route path='/test' element={ <Test /> } />
             {
               userLogin?.quality === 'ADMIN'
                 ? <>
