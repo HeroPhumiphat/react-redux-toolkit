@@ -5,7 +5,7 @@ function Test() {
   const navigate = useNavigate()
 
   React.useEffect(() => {
-    // navigate('/')
+    navigate('/')
   }, [])
   return (
     <div>test</div>
