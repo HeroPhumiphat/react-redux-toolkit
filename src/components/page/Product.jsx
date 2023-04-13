@@ -141,16 +141,16 @@ export default function Product() {
         </div>
       </div>
 
-      <div className='text-center mt-2'>
-        <div className='flex flex-wrap px-auto container mx-auto mt-5'>
+      <div className='flex justify-center mt-2 px-5'>
+        <div className='grid grid-cols-1 min-[520px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 3x:grid-cols-6 gap-3 justify-items-center items-center mb-5'>
           {
             cards.map((product, key) => (
-              <div className='conta mx-auto z-20' key={+key} style={{ '--i': (key + 1) }}>
-                <div className='boxCard mb-8 cursor-pointer rounded-md p-0.5' style={{boxShadow: '2px 2px 5px #c1c1c1'}}>
+              <div className='conta z-20' key={+key} style={{ '--i': (key + 1) }}>
+                <div className='boxCard cursor-pointer rounded-md p-0.5' style={{boxShadow: '2px 2px 5px #c1c1c1'}}>
                   <div className='imageProduct rounded-md cursor-pointer' style={{backgroundImage: typeof product.image === 'string' ? `url(${product?.image})` : `url(${URL?.createObjectURL(product?.image)})`}} onClick={() => onClickProduct(key)}></div>
                   <div className='relative pb-1 md:pb-3 pt-1 cursor-default'>
                     <div className='w-full text-start pl-1 md:pl-3'>
-                      <p className='my-1 text-sm md:textbase'>{product.name}</p>
+                      <p className='my-1 text-sm lg:text-lg md:textbase'>{product.name}</p>
                       <button className='btnAddCart border-none hover:text-lime-300 mt-2 text-xs md:text-sm' onClick={() => onClickProductOne(product)}>Add Cart</button>
                     </div>
                     <p className='absolute right-3 bottom-1 md:bottom-3 text-xl md:text-4xl'>${(+product.price).toFixed(2)}</p>
