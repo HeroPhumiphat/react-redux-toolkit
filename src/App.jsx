@@ -106,7 +106,7 @@ export default function App() {
             <Route path='/cart' element={ <Cart /> } />
             <Route path='/about' element={ <About /> } />
             {
-              userLogin?.name?.length > 0
+              userLogin?.quality?.length > 0
                 ? <Route path='/test' element={ <Test /> } />
                 : ''
             }
