@@ -13,6 +13,7 @@ import stateLoginSlice from './slice/stateLoginSlice';
 import textHomeSlice from './slice/textHomeSlice';
 import userLoginSlice from './slice/userLoginSlice';
 import userSlice from './slice/userSlice';
+import stateProductshowSlice from './slice/stateProductshowSlice';
 
 export default configureStore({
   reducer: {
@@ -23,6 +24,7 @@ export default configureStore({
     checkLogin: checkLoginSlice,
     stateEdit: stateEditSlice,
     product: productSlice,
+    stateProductshow: stateProductshowSlice,
     cart: cartSlice,
     confirm: confirmSlice,
     messageAlert: messageAlertSlice,

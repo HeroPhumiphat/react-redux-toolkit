@@ -94,7 +94,7 @@ export default function Register() {
         <form ref={form} onSubmit={onSubmitForm}>
           <div className='flex flex-col mb-3'>
             <label htmlFor="name">Username : </label>
-            <input type="text" id='name' name='name' placeholder='Please enter your Username' maxLength='30' className='w-72 md:w-96 rounded-md' onChange={e => setName(e.target.value)} required />
+            <input type="text" id='name' name='name' placeholder='Please enter your Username' maxLength='20' className='w-72 md:w-96 rounded-md' onChange={e => setName(e.target.value)} required />
           </div>
           <div className='flex flex-col mb-3'>
             <label htmlFor="email">Email : </label>
