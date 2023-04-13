@@ -369,6 +369,10 @@
   box-shadow: 0px 0px 5px #c0ff93;
 }
 
+.bgType {
+  backdrop-filter: blur(40px);
+}
+
 .imageProduct {
   width: 240px;
   height: 300px;

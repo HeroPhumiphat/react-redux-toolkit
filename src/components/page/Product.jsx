@@ -125,11 +125,12 @@ export default function Product() {
   return (
     <div className='flex flex-col justify-center z-30'>
       <div className='my-5 text-center w-full flex flex-col justify-center'>
-        <p className='font-bold text-xl underline underline-offset-8 mb-5'>Type Products</p>
-        <div className='type w-full flex justify-center items-center flex-wrap space-x-1 md:space-x-3 pt-2 px-2' ref={boxfilterType}>
+        <p className='font-bold text-xl underline underline-offset-8 mb-5 z-30'>Type Products</p>
+        <div className='type w-full flex justify-center items-center flex-wrap space-x-1 md:space-x-3 pt-2 px-2 bg-opacity-0' ref={boxfilterType}>
+          <div className='bgType absolute top-0 left-0 w-full h-full z-10 bg-opacity-30 bg-white'></div>
           {
             typeProduct.map((type, key) => (
-              <div className='font-bold flex items-center mb-1' key={+key} onClick={onClickType}>
+              <div className='font-bold flex items-center mb-1 z-20' key={+key} onClick={onClickType}>
                 <button className={
                   keyType === type
                   ? 'bg-neutral-600 text-sm text-white border-none'
