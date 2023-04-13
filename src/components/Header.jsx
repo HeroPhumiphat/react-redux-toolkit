@@ -6,7 +6,7 @@ import { addMessage } from '../slice/messageAlertSlice'
 import { addEditTrue } from '../slice/stateEditSlice'
 import { stateLoginTrue } from '../slice/stateLoginSlice'
 import { clearUserLogin } from '../slice/userLoginSlice'
-import { setStateFalseProductShow } from '../slice/stateProductshowSlice'
+import clearShowProductSlice, { setStateShowProduct } from '../slice/clearShowProductSlice'
 
 export default function Header() {
   const userLogin = useSelector(state => state.userLogin.value[0])
@@ -232,7 +232,7 @@ export default function Header() {
           <Link to='/' className='menuL mb-1' style={{'--r': 1}} onClick={onClickLink}>Home</Link>
           <Link to='/product' className='menuL mb-1' style={{'--r': 2}} onClick={() => {
             onClickLink()
-            dispatch(setStateFalseProductShow())
+            dispatch(setStateShowProduct())
           }}>Product</Link>
           <Link to='/about' className='menuL mb-3' style={{'--r': 3}} onClick={onClickLink}>About</Link>
           {

@@ -5,15 +5,15 @@ import { clickType } from '../../slice/clickTypeSlice'
 import { addMessage } from '../../slice/messageAlertSlice'
 import { stateLoginTrue } from '../../slice/stateLoginSlice'
 import { clearDocHome } from '../../slice/textHomeSlice'
-import { setStateFalseProductShow, setStateTrueProductShow } from '../../slice/stateProductshowSlice'
+import { setStateShowProduct } from '../../slice/clearShowProductSlice'
 
 export default function Product() {
-  const products = useSelector(state => state.product.value);
-  const userLogin = useSelector(state => state.userLogin.value);
-  const productFromHome = useSelector(state => state.textHome.value);
-  const checkScroll = useSelector(state => state.checkScrollType.value);
-  const stateProductShow = useSelector(state => state.stateProductshow.value);
-  const dispatch = useDispatch();
+  const products = useSelector(state => state.product.value)
+  const userLogin = useSelector(state => state.userLogin.value)
+  const productFromHome = useSelector(state => state.textHome.value)
+  const checkScroll = useSelector(state => state.checkScrollType.value)
+  const clearShowProduct = useSelector(state => state.clearShowProduct.value)
+  const dispatch = useDispatch()
 
   const [keyType, setKeyType] = React.useState('All')
   const [cards, setCards] = React.useState(products)
@@ -21,11 +21,13 @@ export default function Product() {
   const [count, setCount] = React.useState(1)
   const boxfilterType = React.useRef()
 
-  console.log(stateProductShow)
+  console.log(clearShowProduct)
 
   React.useEffect(() => {
-    showProduct?.name?.length > 0 ? dispatch(setStateTrueProductShow()) : dispatch(setStateFalseProductShow())
-
+    if (clearShowProduct === true) {
+      setShowProduct('')
+      dispatch(setStateShowProduct())
+    }
     if (showProduct === '') {
       setCount(1)
     }
@@ -93,7 +95,6 @@ export default function Product() {
 
   const onClickCloseShowCard = () => {
     setShowProduct('')
-    dispatch(setStateFalseProductShow())
   }
 
   const onCLickAddCart = () => {
@@ -163,12 +164,9 @@ export default function Product() {
         </div>
       </div>
       {
-          stateProductShow === true
+        showProduct?.name?.length > 0
           ? <div className='fixed z-40 w-full bottom-0 left-0 flex justify-center items-center' style={{height: window.innerHeight - 52}}>
-              <div className='absolute w-full h-full bg-neutral-800 opacity-30 backdrop-blur-3xl z-0' onClick={() => {
-                setShowProduct('')
-                dispatch(setStateFalseProductShow())
-              }}></div>
+              <div className='absolute w-full h-full bg-neutral-800 opacity-30 backdrop-blur-3xl z-0' onClick={() => setShowProduct('')}></div>
               <div className='docProduct relative p-3 rounded-none h-full w-full md:w-[800px] md:h-min lg:h-min lg:w-[1000px] md:rounded-md bg-white z-30 lg:pb-7 overflow-y-auto'>
                 <button className='absolute right-1.5 top-1.5 text-sm bg-red-300 hover:bg-red-400 font-bold border-none' onClick={onClickCloseShowCard}>Close</button>
                 <h1 className='text-base md:text-lg lg:text-xl font-bold mb-5 underline underline-offset-8'>{showProduct?.name}</h1>
