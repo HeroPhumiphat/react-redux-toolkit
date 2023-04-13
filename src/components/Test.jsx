@@ -8,7 +8,7 @@ function Test() {
     navigate('/')
   }, [])
   return (
-    <div></div>
+    <div>test</div>
   )
 }
 

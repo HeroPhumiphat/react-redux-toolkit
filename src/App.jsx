@@ -104,12 +104,12 @@ export default function App() {
             <Route path='/' element={ <Home /> } />
             <Route path='/product' element={ <Product /> } />
             <Route path='/cart' element={ <Cart /> } />
+            <Route path='/about' element={ <About /> } />
             {
               userLogin?.name?.length > 0
-                ? <Route path='/about' element={ <About /> } />
+                ? <Route path='/test' element={ <Test /> } />
                 : ''
             }
-            <Route path='/test' element={ <Test /> } />
             {
               userLogin?.quality === 'ADMIN'
                 ? <>
