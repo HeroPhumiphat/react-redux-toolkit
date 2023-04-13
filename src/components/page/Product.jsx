@@ -21,8 +21,6 @@ export default function Product() {
   const [count, setCount] = React.useState(1)
   const boxfilterType = React.useRef()
 
-  console.log(clearShowProduct)
-
   React.useEffect(() => {
     if (clearShowProduct === true) {
       setShowProduct('')
