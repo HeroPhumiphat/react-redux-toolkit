@@ -73,9 +73,6 @@ export default function Login() {
     setSelectEmail('')
     setSelectPassword('')
     checkSelect.current.value = 'inputValue'
-
-    const body = document.body
-    body.style.height = `${window.innerHeight}px`;
   }
 
   return (
