@@ -19,7 +19,7 @@ body {
   font-family: 'Roboto', sans-serif;font-family: 'nito', sans-serif;
   color: #4f4f4f;
 
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 input {
