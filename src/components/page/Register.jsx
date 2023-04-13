@@ -135,14 +135,14 @@ export default function Register() {
             {
               validPassword.hasLength && validPassword.hasNumber && validPassword.hasStrLow && validPassword.hasStrUp && validPassword.hasSymbols
                 ? <>
-                    <input type="password" name='passwordConfirm' placeholder='Please enter your password (Confirm)' className='w-72 md:w-96 rounded-md' onChange={e => setPasswordConfirm(e.target.value)} required />
+                    <input type="password" name='passwordConfirm' placeholder='Password Confirm' className='w-72 md:w-96 rounded-md' onChange={e => setPasswordConfirm(e.target.value)} required />
                     {
                       validPasswordConfirm === 'stb'
                         ? ''
                         : validPasswordConfirm === true
                             ? <p className='text-green-500 pl-3 mt-1'> <i className="fa-solid fa-check text-lg"></i> password is match</p>
                             : validPasswordConfirm === false
-                              ? <p className='text-red-500 pl-3 mt-2'><i className="fa-solid fa-x"></i> password is incorrect</p>
+                              ? <p className='text-red-500 pl-3 mt-2'><i className="fa-solid fa-x"></i> password not match</p>
                               : ''
                     }
                   </>
